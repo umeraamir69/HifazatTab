@@ -55,7 +55,7 @@ for r in tool_rows:
     m1, m2 = TOOL_RE.search(reply), ARG_RE.search(reply)
     if m1 and m2:
         valid += 1
-        if m1.group(1) == r["tool"].split(":")[0] and m2.group(2) == r["tool"].split(":")[1]:
+        if m1.group(1) == r["tool"].split(":")[0] and m2.group(1) == r["tool"].split(":")[1]:
             task_ok += 1
     print(r["id"], "->", reply[:100])
 
