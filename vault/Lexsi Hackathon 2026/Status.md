@@ -33,9 +33,9 @@ must close. Targets: validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
 
 ## Still manual (you)
 
-- [ ] Hackathon registration + Discord ($20 HF credits)
+- [x] Hackathon registration + Discord ($20 HF credits) — done Oct 31
 - [ ] Oct 31 kickoff notes → update Plan if IDs/APIs shifted
-- [ ] Commit/push as umeraamir69 when ready (include `colab result/`)
+- [x] Repo live as umeraamir69 (Phase 0, Phase 1 pack, site, phone, docs all pushed)
 
 ## Next
 
