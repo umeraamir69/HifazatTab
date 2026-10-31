@@ -65,6 +65,12 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   +$200 if shortlisted, usable on ZeroGPU.
 - Test: claims match docs pages fetched today. Evaluator: meaningful, unblocks Phase 1.
 
+## 2026-10-31 — HF token in .env + Colab Secrets wiring
+- What: HF token stored in `.env` (gitignored). Notebook login cell now reads
+  Colab Secrets `HF_TOKEN`, fallback hidden paste. Token never in code/git.
+  Committed 414fe0f, pushed. README Cell 2 updated.
+- Evaluator: notebook JSON valid, login cell verified by string check. Meaningful.
+
 ## 2026-10-31 — Cell guide as separate doc
 - What: user stopped inline notebook explainers; wrote `colab/README.md`
   instead (one plain-words section per cell: why + cause). Notebook reverted

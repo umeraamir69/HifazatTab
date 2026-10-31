@@ -26,11 +26,13 @@ Cause: Colab gives you a fresh machine each time, so installs run first, always.
 
 ## Cell 2 — Login
 
-Asks for your Hugging Face token with `getpass` (typing stays hidden).
+Reads your Hugging Face token from Colab Secrets (key icon at left, store it
+once under the name `HF_TOKEN`). Falls back to hidden manual paste.
 
 Why: Tiny Aya is gated. You accept the licence on its page, then the token
 proves who you are. No licence + no token means the download is refused.
-Hidden typing means the token never lands in outputs or screenshots.
+Secrets/manual paste keep the token out of the file, so pushing to GitHub
+stays safe — the token is never written in the notebook.
 
 ## Cell 3 — Baseline run
 
