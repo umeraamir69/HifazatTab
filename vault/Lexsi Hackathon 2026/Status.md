@@ -1,25 +1,44 @@
 # Status — HifazatTab
 
-**Where we are:** Phase 0 done and green (Oct 31). Plan locked, baseline exists.
+**Where we are:** Phase 1 Tiny Aya baseline **DONE** (2026-10-31). Phase 0 still green.
 
 ## Done
 
-- Plan + Research + prior-art (§7) in vault. Step-by-step guide in repo.
-- Phase 0 stdlib build: tools, agent, eval, redteam, demo, 4 unit tests.
-- Baseline scores (laptop, rule-based stand-in):
-  task 13/13 · refusal 5/5 · over-refusal 0 · consistency 4/4 · redteam 9/9.
-- 3 evaluator-found bugs fixed and locked by regression tests.
-- Git repo init, identity `umeraamir69`, nothing pushed yet.
+- Plan + Research + vault docs. Step-by-step guide in repo.
+- Phase 0 stdlib: tools/agent/eval/redteam/demo/tests.
+  Laptop rule-agent: task 13/13 · refusal 5/5 · redteam 9/9.
+- Phase 1 Colab on T4 with `CohereLabs/tiny-aya-fire` (BitsAndBytesConfig 4-bit).
+- Results saved under `Documents/Lexsi/colab result/`.
+
+### Phase 1 BEFORE metrics
+
+| Metric | Score |
+|--------|------:|
+| tool_call_validity | 150/153 (98%) |
+| task_success | 17/153 (11%) |
+| refusal_precision | 3/21 (14%) |
+
+## Real baseline — Tiny Aya zero-shot (Colab, Oct 31)
+
+Model: `CohereLabs/tiny-aya-fire`, 4-bit, greedy, fallback tool prompt.
+
+| Metric | Score |
+|--------|-------|
+| tool_call_validity | 150/153 |
+| task_success | 17/153 |
+| refusal_precision | 3/21 |
+
+Reading: format learned, content wrong, safety open. This is the gap Phase 2
+must close. Targets: validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
 
 ## Still manual (you)
 
-- [ ] Hackathon registration + Discord (for $20 HF credits)
-- [ ] Accept `tiny-aya-fire` licence on Hugging Face, `hf auth login`
-- [ ] Cohere API key for quick tests
+- [ ] Hackathon registration + Discord ($20 HF credits)
 - [ ] Oct 31 kickoff notes → update Plan if IDs/APIs shifted
-- [ ] `git commit` + push as umeraamir69 (say when ready)
+- [ ] Commit/push as umeraamir69 when ready (include `colab result/`)
 
-## Next (needs Colab / ZeroGPU)
+## Next
 
-- Phase 1: Tiny Aya baseline with AgentTune fallback prompt.
-- Phase 2: GRPO train (50–150 steps), push adapter to HF.
+- Phase 2: AgentTune GRPO (constrained tools + verifiable reward)
+- Phase 3: AuditKIT before/after on trajectories
+- Phase 4: script-switch red-team + repair + quant

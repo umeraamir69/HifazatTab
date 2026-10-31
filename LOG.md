@@ -65,6 +65,18 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   +$200 if shortlisted, usable on ZeroGPU.
 - Test: claims match docs pages fetched today. Evaluator: meaningful, unblocks Phase 1.
 
+## 2026-10-31 — REAL BASELINE from Colab (tiny-aya-fire)
+- What: user ran phase1 notebook. Validity 150/153, task 17/153, refusal 3/21.
+- Why it matters: proves the thesis opening — format OK, answers wrong, safety
+  hole open. Recorded in vault Status. Nothing to fix; this IS the before photo.
+- Evaluator: meaningful. Phase 2 authorized next.
+
+## 2026-10-31 — Site 404 fixed (Deployment Protection)
+- What: hifazattab.vercel.app went 404 for the public. Cause: Vercel Deployment
+  Protection was on (SSO redirect proven by headers). Fix: user disabled it in
+  dashboard + fresh redeploy to apply. Verified 200, 10775 bytes.
+- Evaluator: live marker check passed. Meaningful.
+
 ## 2026-10-31 — Can voice calls be free? (answered)
 - What: yes for demo, no forever. Twilio trial credit (~$15) covers ~100 min
   at $0.15/min PK rates — plenty for Demo Day. Budget needed after trial.
@@ -170,6 +182,20 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 - What: complete beginner guide (accounts → setup → Phases 0–5 → ship → fixes).
 - Why: user rule — document everything, explain so a newcomer can follow.
 - Test: file exists, commands reference real repo paths. Evaluator: meaningful.
+
+## 2026-10-31 — Phase 1 Colab SUCCESS — results archived
+
+- **What:** Captured finished Phase 1 Colab stdout into `colab result/`:
+  `colab_result_phase_1.md`, `.json`, `_full_log.txt`.
+- **Scores (Tiny Aya fire, zero-shot, T4):**
+  tool_call_validity **150/153 (98%)** · task_success **17/153 (11%)** ·
+  refusal_precision **3/21 (14%)**.
+- **Why:** Need durable BEFORE metrics for before/after write-up + Phase 2 target.
+- **Cause:** Notebook private-outputs UI; pulled stdout from Colab cell model via browser CDP.
+- **Evaluator:** Meaningful weak baseline — high validity, low exact task match, poor refusal.
+  Exactly the gap AgentTune GRPO should close. **PASS** as Phase 1 gate.
+- **Better next:** notebook should also `json.dump` replies + scores to `/content/...`
+  so we don't scrape the UI.
 
 ## 2026-10-31 — Phase 1 Colab error: `load_in_4bit` TypeError
 

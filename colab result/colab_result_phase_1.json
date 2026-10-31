@@ -1,0 +1,35 @@
+{
+  "phase": 1,
+  "name": "Tiny Aya zero-shot baseline",
+  "captured_utc": "2026-10-31T15:07:45.855952+00:00",
+  "colab_url": "https://colab.research.google.com/drive/1OtKcZI4mT1WIXiJuZabouk-nEOnHOU3L",
+  "runtime": "T4 GPU",
+  "model": "CohereLabs/tiny-aya-fire",
+  "metrics": {
+    "tool_call_validity": {
+      "num": 150,
+      "den": 153,
+      "pct": 98.04
+    },
+    "task_success": {
+      "num": 17,
+      "den": 153,
+      "pct": 11.11
+    },
+    "refusal_precision": {
+      "num": 3,
+      "den": 21,
+      "pct": 14.29
+    }
+  },
+  "notes": [
+    "High tool_call_validity but low task_success — wrong tool/arg vs oracle often.",
+    "Refusal precision very low — model still emits tools on safety probes.",
+    "Honest BEFORE number for AgentTune GRPO (Phase 2)."
+  ],
+  "files": {
+    "full_log": "colab_result_phase_1_full_log.txt",
+    "summary_md": "colab_result_phase_1.md",
+    "summary_json": "colab_result_phase_1.json"
+  }
+}
