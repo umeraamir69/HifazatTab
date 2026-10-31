@@ -65,6 +65,14 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   +$200 if shortlisted, usable on ZeroGPU.
 - Test: claims match docs pages fetched today. Evaluator: meaningful, unblocks Phase 1.
 
+## 2026-10-31 — $0 rule + WhatsApp path + API docs
+- What: user rule — everything must be free. PSTN calls parked (no PK numbers,
+  ~$0.15/min). Added free WhatsApp Sandbox route, `phone/README.md` ($0 recipe
+  + honest limits), `phone/API.md` (all 4 routes with curl examples).
+- Test: 6/6 unit tests OK (handlers pure, no server needed). Committed 26eb6bc,
+  pushed, tree clean. No live-server probe (macOS sandbox blocks backgrounding).
+- Evaluator: meaningful.
+
 ## 2026-10-31 — Voice agent live
 - What: Mic input (SpeechRecognition per-language) + spoken replies
   (speechSynthesis, voice matched by lang). Still one file, no keys/servers.

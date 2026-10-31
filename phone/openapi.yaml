@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: HifazatTab Webhook API
+  version: 1.0.0
+  description: >
+    Trilingual shop tool-agent webhooks (Urdu, Hindi, English).
+    Voice calls need a paid Twilio number; WhatsApp Sandbox is $0.
+    All answers come from src/agent.py + data/shop.csv.
+servers:
+  - url: http://localhost:8080
+    description: Local laptop server
+paths:
+  /health:
+    get:
+      summary: Liveness check
+      responses:
+        '200':
+          description: Server is up
+          content:
+            text/xml:
+              example: "<ok/>"
+  /voice:
+    post:
+      summary: Start a call (paid Twilio number required)
+      description: Called by Twilio when the phone rings. Replies with TwiML greeting + Gather.
+      responses:
+        '200':
+          description: TwiML with greeting and Gather verb
+          content:
+            text/xml:
+              example: "<Response><Say>Welcome to Hifazat shop...</Say><Gather input=\"speech\" action=\"/gather\" language=\"en-US\"/></Response>"
+  /gather:
+    post:
+      summary: Answer a spoken question, loop the call
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                SpeechResult:
+                  type: string
+                  example: What is the price of atta 20kg?
+      responses:
+        '200':
+          description: TwiML with spoken answer, or Hangup on goodbye
+          content:
+            text/xml:
+              example: "<Response><Say>atta_20kg: 2850 PKR, stock 40.</Say><Redirect>/voice</Redirect></Response>"
+  /whatsapp:
+    post:
+      summary: Chat bot (FREE via Twilio Sandbox, $0)
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                Body:
+                  type: string
+                  example: آٹا 20 کلو کی قیمت کیا ہے؟
+                From:
+                  type: string
+                  example: whatsapp:+923001234567
+      responses:
+        '200':
+          description: TwiML with reply message
+          content:
+            text/xml:
+              example: "<Response><Message>atta_20kg: 2850 PKR, stock 40.</Message></Response>"

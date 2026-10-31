@@ -39,6 +39,25 @@ def twiml(body):
             % body)
 
 
+PHONE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+def openapi_file():
+    """Raw OpenAPI YAML bytes. Single source of truth: phone/openapi.yaml."""
+    with open(os.path.join(PHONE_DIR, "openapi.yaml"), encoding="utf-8") as f:
+        return f.read()
+
+
+def docs_html():
+    return """<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>HifazatTab API docs</title>
+<link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css">
+</head><body><div id="ui"></div>
+<script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+<script>SwaggerUIBundle({url:"/openapi.yaml",dom_id:"#ui"});</script>
+</body></html>"""
+
+
 def handle_voice():
     return twiml(
         "<Say voice=\"%s\" language=\"%s\">%s</Say>"
@@ -91,8 +110,23 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
     def do_GET(self):
-        if urlparse(self.path).path == "/health":
+        path = urlparse(self.path).path
+        if path == "/health":
             self._send("<ok/>")
+        elif path == "/docs":
+            data = docs_html().encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+        elif path == "/openapi.yaml":
+            data = openapi_file().encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/yaml")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
         else:
             self._send(twiml("<Say>Not found.</Say>"), 404)
 

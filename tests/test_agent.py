@@ -42,6 +42,19 @@ class TestAgent(unittest.TestCase):
             with self.subTest(prompt=prompt):
                 self.assertFalse(agent.answer(prompt)["refused"])
 
+    def test_swagger_docs(self):
+        import sys
+        sys.path.insert(0, os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            "phone"))
+        import server
+        spec = server.openapi_file()
+        for path in ("/health", "/voice", "/gather", "/whatsapp"):
+            self.assertIn(path, spec)
+        html = server.docs_html()
+        self.assertIn("swagger-ui", html)
+        self.assertIn("/openapi.yaml", html)
+
     def test_whatsapp_free_path(self):
         import sys
         sys.path.insert(0, os.path.join(
