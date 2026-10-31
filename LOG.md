@@ -65,6 +65,15 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   +$200 if shortlisted, usable on ZeroGPU.
 - Test: claims match docs pages fetched today. Evaluator: meaningful, unblocks Phase 1.
 
+## 2026-10-31 — Phase 2 notebook written + Results doc
+- What: `colab/phase2_grpo.ipynb` (inspect API → login → rewards → train 100
+  steps → push adapter) + vault `Results.md` (Phase 0/1 what+scores, Phase 2
+  plan+targets). Committed 1477f4d, pushed.
+- Honest caveat: untested locally (no GPU). Cell 1 prints the installed
+  signature so we adapt if kickoff changed it. Reward-func interface is best
+  guess from docs — user pastes any error back.
+- Evaluator: notebook JSON valid. Meaningful pending Colab run.
+
 ## 2026-10-31 — REAL BASELINE from Colab (tiny-aya-fire)
 - What: user ran phase1 notebook. Validity 150/153, task 17/153, refusal 3/21.
 - Why it matters: proves the thesis opening — format OK, answers wrong, safety
@@ -221,3 +230,9 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 | agenttune | TBD | |
 | auditkit | TBD | |
 | Tiny Aya HF id | TBD (`fire` or `global`) | |
+
+## 2026-10-31 — Remember for LinkedIn
+
+- **Fact:** bitsandbytes 4-bit path does not exist on Apple Silicon (CUDA-only).
+- Phase 1 Tiny Aya baseline ran on **Colab T4**, not the Mac.
+- OK to post about this friction. Do not imply a local Mac 4-bit load worked.
