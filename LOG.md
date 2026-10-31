@@ -65,6 +65,13 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   +$200 if shortlisted, usable on ZeroGPU.
 - Test: claims match docs pages fetched today. Evaluator: meaningful, unblocks Phase 1.
 
+## 2026-10-31 — Voice agent live
+- What: Mic input (SpeechRecognition per-language) + spoken replies
+  (speechSynthesis, voice matched by lang). Still one file, no keys/servers.
+- Bug in rollout: first redeploy raced the alias; redeployed, verified live
+  marker "Mic: speak" + 10775 bytes. Committed c3b55e6, pushed.
+- Evaluator: node harness SMOKE OK incl. mic fallback + voice-on ask.
+
 ## 2026-10-31 — Deployed to Vercel
 - What: `vercel --prod` from `web/` as fresh project `hifazattab`
   (first attempt linked a stale Next.js project — deleted link, redeployed).
