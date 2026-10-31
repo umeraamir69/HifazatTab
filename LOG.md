@@ -65,6 +65,13 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   +$200 if shortlisted, usable on ZeroGPU.
 - Test: claims match docs pages fetched today. Evaluator: meaningful, unblocks Phase 1.
 
+## 2026-10-31 — Deployed to Vercel
+- What: `vercel --prod` from `web/` as fresh project `hifazattab`
+  (first attempt linked a stale Next.js project — deleted link, redeployed).
+  Live: https://hifazattab.vercel.app (200, 9066 bytes, exact artifact).
+- Evaluator: curl confirms reachability + correct bytes. In-browser rendering
+  unverified (no browser on laptop); JS logic harness-verified.
+
 ## 2026-10-31 — 100+ rows + showcase site (user's 3 asks)
 - What: researched reuse sets (HinglishAssistBench, Urdu-Instruct/Alpaca, logged
   in Research §7b). `scripts/build_seed.py` generates 174 rows deterministically.
@@ -133,6 +140,15 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 - What: complete beginner guide (accounts → setup → Phases 0–5 → ship → fixes).
 - Why: user rule — document everything, explain so a newcomer can follow.
 - Test: file exists, commands reference real repo paths. Evaluator: meaningful.
+
+## 2026-10-31 — Phase 1 Colab error: `load_in_4bit` TypeError
+
+- **What:** Colab cell 3 crashed: `TypeError: Cohere2ForCausalLM.__init__() got an unexpected keyword argument 'load_in_4bit'`. Fixed local `phase1_baseline.ipynb` + `.py` to use `BitsAndBytesConfig`; also `DEVICE = next(model.parameters()).device` instead of `model.device`.
+- **Why:** Need a real Tiny Aya "before" number; broken load blocks Phase 1.
+- **Cause:** Newer `transformers` no longer accepts `load_in_4bit=` as a direct `from_pretrained` kwarg for Cohere2 — it must go through `quantization_config=BitsAndBytesConfig(...)`.
+- **Result:** Repo fixed. **Colab Drive copy still needs the same paste** (Drive ≠ git until re-upload/sync).
+- **Better:** Pin a transformers version in the install cell after first green run; always re-sync Drive notebook from repo after fixes.
+- **Evaluator:** Meaningful fix — matches the exact traceback on screen. PASS if re-run loads model without TypeError.
 
 ## How we can do better (standing backlog)
 

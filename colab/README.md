@@ -38,8 +38,9 @@ stays safe — the token is never written in the notebook.
 
 Five jobs in one cell:
 
-1. **Load in 4-bit** (`load_in_4bit`, `device_map="auto"`). Only way 3.35B
-   params fit a free T4.
+1. **Load in 4-bit** via `BitsAndBytesConfig` + `device_map="auto"`
+   (do **not** pass `load_in_4bit=` into `from_pretrained` — Cohere2 rejects it).
+   Only way 3.35B params fit a free T4.
 2. **Fallback prompt.** Tiny Aya has no native tool template, so we describe
    the tool JSON in the prompt (`SYSTEM` + `Tool call:`) and let the model
    complete the pattern. This workaround is exactly the gap Phase 2 trains away.

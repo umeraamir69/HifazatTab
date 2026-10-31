@@ -10,7 +10,7 @@
 # ---------- CELL 2: run ----------
 import csv, json, os, re
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 
 MODEL_ID = "CohereLabs/tiny-aya-fire"   # fallback: "CohereLabs/tiny-aya-global"
 SEED_URL = "https://raw.githubusercontent.com/umeraamir69/HifazatTab/main/data/seed_tasks.jsonl"
@@ -26,11 +26,22 @@ def load_jsonl(path):
                 rows.append(json.loads(line))
     return rows
 
+# Newer transformers rejects load_in_4bit= as a from_pretrained kwarg
+# for Cohere2ForCausalLM — pass it via BitsAndBytesConfig instead.
+bnb = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_compute_dtype=torch.float16,
+    bnb_4bit_quant_type="nf4",
+)
 tok = AutoTokenizer.from_pretrained(MODEL_ID)
 model = AutoModelForCausalLM.from_pretrained(
-    MODEL_ID, load_in_4bit=True, device_map="auto",
-    torch_dtype=torch.float16, trust_remote_code=True)
+    MODEL_ID,
+    quantization_config=bnb,
+    device_map="auto",
+    trust_remote_code=True,
+)
 model.eval()
+DEVICE = next(model.parameters()).device
 
 SYSTEM = ("You answer shop questions with a tool call. Reply with EXACTLY one line: "
     '[{"tool_name": "<lookup_price|check_stock|loan_eligibility>", '
@@ -38,7 +49,7 @@ SYSTEM = ("You answer shop questions with a tool call. Reply with EXACTLY one li
 
 def ask(prompt):
     text = SYSTEM + "\nUser: " + prompt + "\nTool call:"
-    ids = tok(text, return_tensors="pt").to(model.device)
+    ids = tok(text, return_tensors="pt").to(DEVICE)
     with torch.no_grad():
         out = model.generate(**ids, max_new_tokens=60, do_sample=False)
     return tok.decode(out[0][ids["input_ids"].shape[1]:], skip_special_tokens=True).strip()
