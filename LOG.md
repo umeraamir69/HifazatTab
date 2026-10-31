@@ -65,6 +65,12 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   +$200 if shortlisted, usable on ZeroGPU.
 - Test: claims match docs pages fetched today. Evaluator: meaningful, unblocks Phase 1.
 
+## 2026-10-31 — Cell guide as separate doc
+- What: user stopped inline notebook explainers; wrote `colab/README.md`
+  instead (one plain-words section per cell: why + cause). Notebook reverted
+  to clean 4-cell version. Committed d88823e, pushed.
+- Evaluator: notebook JSON valid, tree clean. Meaningful.
+
 ## 2026-10-31 — Committed + pushed as umeraamir69
 - What: `git commit` (root-commit c815bbf, 26 files) + new public repo
   `umeraamir69/HifazatTab`, pushed to main. Author verified: umeraamir69.
