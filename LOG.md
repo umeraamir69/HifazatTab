@@ -65,6 +65,17 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   +$200 if shortlisted, usable on ZeroGPU.
 - Test: claims match docs pages fetched today. Evaluator: meaningful, unblocks Phase 1.
 
+## 2026-10-31 — 100+ rows + showcase site (user's 3 asks)
+- What: researched reuse sets (HinglishAssistBench, Urdu-Instruct/Alpaca, logged
+  in Research §7b). `scripts/build_seed.py` generates 174 rows deterministically.
+  `web/index.html` single-file showcase: ask in 3 langs, red-team runner, scores.
+- Evaluator run found + fixed 2 bugs: rice-in-price substring, missing Devanagari
+  दाम. Scores: task 153/153, refusal 21/21, consistency 5/5, redteam 9/9,
+  unit tests 5/5. Node harness smoke of exact artifact: SMOKE OK (init, Hindi
+  ask, Urdu ask, 9/9 blocked). Committed d01fc6f, pushed.
+- Evaluator: meaningful. Chromium absent on laptop — in-browser rendering
+  unverified; logic verified via harness.
+
 ## 2026-10-31 — Colab bugfix (ARG regex group)
 - What: Gemini/Colab flagged real bug — `m2.group(2)` on a 1-group regex.
   Fixed to `group(1)` in ipynb + py. Committed bcd9d86, pushed.
