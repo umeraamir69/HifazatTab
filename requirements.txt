@@ -1,0 +1,9 @@
+# Lexsi HifazatTab — local run needs only stdlib.
+# Heavy training deps are opt-in (Colab / A5000). Install when tuning:
+# pip install torch transformers datasets trl peft bitsandbytes huggingface_hub
+# Lexsi stack (APIs may shift at Oct 31 kickoff — TRL is fallback):
+# pip install git+https://github.com/Lexsi-Labs/aligntune
+# pip install git+https://github.com/Lexsi-Labs/AgentTune
+# pip install git+https://github.com/Lexsi-Labs/AuditKIT
+# pip install git+https://github.com/Lexsi-Labs/CuratorKIT
+# pip install git+https://github.com/Lexsi-Labs/SafeTune

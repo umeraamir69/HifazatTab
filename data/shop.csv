@@ -1,0 +1,10 @@
+item,price_pkr,stock,category
+atta_20kg,2850,40,grocery
+cheeni_5kg,4450,25,grocery
+chai_950g,2100,30,grocery
+cooking_oil_5L,7200,15,grocery
+daal_moong_1kg,480,50,grocery
+chaawal_5kg,3200,20,grocery
+soap_4pack,620,60,household
+loan_limit_small,50000,0,loan
+loan_limit_medium,200000,0,loan
