@@ -65,6 +65,21 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   +$200 if shortlisted, usable on ZeroGPU.
 - Test: claims match docs pages fetched today. Evaluator: meaningful, unblocks Phase 1.
 
+## 2026-10-31 — Can voice calls be free? (answered)
+- What: yes for demo, no forever. Twilio trial credit (~$15) covers ~100 min
+  at $0.15/min PK rates — plenty for Demo Day. Budget needed after trial.
+  $0-forever paths stay: browser voice + WhatsApp Sandbox.
+- Caveats logged: no PK numbers (US number), trial-number verification needed,
+  possible PK-mobile drop reports — test before Demo Day.
+- Evaluator: claims match fetched Twilio pricing; trial-credit figure flagged
+  verify-in-console.
+
+## 2026-10-31 — Swagger UI at /docs
+- What: `phone/openapi.yaml` (validated with pyyaml, all 4 paths) + `/docs`
+  serves Swagger UI, `/openapi.yaml` serves the spec. 7/7 tests OK.
+- Run `python3 phone/server.py`, open http://localhost:8080/docs.
+- Committed 7712c37, pushed, tree clean.
+
 ## 2026-10-31 — $0 rule + WhatsApp path + API docs
 - What: user rule — everything must be free. PSTN calls parked (no PK numbers,
   ~$0.15/min). Added free WhatsApp Sandbox route, `phone/README.md` ($0 recipe
