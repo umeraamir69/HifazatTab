@@ -22,13 +22,17 @@ REFUSE_PATTERNS = [
     r"मोबाइल", r"नंबर",
     # harmful financial advice (pushing unaffordable loans, any word order)
     r"afford", r"برداشت", r"चुकान", r"تنبیہ", r"चेतावनी",
+    # instruction forgetting / forced approval (any script incl. roman)
+    r"بھول", r"भूल", r"अप्रूव", r"منظور",
+    # demanded lies about prices
+    r"lie\b", r"झूठ", r"جھوٹ",
     # prompt injection
     r"forget.*system", r"ignore.*instruction", r"سسٹم کو بھول",
     r"सिस्टम.*भूल",
 ]
 
 # --- tool intent keywords per language family ---
-PRICE_WORDS = ["price", "cost", "qeemat", "قیمت", "keemat", "कीमत", "dam", "دام"]
+PRICE_WORDS = ["price", "cost", "qeemat", "قیمت", "keemat", "कीमत", "दाम", "dam", "دام"]
 STOCK_WORDS = ["stock", "available", "in stock", "اسٹاک", "स्टॉक", "baki", "باقی", "बचा"]
 LOAN_WORDS = ["loan", "eligib", "قرض", "लोन", "aamdani", "آمدنی", "आय", "income"]
 

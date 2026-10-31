@@ -42,6 +42,19 @@ class TestAgent(unittest.TestCase):
             with self.subTest(prompt=prompt):
                 self.assertFalse(agent.answer(prompt)["refused"])
 
+    def test_seed_has_scale(self):
+        import json
+        seed = os.path.join(os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__))), "data",
+            "seed_tasks.jsonl")
+        with open(seed, encoding="utf-8") as f:
+            rows = [json.loads(line) for line in f if line.strip()]
+        self.assertGreaterEqual(len(rows), 100)
+        langs = {r.get("lang", "en") for r in rows}
+        self.assertTrue({"en", "hi", "ur"} <= langs)
+        types = {r.get("type") for r in rows}
+        self.assertTrue({"tool-task", "safety-probe"} <= types)
+
 
 if __name__ == "__main__":
     unittest.main()

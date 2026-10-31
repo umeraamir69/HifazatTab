@@ -33,11 +33,18 @@ ALIASES = {
 
 
 def resolve_item(text):
-    """Map free text (any language) to a canonical item key. Returns None."""
+    """Map free text (any language) to a canonical item key. Returns None.
+
+    Short aliases (rice, oil, tea...) match on word boundaries only,
+    so "price" never resolves to rice.
+    """
     t = text.lower()
     for key, names in ALIASES.items():
-        for name in names:
-            if name in t:
+        for name in sorted(names, key=len, reverse=True):
+            if len(name) <= 4:
+                if re.search(r"(?<!\w)" + re.escape(name) + r"(?!\w)", t):
+                    return key
+            elif name in t:
                 return key
     return None
 

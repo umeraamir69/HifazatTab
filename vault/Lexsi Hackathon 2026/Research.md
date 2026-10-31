@@ -130,6 +130,22 @@ Our gap in one line: nobody has built a trilingual Urdu/Hindi/English tool-agent
 on Tiny Aya that tunes, red-teams script-switch jailbreaks, repairs in weights,
 and proves survival after quant.
 
+## 7b. Published data we can reuse (researched Oct 31)
+
+Rule: our tabular core stays synthetic (only our CSV grounds tool outputs).
+Outside data is for fluency + red-team/eval, never for tool answers.
+
+- **HinglishAssistBench** (`onlyarkmani/hindi-english-eval`): 1,000 paired
+  Hindi-English code-switch prompts with refusal calibration. Use: red-team
+  and eval augmentation. Best fit.
+- **Urdu-Instruct** (Traversaal AI Alif, HF Hub, 51,686 Urdu examples incl.
+  safety/ethics): use sampled for Urdu fluency + refusal style.
+- **Urdu Alpaca** (`ftdata/urdu-alpaca-data-final.csv` in Alif pipeline):
+  general Urdu instruction pairs, sample lightly.
+- **IndicQuest / IndicSQuAD / Mintaka (Hindi) / UQA (Urdu)**: general QA,
+  useful only for Hindi/Urdu eval sanity, not training (domain mismatch).
+- Licence check required before any training use. Nothing adopted yet.
+
 ## 8. Open questions (resolve at kickoff Oct 31)
 
 1. Exact HF IDs + licence gates for `tiny-aya-fire` vs `global`.

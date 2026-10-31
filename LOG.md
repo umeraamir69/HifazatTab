@@ -65,6 +65,13 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   +$200 if shortlisted, usable on ZeroGPU.
 - Test: claims match docs pages fetched today. Evaluator: meaningful, unblocks Phase 1.
 
+## 2026-10-31 — Colab bugfix (ARG regex group)
+- What: Gemini/Colab flagged real bug — `m2.group(2)` on a 1-group regex.
+  Fixed to `group(1)` in ipynb + py. Committed bcd9d86, pushed.
+- Note: user ran an older notebook copy (getpass version). Told to re-open
+  from GitHub. Config URL 401 = gated repo, correct with token.
+- Evaluator: grep confirms no group(2) left, JSON valid. Meaningful.
+
 ## 2026-10-31 — HF token in .env + Colab Secrets wiring
 - What: HF token stored in `.env` (gitignored). Notebook login cell now reads
   Colab Secrets `HF_TOKEN`, fallback hidden paste. Token never in code/git.
