@@ -36,6 +36,13 @@ must close. Targets: validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
 - [x] Hackathon registration + Discord ($20 HF credits) — done Oct 31
 - [ ] Oct 31 kickoff notes → update Plan if IDs/APIs shifted
 - [x] Repo live as umeraamir69 (Phase 0, Phase 1 pack, site, phone, docs all pushed)
+- [ ] Validate idea with team via Discord ticket (#report-issues) — site recommends it
+- [ ] Registration closes Nov 5 (registered ✓) — submit by Nov 14, ONE submission only (last counts)
+
+## Key dates (from tracks page)
+
+- Nov 1–21 hackathon window · Nov 5 registration closes · Nov 14 submit
+- Nov 16 shortlist (20 teams) · Nov 22 Demo Day
 
 ## Next
 

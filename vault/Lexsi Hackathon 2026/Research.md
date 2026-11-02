@@ -146,7 +146,27 @@ Outside data is for fluency + red-team/eval, never for tool answers.
   useful only for Hindi/Urdu eval sanity, not training (domain mismatch).
 - Licence check required before any training use. Nothing adopted yet.
 
-## 8. Open questions (resolve at kickoff Oct 31)
+## 8. Official problem statements we hit (tracks page, Nov 1)
+
+Track 3 is our home. We hit three of its statements directly:
+
+1. **Data and database agents** (exact fit): agent answers business questions
+   by querying databases/APIs, rewarded on verified results. Our shop CSV +
+   exact-match reward is this, in trilingual form.
+2. **Reliable tool calling**: RL on real rollouts, right tool, well-formed
+   args, right order. Our GRPO + constrained schema.
+3. **Self-healing agents**: detect failing runs, generate corrective examples,
+   retrain, gate on measured accuracy. Our red-team → repair → quant-survival.
+4. Borrowed from Track 2a: **multilingual and code-mixed safety** — safety
+   must hold across Urdu/Hindi/English + script-switch. Our red-team core.
+5. Borrowed from Track 1: **low-resource languages** (Urdu) + **replacing a
+   closed-model API** (small open model for shop QA at fraction of cost).
+
+Rules noted: one track focus (ours: Track 3); multiple submissions allowed but
+only the LAST counts — so never submit twice. Registration closes Nov 5.
+Site recommends validating the idea via Discord ticket (#report-issues).
+
+## 9. Open questions (resolve at kickoff Oct 31)
 
 1. Exact HF IDs + licence gates for `tiny-aya-fire` vs `global`.
 2. Whether judges prefer `fire` for Indic or `global` for balance.
