@@ -78,6 +78,21 @@
    our 174-row seed, Secrets-only `HF_TOKEN`). Rotate any HF token that was
    pasted into a cell during earlier debugging.
 
+9. **Colab Drive copy was stale (Nov 2 night).** Live run loaded the model
+   (GPU ~13/15 GB) and hit tools_fallback (good), but the Drive cell used
+   `num_steps` + **no `max_steps_per_turn`** (defaults to 20 → freeze) and
+   LoRA without `target_modules`. Repo notebook fixed to match AgentTune
+   Tiny Aya docs: chat-message prompts, `max_steps=50`, `max_steps_per_turn=2`,
+   `peft_config=dict(...)`, CUDA assert, `logging_steps=1`.
+   **Interrupt the stuck Drive run and re-open from GitHub.**
+10. **OOM #2: policy loss pass (Nov 3).** Same 262 MB at `lm_head`, this time
+    in `_compute_loss` — fp32 full-vocab logits over the 256k Cohere vocab.
+    Fix: LoRA targets cut to `["q_proj", "v_proj"]`, rank 16 → 8 (drops the
+    ~1B-param lm_head adapter and its optimizer states).
+11. **Fallback ready:** `colab/phase2_sft.ipynb` — plain LoRA SFT on the same
+    174 rows, no rollouts, no ref model. If slim GRPO still OOMs, run SFT for
+    the AFTER number and return to GRPO only with bigger GPU.
+
 ## Phase 3+ (planned)
 
 - AuditKIT `episodes_from_agenttune` on `trajectories.jsonl` → ≥2 metrics.
