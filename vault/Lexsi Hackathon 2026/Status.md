@@ -34,6 +34,7 @@ must close. Targets: validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
 ## Still manual (you)
 
 - [x] Hackathon registration + Discord ($20 HF credits) — done Oct 31
+- [x] **$20 HF credits claimed** (Nov 3) — spend on HF Jobs GPU (not Colab T4)
 - [ ] Oct 31 kickoff notes → update Plan if IDs/APIs shifted
 - [x] Repo live as umeraamir69 (Phase 0, Phase 1 pack, site, phone, docs all pushed)
 - [ ] Validate idea with team via Discord ticket (#report-issues) — site recommends it
@@ -46,6 +47,7 @@ must close. Targets: validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
 
 ## Next
 
-- Phase 2: AgentTune GRPO (constrained tools + verifiable reward)
+- **Spend $20 on HF Jobs** for Phase 2 GRPO (`l4x1` or `a10g-small`, not T4 / not ZeroGPU)
+- Parallel: finish Colab SFT (`phase2_sft.ipynb`) as free backup AFTER
 - Phase 3: AuditKIT before/after on trajectories
 - Phase 4: script-switch red-team + repair + quant

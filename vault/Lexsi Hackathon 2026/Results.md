@@ -92,6 +92,12 @@
 11. **Fallback ready:** `colab/phase2_sft.ipynb` — plain LoRA SFT on the same
     174 rows, no rollouts, no ref model. If slim GRPO still OOMs, run SFT for
     the AFTER number and return to GRPO only with bigger GPU.
+12. **CUDA device-side assert (Nov 2 ~22:49).** Warning: `input_ids` on CUDA,
+    model on **CPU**, then `AcceleratorError: device-side assert`. Cause: GPU
+    already full (~0.09 GB free) so policy offloaded to CPU. Fix in train cell:
+    free-GB assert (>8), empty_cache, assert model device is cuda, shorter
+    completions. **Must Runtime → Restart session** after this error (CUDA stays
+    poisoned until restart).
 
 ## Phase 3+ (planned)
 

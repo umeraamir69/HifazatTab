@@ -215,6 +215,20 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 - **Better:** Pin a transformers version in the install cell after first green run; always re-sync Drive notebook from repo after fixes.
 - **Evaluator:** Meaningful fix — matches the exact traceback on screen. PASS if re-run loads model without TypeError.
 
+## 2026-11-03 — HF $20 credits claimed
+- **What:** Lexsi Discord / registration $20 Hugging Face compute credits are live.
+- **Why:** Free Colab T4 OOMs on AgentTune GRPO (Cohere 256k logits). Credits buy bigger GPUs.
+- **Cause:** Need ≥24 GB VRAM headroom for Tiny Aya tool-rollout GRPO.
+- **How to spend:** Hugging Face **Jobs** (pay-per-minute), not ZeroGPU Spaces.
+  Prefer `l4x1` (~$0.80/hr, 24 GB) or `a10g-small` (~$1/hr, 24 GB). Avoid burning
+  credits on T4-class. ZeroGPU is for Spaces demos / short inference.
+- **Budget:** ~20h on L4 or ~20h on A10G-small. Plan: 1–2 GRPO smoke runs (30–50
+  steps) + one AFTER eval + keep leftover for Demo Day polish if shortlisted.
+- **Evaluator:** Meaningful unblock. Do SFT on free Colab in parallel if needed;
+  use credits for GRPO that actually fits.
+- **Better:** Pin flavor + timeout before launch; push adapter every N steps so a
+  killed job still leaves an artifact.
+
 ## How we can do better (standing backlog)
 
 1. Keep seed small until baseline scores exist; then scale.
