@@ -69,9 +69,14 @@
    `ref_per_token_logps`: GRPO's KL pass materializes full-vocab logits and
    Cohere's vocab is ~256k tokens. Fix: `beta=0.0` removes the pass entirely.
    Acceptable for 100 steps; rewards still teach.
-8. **Status:** training run in progress on Kaggle 2×T4 (one pinned). Awaiting
-   step logs. Token hygiene: raw HF token was pasted into a notebook cell
-   during debugging — rotate it after Phase 2, Secrets-only going forward.
+8. **Status (corrected Nov 2):** **NOT running successfully on Kaggle.**
+   Docs previously said “in progress on Kaggle 2×T4” — that was aspirational /
+   stuck, not a green train. Known Kaggle blockers from this log: no-CUDA
+   sessions (#6), freeze at step 2/3 (#5), plus the same OOM/ref-model issues
+   (#4, #7) that hit Colab. **Do not wait on Kaggle.** Run Phase 2 on
+   **Colab free T4** with the fixed notebook (`beta=0`, batch1, one GPU,
+   our 174-row seed, Secrets-only `HF_TOKEN`). Rotate any HF token that was
+   pasted into a cell during earlier debugging.
 
 ## Phase 3+ (planned)
 
