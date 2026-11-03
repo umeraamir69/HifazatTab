@@ -43,6 +43,36 @@
 - **After training:** re-run Phase 1 notebook on the adapter → AFTER number →
   AuditKIT before/after report on Hugging Face.
 
+### Phase 2 debug log (everything that broke, in order)
+
+1. **Wrong data (116k TL;DR rows).** First run trained on AgentTune's default
+   dataset — spotted from the parquet download (116,722 rows), not our 174.
+   Fix: build `train_dataset` from `seed_tasks.jsonl` (prompt + want_tool +
+   want_arg + must_refuse), pass it explicitly.
+2. **Reward signature crash.** Ours was `(reply, want_tool, want_arg)`; TRL
+   calls `f(prompts, completions, **kwargs)`. Fail-loud TypeError, zero GPU
+   burned. Fix: rewrote both rewards, handling str + message-list completions,
+   expected answers read from dataset columns.
+3. **String tools rejected.** AgentTune wants callables, not names. Fix: real
+   `lookup_price / check_stock / loan_eligibility` functions over shop.csv.
+4. **T4 OOM (14.5 GB).** Fix: batch 1 × accum 8, 2 generations, short rollouts
+   (256/64, max 3 steps), gradient checkpointing, paged_adamw_8bit,
+   `expandable_segments`, single GPU pin.
+5. **Freeze at step 2/3 (10+ min, Colab AND Kaggle).** Suspects: telemetry
+   prompt blocking (`report_to="none"` added) + 2-GPU generate deadlock
+   (`CUDA_VISIBLE_DEVICES=0`).
+6. **Kaggle sessions with no CUDA.** Toggle on, drivers absent
+   (`torch.cuda.is_available() == False`). Account verified, quota fine —
+   backend flakiness. Proof via `nvidia-smi`; fresh session fixed it.
+   Lesson: always print CUDA status before training, never trust the toggle.
+7. **Ref-model OOM (the true killer).** Traceback pointed at
+   `ref_per_token_logps`: GRPO's KL pass materializes full-vocab logits and
+   Cohere's vocab is ~256k tokens. Fix: `beta=0.0` removes the pass entirely.
+   Acceptable for 100 steps; rewards still teach.
+8. **Status:** training run in progress on Kaggle 2×T4 (one pinned). Awaiting
+   step logs. Token hygiene: raw HF token was pasted into a notebook cell
+   during debugging — rotate it after Phase 2, Secrets-only going forward.
+
 ## Phase 3+ (planned)
 
 - AuditKIT `episodes_from_agenttune` on `trajectories.jsonl` → ≥2 metrics.
