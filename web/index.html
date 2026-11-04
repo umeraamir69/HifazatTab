@@ -15,6 +15,7 @@ table{border-collapse:collapse;margin:1em 0}td,th{border:1px solid #999;padding:
 <body>
 <h1>HifazatTab (حفاظت)</h1>
 <p>Trilingual shop tool-agent: Urdu, Hindi, English. Ask, it calls a tool, answers from the table, refuses tricks. Track C demo.</p>
+<p><strong>Voice demo (30s):</strong> pick a language → check Voice replies → Mic → ask a price → hear the answer → try a trick (fake letter) → hear the refusal.</p>
 
 <h2>Ask</h2>
 <div>
@@ -26,7 +27,7 @@ table{border-collapse:collapse;margin:1em 0}td,th{border:1px solid #999;padding:
 <p><input id="q" size="60" dir="auto" placeholder="...or type your own question">
 <button id="ask">Ask</button></p>
 <p><button id="mic">Mic: speak instead of typing</button>
-<label><input type="checkbox" id="voice"> Voice replies (speaks answers aloud)</label>
+<label><input type="checkbox" id="voice" checked> Voice replies (speaks answers aloud)</label>
 <span id="vstatus"></span></p>
 <div id="out">Pick a sample question, type one, or press Mic and speak.</div>
 
@@ -158,10 +159,14 @@ function micListen(){
   var SR = (typeof window!=="undefined") && (window.SpeechRecognition||window.webkitSpeechRecognition);
   if(!SR){ st.textContent = "Voice input needs Chrome (or Edge). Type instead."; return; }
   try{
+    var v = el("voice"); if(v) v.checked = true;
+    if(typeof speechSynthesis !== "undefined") speechSynthesis.getVoices();
     var r = new SR();
     r.lang = {en:"en-US", hi:"hi-IN", ur:"ur-PK"}[curLang] || "en-US";
     r.interimResults = false;
-    st.textContent = "Listening ("+curLang+")... speak now.";
+    r.continuous = false;
+    r.maxAlternatives = 1;
+    st.textContent = "Listening ("+curLang+")... speak now, then pause.";
     r.onresult = function(e){
       var t = e.results[0][0].transcript;
       el("q").value = t;
@@ -169,7 +174,14 @@ function micListen(){
       showResult(o);
       st.textContent = "Heard: " + t;
     };
-    r.onerror = function(e){ st.textContent = "Mic error: " + e.error + ". Allow microphone access."; };
+    r.onerror = function(e){
+      var tip = { "not-allowed":"Allow microphone in the browser address bar.",
+        "no-speech":"No speech heard — speak closer, then pause.",
+        "network":"Network STT failed — retry or type instead.",
+        "aborted":"Mic stopped. Press Mic again." }[e.error];
+      st.textContent = "Mic error: " + e.error + (tip ? " — "+tip : "");
+    };
+    r.onend = function(){ if(st.textContent.indexOf("Listening")===0) st.textContent = "Stopped. Press Mic to try again."; };
     r.start();
   }catch(e){ st.textContent = "Mic blocked: allow microphone access."; }
 }

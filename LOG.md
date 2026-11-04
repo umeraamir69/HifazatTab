@@ -262,6 +262,20 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 - **Better:** Watch completion lengths (smoke mean ~288 tokens, clipped_ratio up to
   0.375) — tighten generation caps if full run wastes steps on long waffle.
 
+## 2026-11-04 — Voice bot E2E locked (public site was 404)
+- **What:** Confirmed `hifazattab.vercel.app` returned 404 under Vercel SSO
+  (`ssoProtection: all_except_custom_domains`). Disabled SSO, redeployed `web/`,
+  hardened mic UX (voice-on-by-default, clearer errors), wrote
+  `phone/VOICE_E2E.md` done-when checklist.
+- **Why:** User requires end-to-end flawless voice bot at the end; judges need a
+  30s live path that never waits on GPU.
+- **Cause:** Voice demo = browser STT/TTS + deterministic shop agent (same tools
+  as phone). Tuned Tiny Aya is for AFTER metrics, not call latency.
+- **Result:** Site **200** again. Unittest 7/7 OK. GRPO A10G still training in
+  parallel. Phone/WhatsApp paths documented as B/C gates.
+- **Evaluator:** PASS for unblocking public voice. Remaining: human mic walk of
+  EN/HI/UR + optional Twilio trial call before Demo Day.
+
 ## How we can do better (standing backlog)
 
 1. Keep seed small until baseline scores exist; then scale.

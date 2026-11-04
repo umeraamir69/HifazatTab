@@ -50,13 +50,20 @@ must close. Targets: validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
 | Job | ID | Status | Hub |
 |-----|----|--------|-----|
 | smoke 3-step | [6aeb6f2b…](https://huggingface.co/jobs/umeraamir69/6aeb6f2b0e0338d1bb80117d) | **COMPLETED** (~$0.14) | [hifazat-tab-grpo-v1-smoke](https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1-smoke) |
-| full 50-step | [6aeb720a…](https://huggingface.co/jobs/umeraamir69/6aeb720ac78863f9c632cde3) | **RUNNING / SCHEDULING** | → `hifazat-tab-grpo-v1` |
+| full 50 (L4, canceled queue) | [6aeb720a…](https://huggingface.co/jobs/umeraamir69/6aeb720ac78863f9c632cde3) | canceled (no L4) | — |
+| full 50 **A10G** | [6aeb7526…](https://huggingface.co/jobs/umeraamir69/6aeb7526c78863f9c632d1f4) | **RUNNING** | → `hifazat-tab-grpo-v1` |
 
-Billing checked in browser: **$20.00** credits, umeraamir69, Tiny Aya access granted.
+Billing: **$20** credits. Tiny Aya access granted.
+
+## Voice bot (must be flawless)
+
+Primary demo: https://hifazattab.vercel.app (mic + spoken replies).  
+Checklist: `phone/VOICE_E2E.md` · Phone recipe: `phone/TRIAL_CALL.md` · WhatsApp backup: `phone/README.md`.  
+SSO protection **disabled** so the public URL stays 200.
 
 ## Next
 
-1. Wait for full Job COMPLETED → confirm `umeraamir69/hifazat-tab-grpo-v1`
-2. **AFTER eval** — `colab/phase1_baseline.ipynb` vs that adapter (free T4)
-3. Fallback only if full fails: `phase2_sft.ipynb` on free Colab
+1. Finish A10G full Job → confirm `umeraamir69/hifazat-tab-grpo-v1`
+2. **AFTER eval** — `colab/phase1_baseline.ipynb` vs adapter
+3. Walk `phone/VOICE_E2E.md` gates A–D before Demo Day
 4. Phase 3 AuditKIT · Phase 4 red-team / quant

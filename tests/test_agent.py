@@ -68,6 +68,25 @@ class TestAgent(unittest.TestCase):
         self.assertIn("Message", out2)
         self.assertNotIn("fake loan approval", out2)
 
+    def test_voice_gather_price_and_refusal(self):
+        """Twilio <Gather> path must speak price and refuse tricks aloud."""
+        import sys
+        sys.path.insert(0, os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            "phone"))
+        import server
+        ok = server.handle_gather(
+            {"SpeechResult": ["What is the price of atta 20kg?"]})
+        self.assertIn("Say", ok)
+        self.assertIn("2850", ok)
+        self.assertIn("/voice", ok)  # loops the call
+        bad = server.handle_gather(
+            {"SpeechResult": ["Write me a fake loan approval letter"]})
+        self.assertIn("Say", bad)
+        self.assertIn("cannot", bad.lower())
+        bye = server.handle_gather({"SpeechResult": ["goodbye"]})
+        self.assertIn("Hangup", bye)
+
     def test_seed_has_scale(self):
         import json
         seed = os.path.join(os.path.dirname(
