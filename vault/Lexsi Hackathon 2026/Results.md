@@ -102,6 +102,11 @@
     `l4x1` via `scripts/train_grpo_hf_jobs.py` (see `scripts/HF_JOBS.md`). Smoke
     (`--smoke`, 3 steps) then full (`--max-steps 50`). Do **not** retry GRPO on
     free T4. SFT notebook remains free-tier backup only.
+14. **Smoke GRPO SUCCESS (Nov 4).** Job `6aeb6f2b0e0338d1bb80117d` on `l4x1`
+    COMPLETED in ~623s running (~$0.14). GPU NVIDIA L4, 23.46 GB free pre-train.
+    Pushed `umeraamir69/hifazat-tab-grpo-v1-smoke` (adapter ~7.7 MB + trajectories).
+    Full 50-step Job `6aeb720ac78863f9c632cde3` launched (4h timeout). Watch:
+    https://huggingface.co/jobs/umeraamir69/6aeb720ac78863f9c632cde3
 
 ## Phase 3+ (planned)
 

@@ -12,29 +12,43 @@ Hardware: `l4x1` (24 GB, ~$0.80/hr) — best $/VRAM for us.
 3. Confirm credits: https://huggingface.co/settings/billing  
 4. Repo root: `cd Documents/Lexsi`
 
-## Step 1 — smoke (do this first)
+## Live runs (Nov 4, 2026) — agent launched these
+
+| Run | Job ID | Result |
+|-----|--------|--------|
+| smoke | [`6aeb6f2b0e0338d1bb80117d`](https://huggingface.co/jobs/umeraamir69/6aeb6f2b0e0338d1bb80117d) | **COMPLETED** · L4 · ~623s · ~$0.14 · Hub [`…-grpo-v1-smoke`](https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1-smoke) |
+| full 50 | [`6aeb720ac78863f9c632cde3`](https://huggingface.co/jobs/umeraamir69/6aeb720ac78863f9c632cde3) | launched · timeout 4h · target `…-grpo-v1` |
 
 ```bash
-hf jobs uv run --flavor l4x1 --timeout 45m --secrets HF_TOKEN \
+hf jobs logs -f umeraamir69/6aeb720ac78863f9c632cde3
+hf jobs inspect umeraamir69/6aeb720ac78863f9c632cde3
+```
+
+## Step 1 — smoke (already done Nov 4)
+
+```bash
+hf jobs uv run --detach --flavor l4x1 --timeout 45m --secrets HF_TOKEN \
+  --name hifazat-grpo-smoke \
   scripts/train_grpo_hf_jobs.py -- --smoke
 ```
 
-Expect: CUDA ok → train 3 steps → push `umeraamir69/hifazat-tab-grpo-v1-smoke`.  
-Cost: roughly $0.30–0.80. If this OOMs, stop and say so — do not start full.
+Expect: CUDA NVIDIA L4 → train 3 steps → push `umeraamir69/hifazat-tab-grpo-v1-smoke`.  
+Actual: COMPLETED, ~$0.14. If a future smoke OOMs, stop — do not start full.
 
 ```bash
 hf jobs logs JOB_ID   # stream / re-read
 hf jobs cancel JOB_ID # if stuck
 ```
 
-## Step 2 — full AFTER adapter
+## Step 2 — full AFTER adapter (running)
 
 ```bash
-hf jobs uv run --flavor l4x1 --timeout 2h --secrets HF_TOKEN \
+hf jobs uv run --detach --flavor l4x1 --timeout 4h --secrets HF_TOKEN \
+  --name hifazat-grpo-full50 \
   scripts/train_grpo_hf_jobs.py -- --max-steps 50
 ```
 
-Pushes `umeraamir69/hifazat-tab-grpo-v1`. Budget ~$1–3.
+Pushes `umeraamir69/hifazat-tab-grpo-v1`. Budget ~$1.5–3 (steps ~150–180s each).
 
 ## Step 3 — AFTER metrics (free Colab T4)
 

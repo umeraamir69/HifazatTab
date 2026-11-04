@@ -239,6 +239,29 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   `umeraamir69/hifazat-tab-grpo-v1`. SFT stays free-Colab fallback.
 - **Evaluator:** PASS for packaging. Real PASS = smoke job COMPLETED without OOM.
 
+## 2026-11-04 — Smoke GRPO PASSED on HF Jobs L4; full 50 launched
+- **What:** Verified HF browser login (umeraamir69) + billing **$20.00** / $0 used;
+  gated access to `CohereLabs/tiny-aya-fire` granted. Launched Jobs myself via CLI.
+- **Smoke Job:** `6aeb6f2b0e0338d1bb80117d` name=`hifazat-grpo-smoke`
+  URL: https://huggingface.co/jobs/umeraamir69/6aeb6f2b0e0338d1bb80117d
+  - Flavor `l4x1`, CUDA: **NVIDIA L4**, free VRAM before train **23.46 GB**
+  - Stage COMPLETED. scheduling ~79s, running **623s** (~10.4 min)
+  - Est. cost ≈ **$0.14** (623/3600 × $0.80)
+  - Train 3/3 steps; `tools_fallback_prompt` fired (Tiny Aya ignores tools template)
+  - Rewards mean ≈ 0.1–0.2; loss/grad_norm reported 0 on smoke (few steps / low
+    within-group variance — expected for 3-step fit test, not a failure)
+  - Hub artifact: https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1-smoke
+    `adapter_model.safetensors` ~7.7 MB + `trajectories.jsonl` + ckpts 1–3
+- **Full Job (in flight):** `6aeb720ac78863f9c632cde3` name=`hifazat-grpo-full50`
+  URL: https://huggingface.co/jobs/umeraamir69/6aeb720ac78863f9c632cde3
+  - `--max-steps 50`, timeout 4h, same L4. Target hub: `umeraamir69/hifazat-tab-grpo-v1`
+  - ETA ~2–2.5h at ~150–180s/step; est. cost ~$1.5–2.5
+- **Why:** Prove GRPO fits paid 24 GB before burning a long run; then train AFTER.
+- **Cause:** Free T4 OOM path dead; Jobs + credits is the real Phase 2 path.
+- **Evaluator:** Smoke **PASS**. Full pending. Next AFTER = Phase 1 notebook vs adapter.
+- **Better:** Watch completion lengths (smoke mean ~288 tokens, clipped_ratio up to
+  0.375) — tighten generation caps if full run wastes steps on long waffle.
+
 ## How we can do better (standing backlog)
 
 1. Keep seed small until baseline scores exist; then scale.

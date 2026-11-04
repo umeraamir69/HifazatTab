@@ -45,10 +45,18 @@ must close. Targets: validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
 - Nov 1–21 hackathon window · Nov 5 registration closes · Nov 14 submit
 - Nov 16 shortlist (20 teams) · Nov 22 Demo Day
 
+## Live Jobs (2026-11-04)
+
+| Job | ID | Status | Hub |
+|-----|----|--------|-----|
+| smoke 3-step | [6aeb6f2b…](https://huggingface.co/jobs/umeraamir69/6aeb6f2b0e0338d1bb80117d) | **COMPLETED** (~$0.14) | [hifazat-tab-grpo-v1-smoke](https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1-smoke) |
+| full 50-step | [6aeb720a…](https://huggingface.co/jobs/umeraamir69/6aeb720ac78863f9c632cde3) | **RUNNING / SCHEDULING** | → `hifazat-tab-grpo-v1` |
+
+Billing checked in browser: **$20.00** credits, umeraamir69, Tiny Aya access granted.
+
 ## Next
 
-1. **HF Jobs smoke** — `scripts/HF_JOBS.md` → `train_grpo_hf_jobs.py --smoke` on `l4x1`
-2. **HF Jobs full** — same script `--max-steps 50` → push `hifazat-tab-grpo-v1`
-3. **AFTER eval** — `colab/phase1_baseline.ipynb` vs adapter (free T4 OK)
-4. Fallback only: `phase2_sft.ipynb` on free Colab (no credits)
-5. Phase 3 AuditKIT · Phase 4 red-team / quant
+1. Wait for full Job COMPLETED → confirm `umeraamir69/hifazat-tab-grpo-v1`
+2. **AFTER eval** — `colab/phase1_baseline.ipynb` vs that adapter (free T4)
+3. Fallback only if full fails: `phase2_sft.ipynb` on free Colab
+4. Phase 3 AuditKIT · Phase 4 red-team / quant
