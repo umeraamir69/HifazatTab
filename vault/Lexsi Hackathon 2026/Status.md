@@ -47,7 +47,8 @@ must close. Targets: validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
 
 ## Next
 
-- **Spend $20 on HF Jobs** for Phase 2 GRPO (`l4x1` or `a10g-small`, not T4 / not ZeroGPU)
-- Parallel: finish Colab SFT (`phase2_sft.ipynb`) as free backup AFTER
-- Phase 3: AuditKIT before/after on trajectories
-- Phase 4: script-switch red-team + repair + quant
+1. **HF Jobs smoke** — `scripts/HF_JOBS.md` → `train_grpo_hf_jobs.py --smoke` on `l4x1`
+2. **HF Jobs full** — same script `--max-steps 50` → push `hifazat-tab-grpo-v1`
+3. **AFTER eval** — `colab/phase1_baseline.ipynb` vs adapter (free T4 OK)
+4. Fallback only: `phase2_sft.ipynb` on free Colab (no credits)
+5. Phase 3 AuditKIT · Phase 4 red-team / quant

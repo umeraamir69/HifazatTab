@@ -229,6 +229,16 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 - **Better:** Pin flavor + timeout before launch; push adapter every N steps so a
   killed job still leaves an artifact.
 
+## 2026-11-04 — HF Jobs GRPO script ready
+- **What:** Added `scripts/train_grpo_hf_jobs.py` + `scripts/HF_JOBS.md`. Hardened
+  `colab/phase2_grpo.ipynb` to point at Jobs (not free T4).
+- **Why:** User has credit balance; Colab notebooks are the wrong spend path.
+- **Cause:** Need one PEP-723 UV script with beta=0, slim LoRA, max_steps_per_turn=2,
+  chat prompts, `--smoke` then `--max-steps 50` on `l4x1`.
+- **Result:** Dry-run OK via `hf jobs uv run`. Smoke → `…-grpo-v1-smoke`; full →
+  `umeraamir69/hifazat-tab-grpo-v1`. SFT stays free-Colab fallback.
+- **Evaluator:** PASS for packaging. Real PASS = smoke job COMPLETED without OOM.
+
 ## How we can do better (standing backlog)
 
 1. Keep seed small until baseline scores exist; then scale.

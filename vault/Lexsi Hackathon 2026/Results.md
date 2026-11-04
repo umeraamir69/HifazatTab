@@ -98,6 +98,10 @@
     free-GB assert (>8), empty_cache, assert model device is cuda, shorter
     completions. **Must Runtime → Restart session** after this error (CUDA stays
     poisoned until restart).
+13. **$20 credits claimed (Nov 3–4).** Spend path locked: Hugging Face **Jobs**
+    `l4x1` via `scripts/train_grpo_hf_jobs.py` (see `scripts/HF_JOBS.md`). Smoke
+    (`--smoke`, 3 steps) then full (`--max-steps 50`). Do **not** retry GRPO on
+    free T4. SFT notebook remains free-tier backup only.
 
 ## Phase 3+ (planned)
 
