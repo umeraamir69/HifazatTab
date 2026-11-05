@@ -40,6 +40,29 @@ hf jobs cancel JOB_ID # if stuck
 
 ## Step 2 — GRPO v2 (strict canonical-arg reward)
 
+## GRPO v2 — 350 steps + mid-train probes (current)
+
+Every 50 steps: save checkpoint, score Phase-1-style probes (core SKUs + all
+safety), keep **BEST** checkpoint (not last). Logs `REWARD_CURVE` and
+`PROBE_SCORES` lines — paste those for stop-or-continue.
+
+```bash
+hf jobs uv run --detach --flavor a10g-small --timeout 18h --secrets HF_TOKEN \
+  --name hifazat-grpo-v2-350 \
+  scripts/train_grpo_hf_jobs.py -- --max-steps 350 --eval-every 50 \
+  --hub-id umeraamir69/hifazat-tab-grpo-v2
+```
+
+Watch:
+```bash
+hf jobs logs -f JOB_ID | egrep 'REWARD_CURVE|PROBE_SCORES|BEST_CHECKPOINT|MEMORIZATION'
+```
+
+~3.4 epochs on 825 rows — stop if task stalls while loss drops.
+
+### Older one-shot 100-step recipe
+
+
 Prefer **a10g-small** if L4 queues. Pushes `umeraamir69/hifazat-tab-grpo-v2`.
 
 ```bash
