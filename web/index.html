@@ -407,6 +407,11 @@ th {
   </header>
 
   <section class="panel" id="try" aria-label="Ask the agent">
+    <p class="sub" style="margin:0 0 0.85rem;padding:0.65rem 0.75rem;border:1px solid var(--line);background:rgba(15,107,92,0.06)">
+      <strong>Live demo</strong> = same 3-tool shop contract as training (instant, no GPU).
+      <strong>Track C metrics</strong> = Tiny Aya + LoRA on Hugging Face (BEFORE/AFTER bars below).
+      Judges: try voice here, then open the HF adapter for the weight-level story.
+    </p>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-lang="en" class="active">English</button>
       <button type="button" data-lang="hi">हिन्दी</button>
@@ -419,10 +424,11 @@ th {
     </div>
     <div class="voice-row">
       <button type="button" class="ghost" id="mic">Use microphone</button>
+      <button type="button" class="ghost" id="micStop" hidden>Stop recording</button>
       <label><input type="checkbox" id="voice" checked> Speak answers</label>
       <span id="vstatus"></span>
     </div>
-    <p class="sub" style="margin:-0.35rem 0 1rem">اردو mic uses Whisper via <code>/api/stt</code> (needs <code>GROQ_API_KEY</code> or <code>OPENAI_API_KEY</code>). English/Hindi use free browser STT. Speak answers still works for all three.</p>
+    <p class="sub" style="margin:-0.35rem 0 1rem">اردو: tap mic → speak → <strong>Stop</strong> (or auto-stops at 8s) → Groq Whisper. EN/HI: free browser STT. Speak answers works for all three.</p>
     <div id="out" class="out" role="status">
       <span class="meta"><span class="chip">ready</span></span>
       <div class="answer">Pick a sample, type a question, or use the mic. This live demo uses the same tool contract as training.</div>
@@ -798,14 +804,29 @@ function whisperStt(blob, lang){
   });
 }
 
+var urRec = null;
+var urTimer = null;
+
+function setMicUi(recording){
+  var m = el("mic"), s = el("micStop");
+  if(m) m.hidden = !!recording;
+  if(s) s.hidden = !recording;
+}
+
+function stopUrduRec(){
+  if(urTimer){ clearTimeout(urTimer); urTimer = null; }
+  if(urRec && urRec.state === "recording") urRec.stop();
+}
+
 function micListenWhisper(){
   var st = el("vstatus");
+  if(urRec && urRec.state === "recording"){ stopUrduRec(); return; }
   if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
     st.textContent = "Mic API missing — use HTTPS Chrome/Edge.";
     return;
   }
   var v = el("voice"); if(v) v.checked = true;
-  st.textContent = "Allow mic… then speak Urdu (~4s).";
+  st.textContent = "Allow mic… then speak Urdu.";
   navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream){
     var mime = "";
     if(typeof MediaRecorder !== "undefined"){
@@ -814,9 +835,13 @@ function micListenWhisper(){
       else if(MediaRecorder.isTypeSupported("audio/mp4")) mime = "audio/mp4";
     }
     var rec = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+    urRec = rec;
     var chunks = [];
     rec.ondataavailable = function(e){ if(e.data && e.data.size) chunks.push(e.data); };
     rec.onstop = function(){
+      setMicUi(false);
+      urRec = null;
+      if(urTimer){ clearTimeout(urTimer); urTimer = null; }
       stream.getTracks().forEach(function(t){ t.stop(); });
       var blob = new Blob(chunks, { type: rec.mimeType || mime || "audio/webm" });
       st.textContent = "Transcribing Urdu (Whisper)…";
@@ -831,11 +856,13 @@ function micListenWhisper(){
       });
     };
     rec.start();
-    st.textContent = "Recording Urdu… speak, then wait.";
-    setTimeout(function(){
+    setMicUi(true);
+    st.textContent = "Recording Urdu… tap Stop when done (auto 8s).";
+    urTimer = setTimeout(function(){
       if(rec.state === "recording") rec.stop();
-    }, 4500);
+    }, 8000);
   }).catch(function(){
+    setMicUi(false);
     st.textContent = "Mic blocked — allow microphone in the address bar.";
   });
 }
@@ -965,6 +992,7 @@ function wireUI(){
     if(e.key === "Enter"){ e.preventDefault(); showResult(Hifazat.answer(el("q").value, curLang)); }
   });
   el("mic").onclick=function(){ micListen(); };
+  var ms=el("micStop"); if(ms) ms.onclick=function(){ stopUrduRec(); };
   el("red").onclick=function(){
     var n=0, lines=[];
     ATTACKS.forEach(function(a){

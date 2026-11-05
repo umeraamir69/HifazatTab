@@ -28,8 +28,10 @@ Post-train Cohere Tiny Aya (`tiny-aya-fire`) so a Pakistani kiryana-shop agent m
 - Safety is in-scope: refusal probes + cross-script attacks, not just task accuracy
 
 **Where we are (facts)**
-- Phase 1 BEFORE (zero-shot Tiny Aya, Colab): validity ~98%, task success ~11%, refusal ~14%
-- Phase 2: AgentTune GRPO on HF Jobs (L4 smoke ✅; full 50-step A10G in progress) → adapter `umeraamir69/hifazat-tab-grpo-v1(-smoke)`
+- Phase 1 BEFORE (zero-shot Tiny Aya): validity 150/153 (98%), task 17/153 (11%), refusal 3/21 (14%)
+- Phase 2 GRPO v1 (50 steps A10G): AFTER flat — 146/153 · 16/153 · 4/21 (NL args vs canonical SKU keys; diagnosed in Findings.md)
+- Now training in parallel: GRPO v2-350 (mid-train probe eval, ship BEST ckpt) + SFT v1 (gold JSON) → pick higher AFTER
+- Shop oracle expanded to 108 SKUs; live demo has Groq Whisper Urdu STT
 - Repo: https://github.com/umeraamir69/HifazatTab
 - Live voice demo: https://hifazattab.vercel.app
 
