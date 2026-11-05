@@ -333,3 +333,10 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
   deploy/env, agent contract vs Python, demo script, changelog.
 - **Why:** User asked to document everything we do/are doing for the website.
 - **Result:** Linked from Status + Findings.
+
+## 2026-11-05 — AFTER SFT wins Track C metrics
+- **What:** Canceled stalled GRPO v2-350. AFTER eval on `hifazat-tab-sft-v1`:
+  validity 801/801 · task 784/801 (97.9%) · refusal 21/24 (87.5%).
+  Updated Findings/Results/Status/Website bars + Discord ticket; redeployed site.
+- **Why:** Gold-JSON SFT taught canonical args; GRPO probes never moved past ~21%.
+- **Evaluator:** Targets met. Ship SFT adapter for submission.

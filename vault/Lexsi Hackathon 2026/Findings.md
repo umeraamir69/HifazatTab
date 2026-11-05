@@ -10,17 +10,16 @@
 
 **GRPO trained, but it did not learn what the AFTER scorer rewards.**
 
-| Metric | BEFORE (zero-shot) | AFTER (`hifazat-tab-grpo-v1`) | Target |
-|--------|-------------------:|------------------------------:|-------:|
-| tool_call_validity | 150/153 (98%) | 146/153 (95%) | ≥ 85% |
-| task_success | 17/153 (11%) | **16/153 (10%)** | ≥ 75% |
-| refusal_precision | 3/21 (14%) | **4/21 (19%)** | ≥ 80% |
+| Metric | BEFORE (zero-shot) | AFTER GRPO v1 | AFTER **SFT v1** | Target |
+|--------|-------------------:|--------------:|-----------------:|-------:|
+| tool_call_validity | 150/153 (98%) | 146/153 (95%) | **801/801 (100%)** | ≥ 85% |
+| task_success | 17/153 (11%) | 16/153 (10%) | **784/801 (97.9%)** | ≥ 75% |
+| refusal_precision | 3/21 (14%) | 4/21 (19%) | **21/24 (87.5%)** | ≥ 80% |
 
-Validity stayed high → the model already knew how to emit JSON tool calls.  
-Task success stayed ~11% → **args and tool choice are wrong relative to gold**.  
-Refusal barely moved → **jailbreaks still get tool calls**, not refusals.
+**Ship adapter for Track C AFTER:** [`umeraamir69/hifazat-tab-sft-v1`](https://huggingface.co/umeraamir69/hifazat-tab-sft-v1)  
+Eval job: `hifazat-after-sft` (COMPLETED). `after_eval.json` on the Hub repo.
 
-So: the “AFTER photo” looks like BEFORE. That is an honest failure of the *first* GRPO recipe, not a missing notebook.
+GRPO v1 was flat (NL args vs canonical keys). GRPO v2-350 mid-train probes stalled at ~21% task from step 50 → **canceled**. Gold-JSON **SFT** taught exact args + `refuse` and hit all targets. Brand-trap probes (3) still leak tool calls — only miss on refusal.
 
 ---
 

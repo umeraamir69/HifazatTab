@@ -1,59 +1,34 @@
 # Status — HifazatTab
 
-**Where we are (2026-11-04):** Phase 0 demo green · Phase 1 BEFORE done ·  
-Phase 2 GRPO **trained** but AFTER **flat** · demo site + Groq Urdu STT live.  
-**Read:** `Findings.md` for why metrics failed and what to do next.
+**Where we are (2026-11-05):** Phase 0 demo green · BEFORE done ·  
+**AFTER SFT WINS** — targets met · GRPO v2 canceled (stalled) · site updated.
 
 ## Metrics snapshot
 
-| | BEFORE (zero-shot) | AFTER v1 GRPO |
-|--|-------------------:|--------------:|
-| tool_call_validity | 150/153 | 146/153 |
-| task_success | 17/153 | **16/153** |
-| refusal_precision | 3/21 | **4/21** |
+| | BEFORE | AFTER GRPO v1 | AFTER **SFT** |
+|--|-------:|--------------:|--------------:|
+| tool_call_validity | 150/153 (98%) | 146/153 | **801/801 (100%)** |
+| task_success | 17/153 (11%) | 16/153 | **784/801 (97.9%)** |
+| refusal_precision | 3/21 (14%) | 4/21 | **21/24 (87.5%)** |
 
-Targets: validity ≥ 0.85 · task ≥ 75% · refusal ≥ 0.80 — **not met on v1**.
+Targets ≥85% / ≥75% / ≥80% — **met on SFT**.
 
-## Done
+## Ship
 
-- Plan + Research + vault docs; Phase 0 stdlib agent/tools/eval/redteam/tests.
-- Phase 1 Colab BEFORE on Tiny Aya fire (4-bit).
-- HF Jobs: smoke L4 + full 50 A10G → `hifazat-tab-grpo-v1`.
-- AFTER notebook run → flat scores diagnosed (canonical arg / weak reward).
-- Shop expanded to **108 SKUs**; seed builder covers all; web catalog + filters.
-- Live demo https://hifazattab.vercel.app (SSO off); Hindi/Urdu spoken answers.
-- Urdu mic via **Groq Whisper** (`/api/stt`) — no OpenAI/Google needed.
-- v2 train recipe coded (strict reward + canonical prompt) — **not launched yet**.
-
-## Still open
-
-- [ ] Push local catalog/seed/train/AFTER patches to GitHub `main`
-- [x] Push catalog/seed/train/web/docs to `main` (c6317d6 + a1ed790)
-- [x] Launch GRPO **v2-350** (A10G RUNNING) mid-train probes → ship BEST
-  https://huggingface.co/jobs/umeraamir69/6aebef810e0338d1bb805501 → `…-grpo-v2`
-- [x] Parallel **SFT v1** (gold JSON, 3 epochs) for faster AFTER lift
-  https://huggingface.co/jobs/umeraamir69/6aebefe20e0338d1bb80551d → `…-sft-v1`
-- [ ] Pick higher AFTER (SFT vs GRPO best ckpt); update site bars + Findings
-- [ ] Watch `REWARD_CURVE` / `PROBE_SCORES` on GRPO; stop only if collapse
-- [ ] Optional SFT warm-start if v2 still weak on exact args
-- [ ] AuditKIT on trajectories; Discord `#report-issues` ticket
-- [ ] Voice E2E human walk (`phone/VOICE_E2E.md`) before Demo Day
-
-## Live artifacts
-
-| What | Link |
-|------|------|
+| Artifact | Link |
+|----------|------|
 | Demo | https://hifazattab.vercel.app |
+| AFTER adapter | https://huggingface.co/umeraamir69/hifazat-tab-sft-v1 |
 | Repo | https://github.com/umeraamir69/HifazatTab |
-| Adapter v1 | https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1 |
-| Smoke | https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1-smoke |
-| Findings | `Findings.md` (this folder) |
-| Website docs | `Website.md` (features done + todo) |
+| Findings | `Findings.md` |
 
-## Credits
+## Still open (Demo Day polish)
 
-~$2.3 spent on GRPO so far of $20. Reserve rest for **v2**, not another v1.
+- [ ] Discord `#report-issues` (update ticket with SFT AFTER numbers)
+- [ ] Voice E2E human walk (`phone/VOICE_E2E.md`)
+- [ ] AuditKIT on trajectories / SFT writeup
+- [ ] Optional: fix brand-trap refusals (3/24 misses)
 
 ## Key dates
 
-- Nov 5 registration closes · Nov 14 submit · Nov 16 shortlist · Nov 22 Demo Day
+- Nov 14 submit · Nov 16 shortlist · Nov 22 Demo Day

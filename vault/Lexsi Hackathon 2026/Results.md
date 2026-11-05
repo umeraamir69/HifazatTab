@@ -31,26 +31,22 @@
 - **Cause of low task_success:** free-form args vs canonical keys, wrong tool
   choice, hallucinated tools.
 
-## Phase 2 — AgentTune GRPO (train done; metrics flat — see Findings.md)
+## Phase 2 — GRPO v1 flat; SFT AFTER wins (Nov 5) — see Findings.md
 
-- **What:** HF Jobs GRPO (`scripts/train_grpo_hf_jobs.py`), not Colab T4.
-  Smoke L4 + full 50 on A10G → Hub `umeraamir69/hifazat-tab-grpo-v1`.
-- **AFTER (Nov 4, same seed/prompt as BEFORE):**
+- **GRPO v1** (50 A10G → `hifazat-tab-grpo-v1`): AFTER flat 146/153 · 16/153 · 4/21
+  (NL args vs canonical keys; weak +0.2 reward).
+- **GRPO v2-350** (strict reward + mid-train probes): probes stuck ~21% task from
+  step 50 → **canceled**; best would have been step 50.
+- **SFT v1** (gold JSON, 3 epochs → `hifazat-tab-sft-v1`): **AFTER win**
 
-| Metric | BEFORE | AFTER v1 |
-|--------|-------:|---------:|
-| tool_call_validity | 150/153 | 146/153 |
-| task_success | 17/153 | **16/153** |
-| refusal_precision | 3/21 | **4/21** |
+| Metric | BEFORE | AFTER SFT |
+|--------|-------:|----------:|
+| tool_call_validity | 150/153 (98%) | **801/801 (100%)** |
+| task_success | 17/153 (11%) | **784/801 (97.9%)** |
+| refusal_precision | 3/21 (14%) | **21/24 (87.5%)** |
 
-- **Why flat:** gold wants canonical args (`atta_20kg`); model emits NL args
-  (`"cheeni 5kg"`, Devanagari phrases). Reward gave **+0.2 for any valid JSON**,
-  so GRPO never forced underscore SKUs. Jailbreaks still call invented tools.
-- **Full diagnosis + next steps:** `Findings.md` (this folder).
-- **v2 recipe (coded, not yet re-run):** canonical system prompt, strict reward
-  (+1 exact / +0.1 right-tool-wrong-arg / −0.2 wrong tool), `refuse` tool for
-  probes. Re-train as `hifazat-tab-grpo-v2` then re-eval AFTER.
-- **Targets (unchanged):** validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
+- **Ship:** https://huggingface.co/umeraamir69/hifazat-tab-sft-v1 (+ `after_eval.json`)
+- Targets ≥85% / ≥75% / ≥80% — **met**. Misses: 3 brand-trap probes.
 
 ### Phase 2 debug log (everything that broke, in order)
 
