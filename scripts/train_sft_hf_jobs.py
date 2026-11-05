@@ -100,6 +100,9 @@ def main() -> int:
     ds = Dataset.from_dict({"text": texts})
     print("sft rows:", len(ds))
 
+    # A10G + bitsandbytes: force fp16 AMP (bf16 GradScaler crashes with
+    # NotImplementedError: _amp_foreach_non_finite_check_and_unscale_cuda BFloat16).
+    os.environ["ACCELERATE_MIXED_PRECISION"] = "fp16"
     bnb = BitsAndBytesConfig(
         load_in_4bit=True,
         bnb_4bit_compute_dtype=torch.float16,
@@ -112,6 +115,7 @@ def main() -> int:
         args.model,
         quantization_config=bnb,
         device_map="auto",
+        torch_dtype=torch.float16,
         trust_remote_code=True,
     )
     peft = LoraConfig(
@@ -132,10 +136,12 @@ def main() -> int:
         save_total_limit=4,
         bf16=False,
         fp16=True,
+        tf32=False,
         optim="paged_adamw_8bit",
         report_to="none",
         max_seq_length=384,
         packing=False,
+        dataloader_pin_memory=False,
     )
     if args.max_steps > 0:
         cfg_kw["max_steps"] = args.max_steps
