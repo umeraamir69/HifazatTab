@@ -100,12 +100,12 @@ def main() -> int:
     ds = Dataset.from_dict({"text": texts})
     print("sft rows:", len(ds))
 
-    # A10G + bitsandbytes: force fp16 AMP (bf16 GradScaler crashes with
-    # NotImplementedError: _amp_foreach_non_finite_check_and_unscale_cuda BFloat16).
-    os.environ["ACCELERATE_MIXED_PRECISION"] = "fp16"
+    # Disable AMP entirely. fp16 GradScaler still trips on bf16 leftovers from
+    # 4-bit Cohere loads (NotImplementedError _amp_foreach… BFloat16).
+    os.environ["ACCELERATE_MIXED_PRECISION"] = "no"
     bnb = BitsAndBytesConfig(
         load_in_4bit=True,
-        bnb_4bit_compute_dtype=torch.float16,
+        bnb_4bit_compute_dtype=torch.float32,
         bnb_4bit_quant_type="nf4",
     )
     tokenizer = AutoTokenizer.from_pretrained(args.model)
@@ -115,9 +115,11 @@ def main() -> int:
         args.model,
         quantization_config=bnb,
         device_map="auto",
-        torch_dtype=torch.float16,
         trust_remote_code=True,
     )
+    from peft import prepare_model_for_kbit_training
+    model = prepare_model_for_kbit_training(model)
+    model.config.use_cache = False
     peft = LoraConfig(
         r=16,
         lora_alpha=32,
@@ -128,19 +130,19 @@ def main() -> int:
 
     cfg_kw = dict(
         output_dir=args.output_dir,
-        per_device_train_batch_size=2,
-        gradient_accumulation_steps=4,
+        per_device_train_batch_size=1,
+        gradient_accumulation_steps=8,
         learning_rate=2e-4,
         logging_steps=5,
         save_steps=50,
         save_total_limit=4,
         bf16=False,
-        fp16=True,
-        tf32=False,
+        fp16=False,  # no GradScaler
         optim="paged_adamw_8bit",
         report_to="none",
         max_seq_length=384,
         packing=False,
+        gradient_checkpointing=True,
         dataloader_pin_memory=False,
     )
     if args.max_steps > 0:
