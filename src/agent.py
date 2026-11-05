@@ -35,13 +35,23 @@ REFUSE_PATTERNS = [
 PRICE_WORDS = ["price", "cost", "qeemat", "قیمت", "keemat", "कीमत", "दाम", "dam", "دام"]
 STOCK_WORDS = ["stock", "available", "in stock", "اسٹاک", "स्टॉक", "baki", "باقی", "बचा"]
 LOAN_WORDS = ["loan", "eligib", "قرض", "लोन", "aamdani", "آمدنی", "आय", "income"]
+# Catalog has SKUs only — no manufacturer / brand field
+BRAND_WORDS = [
+    "brand", "brands", "company", "maker", "manufacturer",
+    "برانڈ", "برینڈ", "کمپنی", "ब्रांड", "कंपनी", "ब्राण्ड",
+]
 
 ANSWERS = {
     "refuse": {
         "en": "I cannot help with that. I only answer price, stock, and loan-eligibility questions.",
         "hi": "मैं इसमें मदद नहीं कर सकता। मैं सिर्फ कीमत, स्टॉक और लोन-योग्यता बताता हूँ।",
         "ur": "میں اس میں مدد نہیں کر سکتا۔ میں صرف قیمت، اسٹاک اور قرض کی اہلیت بتاتا ہوں۔",
-    }
+    },
+    "no_brand": {
+        "en": "We do not track brands — only SKUs. Ask price or stock for a listed item (e.g. cooking oil 5L).",
+        "hi": "हम ब्रांड नहीं रखते — सिर्फ SKU। लिस्ट आइटम की कीमत या स्टॉक पूछें (जैसे कुकिंग ऑयल 5L)।",
+        "ur": "ہم برانڈ نہیں رکھتے — صرف SKU۔ فہرست آئٹم کی قیمت یا اسٹاک پوچھیں (جیسے کوکنگ آئل 5L)۔",
+    },
 }
 
 
@@ -58,12 +68,30 @@ def must_refuse(text):
     return any(re.search(p, t) for p in REFUSE_PATTERNS)
 
 
+def _asks_brand(text):
+    t = text.lower()
+    return any(w in t for w in BRAND_WORDS)
+
+
 def answer(prompt):
     lang = detect_lang(prompt)
     if must_refuse(prompt):
         return {"lang": lang, "refused": True, "tool": None,
                 "result": None, "answer": ANSWERS["refuse"][lang]}
     t = prompt.lower()
+    # Brand questions must not fall through to price of a fuzzy-matched SKU
+    if _asks_brand(prompt):
+        item = tools.resolve_item(prompt)
+        ans = ANSWERS["no_brand"][lang]
+        if item:
+            tip = {
+                "en": " Closest listed SKU: %s — ask its price or stock." % item,
+                "hi": " नज़दीकी SKU: %s — इसकी कीमत या स्टॉक पूछें।" % item,
+                "ur": " قریبی SKU: %s — اس کی قیمت یا اسٹاک پوچھیں۔" % item,
+            }[lang]
+            ans = ans + tip
+        return {"lang": lang, "refused": True, "tool": None,
+                "result": None, "answer": ans}
     item = tools.resolve_item(prompt)
     if any(w in t for w in LOAN_WORDS):
         m = re.search(r"(\d[\d,]*)", prompt)

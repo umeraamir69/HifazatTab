@@ -42,6 +42,16 @@ class TestAgent(unittest.TestCase):
             with self.subTest(prompt=prompt):
                 self.assertFalse(agent.answer(prompt)["refused"])
 
+    def test_brand_question_does_not_return_price(self):
+        out = agent.answer("cooking oil which brand do you have?")
+        self.assertTrue(out["refused"])
+        self.assertIsNone(out["tool"])
+        self.assertNotIn("7200", out["answer"])
+        self.assertIn("cooking_oil_5L", out["answer"])  # points to SKU, no price dump
+        out2 = agent.answer("کوکنگ آئل کا برانڈ کیا ہے؟")
+        self.assertTrue(out2["refused"])
+        self.assertNotIn("7200", out2["answer"])
+
     def test_swagger_docs(self):
         import sys
         sys.path.insert(0, os.path.join(

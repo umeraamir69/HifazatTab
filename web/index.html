@@ -422,6 +422,7 @@ th {
       <label><input type="checkbox" id="voice" checked> Speak answers</label>
       <span id="vstatus"></span>
     </div>
+    <p class="sub" style="margin:-0.35rem 0 1rem">Urdu mic: Chrome has no Urdu speech-to-text — click an اردو sample or type. English/Hindi mic OK. Speak answers still reads Urdu aloud.</p>
     <div id="out" class="out" role="status">
       <span class="meta"><span class="chip">ready</span></span>
       <div class="answer">Pick a sample, type a question, or use the mic. This live demo uses the same tool contract as training.</div>
@@ -562,9 +563,13 @@ var Hifazat = (function () {
   var PRICE = ["price","cost","qeemat","قیمت","keemat","कीमत","दाम","dam","دام"];
   var STOCK = ["stock","available","in stock","اسٹاک","स्टॉक","baki","باقی","बचा"];
   var LOAN = ["loan","eligib","قرض","लोन","aamdani","آمدنی","आय","income"];
+  var BRAND = ["brand","brands","company","maker","manufacturer","برانڈ","برینڈ","کمپنی","ब्रांड","कंपनी","ब्राण्ड"];
   var REF_TXT = {en:"I cannot help with that. I only answer price, stock, and loan-eligibility questions.",
     hi:"मैं इसमें मदद नहीं कर सकता। मैं सिर्फ कीमत, स्टॉक और लोन-योग्यता बताता हूँ।",
     ur:"میں اس میں مدد نہیں کر سکتا۔ میں صرف قیمت، اسٹاک اور قرض کی اہلیت بتاتا ہوں۔"};
+  var NO_BRAND = {en:"We do not track brands — only SKUs. Ask price or stock for a listed item (e.g. cooking oil 5L).",
+    hi:"हम ब्रांड नहीं रखते — सिर्फ SKU। लिस्ट आइटम की कीमत या स्टॉक पूछें (जैसे कुकिंग ऑयल 5L)।",
+    ur:"ہم برانڈ نہیں رکھتے — صرف SKU۔ فہرست آئٹم کی قیمت یا اسٹاک پوچھیں (جیسے کوکنگ آئل 5L)۔"};
   function lang(t){ if(/[\u0600-\u06FF]/.test(t)) return "ur";
     if(/[\u0900-\u097F]/.test(t)) return "hi"; return "en"; }
   function low(t){ return t.toLowerCase(); }
@@ -587,7 +592,18 @@ var Hifazat = (function () {
     var l=lang(prompt);
     for(var i=0;i<REFUSE.length;i++) if(REFUSE[i].test(prompt))
       return {lang:l,refused:true,tool:null,answer:REF_TXT[l]};
-    var t=low(prompt), item=resolve(prompt), m;
+    var t=low(prompt), item, m;
+    if(hasAny(t,BRAND)){
+      item=resolve(prompt);
+      var ans=NO_BRAND[l];
+      if(item){
+        ans += {en:" Closest listed SKU: "+item+" — ask its price or stock.",
+          hi:" नज़दीकी SKU: "+item+" — इसकी कीमत या स्टॉक पूछें।",
+          ur:" قریبی SKU: "+item+" — اس کی قیمت یا اسٹاک پوچھیں۔"}[l];
+      }
+      return {lang:l,refused:true,tool:null,answer:ans};
+    }
+    item=resolve(prompt);
     if(hasAny(t,LOAN)){
       m=/(\d[\d,]*)/.exec(prompt);
       var inc=m?parseInt(m[1].replace(/,/g,""),10):0, tier=inc>=150000?"medium":(inc>=40000?"small":"none");
