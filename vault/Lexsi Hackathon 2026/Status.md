@@ -28,8 +28,11 @@ Targets: validity ≥ 0.85 · task ≥ 75% · refusal ≥ 0.80 — **not met on 
 ## Still open
 
 - [ ] Push local catalog/seed/train/AFTER patches to GitHub `main`
-- [ ] Launch GRPO **v2** (`hifazat-tab-grpo-v2`, prefer 100 steps) on remaining credits
-- [ ] Re-run AFTER; paste new scores into Results + Findings
+- [x] Push catalog/seed/train/web/docs to `main` (c6317d6 + a1ed790)
+- [x] Launch GRPO **v2-350** with mid-train probes every 50 → ship BEST ckpt
+  Job: https://huggingface.co/jobs/umeraamir69/6aebef810e0338d1bb805501
+- [ ] Watch `REWARD_CURVE` / `PROBE_SCORES`; stop if memorization warn
+- [ ] Re-run AFTER on best adapter; paste scores into Results + Findings
 - [ ] Optional SFT warm-start if v2 still weak on exact args
 - [ ] AuditKIT on trajectories; Discord `#report-issues` ticket
 - [ ] Voice E2E human walk (`phone/VOICE_E2E.md`) before Demo Day
