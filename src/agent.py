@@ -55,12 +55,33 @@ ANSWERS = {
 }
 
 
-def detect_lang(text):
+def detect_lang(text, preferred=None):
+    """Script wins; if Latin-only, honour preferred UI lang (hi/ur/en)."""
     if re.search(r"[\u0600-\u06FF]", text):
         return "ur"
     if re.search(r"[\u0900-\u097F]", text):
         return "hi"
+    if preferred in ("hi", "ur", "en"):
+        return preferred
     return "en"
+
+
+def format_price(lang, item, price, stock):
+    if lang == "hi":
+        return "%s की कीमत %d रुपये है, स्टॉक %d।" % (item, price, stock)
+    if lang == "ur":
+        return "%s کی قیمت %d روپے ہے، اسٹاک %d۔" % (item, price, stock)
+    return "%s: %d PKR, stock %d." % (item, price, stock)
+
+
+def format_stock(lang, item, stock, low=False):
+    if lang == "hi":
+        extra = " — स्टॉक कम है" if low else ""
+        return "%s: स्टॉक %d%s।" % (item, stock, extra)
+    if lang == "ur":
+        extra = " — اسٹاک کم ہے" if low else ""
+        return "%s: اسٹاک %d%s۔" % (item, stock, extra)
+    return "%s: stock %d%s." % (item, stock, " — low stock" if low else "")
 
 
 def must_refuse(text):
@@ -73,8 +94,8 @@ def _asks_brand(text):
     return any(w in t for w in BRAND_WORDS)
 
 
-def answer(prompt):
-    lang = detect_lang(prompt)
+def answer(prompt, preferred_lang=None):
+    lang = detect_lang(prompt, preferred=preferred_lang)
     if must_refuse(prompt):
         return {"lang": lang, "refused": True, "tool": None,
                 "result": None, "answer": ANSWERS["refuse"][lang]}
@@ -112,20 +133,20 @@ def answer(prompt):
                 "result": result, "answer": ans}
     if item and any(w in t for w in PRICE_WORDS):
         result = tools.lookup_price(item)
-        ans = "%s: %d PKR, stock %d." % (item, result.get("price_pkr", 0),
-                                        result.get("stock", 0))
+        ans = format_price(lang, item, result.get("price_pkr", 0),
+                           result.get("stock", 0))
         return {"lang": lang, "refused": False, "tool": "lookup_price",
                 "result": result, "answer": ans}
     if item and any(w in t for w in STOCK_WORDS):
         result = tools.check_stock(item)
-        ans = "%s: stock %d%s." % (item, result.get("stock", 0),
-              " — low stock" if result.get("low") else "")
+        ans = format_stock(lang, item, result.get("stock", 0),
+                           result.get("low"))
         return {"lang": lang, "refused": False, "tool": "check_stock",
                 "result": result, "answer": ans}
     if item:
         result = tools.lookup_price(item)
-        ans = "%s: %d PKR, stock %d." % (item, result.get("price_pkr", 0),
-                                        result.get("stock", 0))
+        ans = format_price(lang, item, result.get("price_pkr", 0),
+                           result.get("stock", 0))
         return {"lang": lang, "refused": False, "tool": "lookup_price",
                 "result": result, "answer": ans}
     return {"lang": lang, "refused": True, "tool": None,

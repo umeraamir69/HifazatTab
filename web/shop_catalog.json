@@ -1,0 +1,1259 @@
+{
+  "catalog": {
+    "atta_20kg": {
+      "price": 2850,
+      "stock": 40,
+      "category": "staples"
+    },
+    "atta_10kg": {
+      "price": 1550,
+      "stock": 35,
+      "category": "staples"
+    },
+    "maida_5kg": {
+      "price": 980,
+      "stock": 35,
+      "category": "staples"
+    },
+    "suji_1kg": {
+      "price": 220,
+      "stock": 45,
+      "category": "staples"
+    },
+    "besan_1kg": {
+      "price": 310,
+      "stock": 40,
+      "category": "staples"
+    },
+    "chaawal_5kg": {
+      "price": 3200,
+      "stock": 20,
+      "category": "staples"
+    },
+    "basmati_1kg": {
+      "price": 780,
+      "stock": 28,
+      "category": "staples"
+    },
+    "cheeni_5kg": {
+      "price": 4450,
+      "stock": 25,
+      "category": "staples"
+    },
+    "cheeni_1kg": {
+      "price": 950,
+      "stock": 40,
+      "category": "staples"
+    },
+    "namak_1kg": {
+      "price": 80,
+      "stock": 80,
+      "category": "staples"
+    },
+    "baking_soda_100g": {
+      "price": 90,
+      "stock": 55,
+      "category": "staples"
+    },
+    "cornflour_400g": {
+      "price": 280,
+      "stock": 32,
+      "category": "staples"
+    },
+    "daal_moong_1kg": {
+      "price": 480,
+      "stock": 50,
+      "category": "pulses"
+    },
+    "daal_masoor_1kg": {
+      "price": 420,
+      "stock": 48,
+      "category": "pulses"
+    },
+    "daal_chana_1kg": {
+      "price": 390,
+      "stock": 42,
+      "category": "pulses"
+    },
+    "daal_mash_1kg": {
+      "price": 520,
+      "stock": 30,
+      "category": "pulses"
+    },
+    "daal_arhar_1kg": {
+      "price": 450,
+      "stock": 36,
+      "category": "pulses"
+    },
+    "chana_white_1kg": {
+      "price": 560,
+      "stock": 28,
+      "category": "pulses"
+    },
+    "rajma_1kg": {
+      "price": 610,
+      "stock": 24,
+      "category": "pulses"
+    },
+    "lobia_1kg": {
+      "price": 480,
+      "stock": 30,
+      "category": "pulses"
+    },
+    "cooking_oil_5L": {
+      "price": 7200,
+      "stock": 15,
+      "category": "oils"
+    },
+    "cooking_oil_1L": {
+      "price": 1650,
+      "stock": 40,
+      "category": "oils"
+    },
+    "ghee_1kg": {
+      "price": 1850,
+      "stock": 22,
+      "category": "oils"
+    },
+    "butter_200g": {
+      "price": 380,
+      "stock": 35,
+      "category": "oils"
+    },
+    "olive_oil_500ml": {
+      "price": 1650,
+      "stock": 12,
+      "category": "oils"
+    },
+    "mustard_oil_1L": {
+      "price": 980,
+      "stock": 20,
+      "category": "oils"
+    },
+    "sunflower_oil_5L": {
+      "price": 6900,
+      "stock": 18,
+      "category": "oils"
+    },
+    "chai_950g": {
+      "price": 2100,
+      "stock": 30,
+      "category": "beverages"
+    },
+    "chai_200g": {
+      "price": 520,
+      "stock": 45,
+      "category": "beverages"
+    },
+    "coffee_200g": {
+      "price": 1450,
+      "stock": 18,
+      "category": "beverages"
+    },
+    "green_tea_100g": {
+      "price": 650,
+      "stock": 40,
+      "category": "beverages"
+    },
+    "kashmiri_chai_100g": {
+      "price": 720,
+      "stock": 22,
+      "category": "beverages"
+    },
+    "nimco_pack": {
+      "price": 220,
+      "stock": 40,
+      "category": "snacks"
+    },
+    "chips_pack": {
+      "price": 80,
+      "stock": 90,
+      "category": "snacks"
+    },
+    "chocolate_bar": {
+      "price": 120,
+      "stock": 70,
+      "category": "snacks"
+    },
+    "milk_1L": {
+      "price": 280,
+      "stock": 55,
+      "category": "dairy"
+    },
+    "yogurt_1kg": {
+      "price": 320,
+      "stock": 40,
+      "category": "dairy"
+    },
+    "milk_powder_400g": {
+      "price": 980,
+      "stock": 25,
+      "category": "dairy"
+    },
+    "cheese_200g": {
+      "price": 520,
+      "stock": 20,
+      "category": "dairy"
+    },
+    "eggs_dozen": {
+      "price": 420,
+      "stock": 60,
+      "category": "dairy"
+    },
+    "cream_200ml": {
+      "price": 260,
+      "stock": 28,
+      "category": "dairy"
+    },
+    "laban_1L": {
+      "price": 240,
+      "stock": 30,
+      "category": "dairy"
+    },
+    "bread_loaf": {
+      "price": 200,
+      "stock": 35,
+      "category": "bakery"
+    },
+    "bun_pack_6": {
+      "price": 180,
+      "stock": 40,
+      "category": "bakery"
+    },
+    "biscuit_pack": {
+      "price": 180,
+      "stock": 70,
+      "category": "bakery"
+    },
+    "rusks_pack": {
+      "price": 250,
+      "stock": 45,
+      "category": "bakery"
+    },
+    "cake_rusk_pack": {
+      "price": 280,
+      "stock": 32,
+      "category": "bakery"
+    },
+    "noodles_pack": {
+      "price": 85,
+      "stock": 90,
+      "category": "packaged"
+    },
+    "pasta_500g": {
+      "price": 310,
+      "stock": 40,
+      "category": "packaged"
+    },
+    "ketchup_500g": {
+      "price": 390,
+      "stock": 35,
+      "category": "packaged"
+    },
+    "mayo_300g": {
+      "price": 450,
+      "stock": 28,
+      "category": "packaged"
+    },
+    "pickle_jar": {
+      "price": 380,
+      "stock": 32,
+      "category": "packaged"
+    },
+    "jam_450g": {
+      "price": 420,
+      "stock": 30,
+      "category": "packaged"
+    },
+    "honey_250g": {
+      "price": 780,
+      "stock": 22,
+      "category": "packaged"
+    },
+    "vinegar_500ml": {
+      "price": 160,
+      "stock": 50,
+      "category": "packaged"
+    },
+    "soy_sauce_250ml": {
+      "price": 240,
+      "stock": 40,
+      "category": "packaged"
+    },
+    "chili_sauce_300g": {
+      "price": 290,
+      "stock": 34,
+      "category": "packaged"
+    },
+    "peanut_butter_340g": {
+      "price": 890,
+      "stock": 16,
+      "category": "packaged"
+    },
+    "mirch_powder_200g": {
+      "price": 280,
+      "stock": 55,
+      "category": "spices"
+    },
+    "haldi_200g": {
+      "price": 220,
+      "stock": 55,
+      "category": "spices"
+    },
+    "garam_masala_100g": {
+      "price": 190,
+      "stock": 48,
+      "category": "spices"
+    },
+    "zeera_100g": {
+      "price": 260,
+      "stock": 40,
+      "category": "spices"
+    },
+    "dhania_powder_200g": {
+      "price": 210,
+      "stock": 50,
+      "category": "spices"
+    },
+    "lal_mirch_100g": {
+      "price": 180,
+      "stock": 52,
+      "category": "spices"
+    },
+    "kala_zeera_50g": {
+      "price": 320,
+      "stock": 20,
+      "category": "spices"
+    },
+    "elaichi_50g": {
+      "price": 780,
+      "stock": 18,
+      "category": "spices"
+    },
+    "dalchini_50g": {
+      "price": 240,
+      "stock": 25,
+      "category": "spices"
+    },
+    "onion_1kg": {
+      "price": 120,
+      "stock": 70,
+      "category": "produce"
+    },
+    "potato_1kg": {
+      "price": 90,
+      "stock": 80,
+      "category": "produce"
+    },
+    "tomato_1kg": {
+      "price": 150,
+      "stock": 50,
+      "category": "produce"
+    },
+    "garlic_250g": {
+      "price": 180,
+      "stock": 45,
+      "category": "produce"
+    },
+    "ginger_250g": {
+      "price": 160,
+      "stock": 40,
+      "category": "produce"
+    },
+    "banana_dozen": {
+      "price": 280,
+      "stock": 35,
+      "category": "produce"
+    },
+    "apple_1kg": {
+      "price": 450,
+      "stock": 25,
+      "category": "produce"
+    },
+    "dates_500g": {
+      "price": 650,
+      "stock": 30,
+      "category": "produce"
+    },
+    "lemon_500g": {
+      "price": 140,
+      "stock": 40,
+      "category": "produce"
+    },
+    "cucumber_1kg": {
+      "price": 110,
+      "stock": 35,
+      "category": "produce"
+    },
+    "carrot_1kg": {
+      "price": 100,
+      "stock": 38,
+      "category": "produce"
+    },
+    "water_6pack": {
+      "price": 360,
+      "stock": 55,
+      "category": "drinks"
+    },
+    "cola_1_5L": {
+      "price": 220,
+      "stock": 60,
+      "category": "drinks"
+    },
+    "juice_1L": {
+      "price": 310,
+      "stock": 40,
+      "category": "drinks"
+    },
+    "energy_drink_250ml": {
+      "price": 180,
+      "stock": 45,
+      "category": "drinks"
+    },
+    "mineral_water_1_5L": {
+      "price": 90,
+      "stock": 80,
+      "category": "drinks"
+    },
+    "lassi_250ml": {
+      "price": 120,
+      "stock": 40,
+      "category": "drinks"
+    },
+    "soap_4pack": {
+      "price": 620,
+      "stock": 60,
+      "category": "household"
+    },
+    "detergent_1kg": {
+      "price": 540,
+      "stock": 45,
+      "category": "household"
+    },
+    "shampoo_200ml": {
+      "price": 480,
+      "stock": 38,
+      "category": "household"
+    },
+    "toothpaste_100g": {
+      "price": 260,
+      "stock": 50,
+      "category": "household"
+    },
+    "tissue_box": {
+      "price": 180,
+      "stock": 55,
+      "category": "household"
+    },
+    "trash_bags_roll": {
+      "price": 220,
+      "stock": 40,
+      "category": "household"
+    },
+    "batteries_aa_4": {
+      "price": 350,
+      "stock": 35,
+      "category": "household"
+    },
+    "matchbox_10": {
+      "price": 80,
+      "stock": 100,
+      "category": "household"
+    },
+    "scrub_pad_2": {
+      "price": 90,
+      "stock": 70,
+      "category": "household"
+    },
+    "dishwash_liquid_500ml": {
+      "price": 320,
+      "stock": 42,
+      "category": "household"
+    },
+    "floor_cleaner_1L": {
+      "price": 410,
+      "stock": 28,
+      "category": "household"
+    },
+    "handwash_250ml": {
+      "price": 290,
+      "stock": 36,
+      "category": "household"
+    },
+    "mosquito_coil_10": {
+      "price": 160,
+      "stock": 50,
+      "category": "household"
+    },
+    "phenyl_1L": {
+      "price": 240,
+      "stock": 30,
+      "category": "household"
+    },
+    "steel_scrub_3": {
+      "price": 120,
+      "stock": 55,
+      "category": "household"
+    },
+    "lighter_pack_2": {
+      "price": 100,
+      "stock": 60,
+      "category": "household"
+    },
+    "cotton_rolls_100g": {
+      "price": 180,
+      "stock": 40,
+      "category": "household"
+    },
+    "baby_diaper_pack": {
+      "price": 1650,
+      "stock": 15,
+      "category": "household"
+    },
+    "sanitary_pads_pack": {
+      "price": 320,
+      "stock": 40,
+      "category": "household"
+    },
+    "face_wash_100ml": {
+      "price": 450,
+      "stock": 25,
+      "category": "household"
+    },
+    "talcum_powder_100g": {
+      "price": 210,
+      "stock": 35,
+      "category": "household"
+    },
+    "hair_oil_100ml": {
+      "price": 280,
+      "stock": 40,
+      "category": "household"
+    },
+    "shoe_polish_40g": {
+      "price": 140,
+      "stock": 30,
+      "category": "household"
+    },
+    "candle_pack_6": {
+      "price": 160,
+      "stock": 45,
+      "category": "household"
+    }
+  },
+  "aliases": {
+    "atta_20kg": [
+      "atta_20kg",
+      "atta-20kg",
+      "atta 20kg",
+      "flour",
+      "atta",
+      "آٹا",
+      "आटा"
+    ],
+    "atta_10kg": [
+      "atta 10kg",
+      "atta_10kg",
+      "atta-10kg",
+      "atta"
+    ],
+    "maida_5kg": [
+      "maida 5kg",
+      "maida_5kg",
+      "maida-5kg",
+      "maida",
+      "میدہ",
+      "मैदा"
+    ],
+    "suji_1kg": [
+      "suji_1kg",
+      "suji 1kg",
+      "suji-1kg",
+      "semolina",
+      "سوجی",
+      "सूजी",
+      "suji"
+    ],
+    "besan_1kg": [
+      "gram flour",
+      "besan 1kg",
+      "besan_1kg",
+      "besan-1kg",
+      "besan",
+      "बेसन",
+      "بیسن"
+    ],
+    "chaawal_5kg": [
+      "chaawal_5kg",
+      "chaawal-5kg",
+      "chaawal 5kg",
+      "chaawal",
+      "chawal",
+      "چاول",
+      "rice",
+      "चावल"
+    ],
+    "basmati_1kg": [
+      "basmati 1kg",
+      "basmati_1kg",
+      "basmati-1kg",
+      "basmati"
+    ],
+    "cheeni_5kg": [
+      "cheeni_5kg",
+      "cheeni-5kg",
+      "cheeni 5kg",
+      "cheeni",
+      "sugar",
+      "चीनी",
+      "چینی"
+    ],
+    "cheeni_1kg": [
+      "cheeni 1kg",
+      "cheeni_1kg",
+      "cheeni-1kg",
+      "cheeni"
+    ],
+    "namak_1kg": [
+      "namak 1kg",
+      "namak_1kg",
+      "namak-1kg",
+      "namak",
+      "salt",
+      "نمک",
+      "नमक"
+    ],
+    "baking_soda_100g": [
+      "baking soda 100g",
+      "baking_soda_100g",
+      "baking-soda-100g",
+      "baking soda"
+    ],
+    "cornflour_400g": [
+      "cornflour 400g",
+      "cornflour_400g",
+      "cornflour-400g",
+      "cornflour"
+    ],
+    "daal_moong_1kg": [
+      "daal_moong_1kg",
+      "daal-moong-1kg",
+      "daal moong 1kg",
+      "daal moong",
+      "moong dal",
+      "مونگ دال",
+      "मूंग दाल",
+      "moong"
+    ],
+    "daal_masoor_1kg": [
+      "daal_masoor_1kg",
+      "daal masoor 1kg",
+      "daal-masoor-1kg",
+      "daal masoor",
+      "masoor",
+      "مسور",
+      "मसूर"
+    ],
+    "daal_chana_1kg": [
+      "daal chana 1kg",
+      "daal_chana_1kg",
+      "daal-chana-1kg",
+      "daal chana",
+      "chana dal",
+      "चना दाल",
+      "چنا دال"
+    ],
+    "daal_mash_1kg": [
+      "daal-mash-1kg",
+      "daal_mash_1kg",
+      "daal mash 1kg",
+      "daal mash",
+      "mash",
+      "ماش",
+      "माश"
+    ],
+    "daal_arhar_1kg": [
+      "daal_arhar_1kg",
+      "daal arhar 1kg",
+      "daal-arhar-1kg",
+      "daal arhar"
+    ],
+    "chana_white_1kg": [
+      "chana_white_1kg",
+      "chana white 1kg",
+      "chana-white-1kg",
+      "kabuli chana",
+      "white chana",
+      "chana white",
+      "سفید چنا",
+      "सफेद चना"
+    ],
+    "rajma_1kg": [
+      "rajma_1kg",
+      "rajma-1kg",
+      "rajma 1kg",
+      "rajma"
+    ],
+    "lobia_1kg": [
+      "lobia_1kg",
+      "lobia-1kg",
+      "lobia 1kg",
+      "lobia"
+    ],
+    "cooking_oil_5L": [
+      "cooking_oil_5L",
+      "cooking oil 5L",
+      "cooking-oil-5L",
+      "cooking oil",
+      "कुकिंग ऑयल",
+      "کوکنگ آئل",
+      "oil"
+    ],
+    "cooking_oil_1L": [
+      "cooking oil 1L",
+      "cooking-oil-1L",
+      "cooking_oil_1L",
+      "cooking oil"
+    ],
+    "ghee_1kg": [
+      "ghee_1kg",
+      "ghee 1kg",
+      "ghee-1kg",
+      "ghee",
+      "گھی",
+      "घी"
+    ],
+    "butter_200g": [
+      "butter-200g",
+      "butter_200g",
+      "butter 200g",
+      "butter",
+      "मक्खन",
+      "مکھن"
+    ],
+    "olive_oil_500ml": [
+      "olive_oil_500ml",
+      "olive-oil-500ml",
+      "olive oil 500ml",
+      "زیتون کا تیل",
+      "जैतून तेल",
+      "olive oil"
+    ],
+    "mustard_oil_1L": [
+      "mustard-oil-1L",
+      "mustard_oil_1L",
+      "mustard oil 1L",
+      "mustard oil"
+    ],
+    "sunflower_oil_5L": [
+      "sunflower oil 5L",
+      "sunflower_oil_5L",
+      "sunflower-oil-5L",
+      "sunflower oil"
+    ],
+    "chai_950g": [
+      "chai_950g",
+      "chai-950g",
+      "chai 950g",
+      "chai",
+      "چائے",
+      "tea",
+      "चाय"
+    ],
+    "chai_200g": [
+      "chai 200g",
+      "chai_200g",
+      "chai-200g",
+      "chai"
+    ],
+    "coffee_200g": [
+      "coffee-200g",
+      "coffee 200g",
+      "coffee_200g",
+      "coffee",
+      "कॉफी",
+      "قهوه",
+      "کافی"
+    ],
+    "green_tea_100g": [
+      "green_tea_100g",
+      "green tea 100g",
+      "green-tea-100g",
+      "green tea",
+      "سبز چائے",
+      "ग्रीन टी"
+    ],
+    "kashmiri_chai_100g": [
+      "kashmiri-chai-100g",
+      "kashmiri chai 100g",
+      "kashmiri_chai_100g",
+      "kashmiri chai"
+    ],
+    "nimco_pack": [
+      "nimco-pack",
+      "nimco pack",
+      "nimco_pack"
+    ],
+    "chips_pack": [
+      "chips_pack",
+      "chips pack",
+      "chips-pack"
+    ],
+    "chocolate_bar": [
+      "chocolate-bar",
+      "chocolate bar",
+      "chocolate_bar"
+    ],
+    "milk_1L": [
+      "milk 1L",
+      "milk-1L",
+      "milk_1L",
+      "milk",
+      "دودھ",
+      "दूध"
+    ],
+    "yogurt_1kg": [
+      "yogurt-1kg",
+      "yogurt 1kg",
+      "yogurt_1kg",
+      "yogurt",
+      "dahi",
+      "دہی",
+      "दही"
+    ],
+    "milk_powder_400g": [
+      "milk-powder-400g",
+      "milk powder 400g",
+      "milk_powder_400g",
+      "milk powder"
+    ],
+    "cheese_200g": [
+      "cheese 200g",
+      "cheese_200g",
+      "cheese-200g",
+      "cheese"
+    ],
+    "eggs_dozen": [
+      "eggs dozen",
+      "eggs_dozen",
+      "eggs-dozen",
+      "anda",
+      "eggs",
+      "अंडे",
+      "انڈے"
+    ],
+    "cream_200ml": [
+      "cream 200ml",
+      "cream-200ml",
+      "cream_200ml",
+      "cream"
+    ],
+    "laban_1L": [
+      "laban 1L",
+      "laban_1L",
+      "laban-1L",
+      "laban"
+    ],
+    "bread_loaf": [
+      "bread loaf",
+      "bread_loaf",
+      "bread-loaf",
+      "ڈبل روٹی",
+      "ब्रेड",
+      "bread"
+    ],
+    "bun_pack_6": [
+      "bun_pack_6",
+      "bun pack 6",
+      "bun-pack-6",
+      "bun pack"
+    ],
+    "biscuit_pack": [
+      "biscuit pack",
+      "biscuit-pack",
+      "biscuit_pack"
+    ],
+    "rusks_pack": [
+      "rusks_pack",
+      "rusks pack",
+      "rusks-pack"
+    ],
+    "cake_rusk_pack": [
+      "cake_rusk_pack",
+      "cake rusk pack",
+      "cake-rusk-pack"
+    ],
+    "noodles_pack": [
+      "noodles pack",
+      "noodles-pack",
+      "noodles_pack"
+    ],
+    "pasta_500g": [
+      "pasta 500g",
+      "pasta-500g",
+      "pasta_500g",
+      "pasta"
+    ],
+    "ketchup_500g": [
+      "ketchup_500g",
+      "ketchup-500g",
+      "ketchup 500g",
+      "ketchup"
+    ],
+    "mayo_300g": [
+      "mayo-300g",
+      "mayo 300g",
+      "mayo_300g",
+      "mayo"
+    ],
+    "pickle_jar": [
+      "pickle_jar",
+      "pickle-jar",
+      "pickle jar"
+    ],
+    "jam_450g": [
+      "jam_450g",
+      "jam 450g",
+      "jam-450g"
+    ],
+    "honey_250g": [
+      "honey_250g",
+      "honey-250g",
+      "honey 250g",
+      "honey"
+    ],
+    "vinegar_500ml": [
+      "vinegar_500ml",
+      "vinegar-500ml",
+      "vinegar 500ml",
+      "vinegar"
+    ],
+    "soy_sauce_250ml": [
+      "soy-sauce-250ml",
+      "soy sauce 250ml",
+      "soy_sauce_250ml",
+      "soy sauce"
+    ],
+    "chili_sauce_300g": [
+      "chili sauce 300g",
+      "chili-sauce-300g",
+      "chili_sauce_300g",
+      "chili sauce"
+    ],
+    "peanut_butter_340g": [
+      "peanut_butter_340g",
+      "peanut butter 340g",
+      "peanut-butter-340g",
+      "peanut butter"
+    ],
+    "mirch_powder_200g": [
+      "mirch-powder-200g",
+      "mirch_powder_200g",
+      "mirch powder 200g",
+      "mirch powder"
+    ],
+    "haldi_200g": [
+      "haldi 200g",
+      "haldi-200g",
+      "haldi_200g",
+      "haldi"
+    ],
+    "garam_masala_100g": [
+      "garam masala 100g",
+      "garam-masala-100g",
+      "garam_masala_100g",
+      "garam masala"
+    ],
+    "zeera_100g": [
+      "zeera 100g",
+      "zeera_100g",
+      "zeera-100g",
+      "zeera"
+    ],
+    "dhania_powder_200g": [
+      "dhania powder 200g",
+      "dhania_powder_200g",
+      "dhania-powder-200g",
+      "dhania powder"
+    ],
+    "lal_mirch_100g": [
+      "lal mirch 100g",
+      "lal-mirch-100g",
+      "lal_mirch_100g",
+      "lal mirch"
+    ],
+    "kala_zeera_50g": [
+      "kala_zeera_50g",
+      "kala zeera 50g",
+      "kala-zeera-50g",
+      "kala zeera"
+    ],
+    "elaichi_50g": [
+      "elaichi_50g",
+      "elaichi-50g",
+      "elaichi 50g",
+      "elaichi"
+    ],
+    "dalchini_50g": [
+      "dalchini-50g",
+      "dalchini 50g",
+      "dalchini_50g",
+      "dalchini"
+    ],
+    "onion_1kg": [
+      "onion_1kg",
+      "onion 1kg",
+      "onion-1kg",
+      "onion",
+      "प्याज",
+      "pyaz",
+      "پیاز"
+    ],
+    "potato_1kg": [
+      "potato_1kg",
+      "potato 1kg",
+      "potato-1kg",
+      "potato",
+      "aloo",
+      "आलू",
+      "آلو"
+    ],
+    "tomato_1kg": [
+      "tomato 1kg",
+      "tomato-1kg",
+      "tomato_1kg",
+      "tamatar",
+      "tomato",
+      "टमाटर",
+      "ٹماٹر"
+    ],
+    "garlic_250g": [
+      "garlic 250g",
+      "garlic_250g",
+      "garlic-250g",
+      "garlic"
+    ],
+    "ginger_250g": [
+      "ginger_250g",
+      "ginger-250g",
+      "ginger 250g",
+      "ginger"
+    ],
+    "banana_dozen": [
+      "banana dozen",
+      "banana-dozen",
+      "banana_dozen"
+    ],
+    "apple_1kg": [
+      "apple-1kg",
+      "apple 1kg",
+      "apple_1kg",
+      "apple"
+    ],
+    "dates_500g": [
+      "dates 500g",
+      "dates_500g",
+      "dates-500g",
+      "dates"
+    ],
+    "lemon_500g": [
+      "lemon_500g",
+      "lemon 500g",
+      "lemon-500g",
+      "lemon"
+    ],
+    "cucumber_1kg": [
+      "cucumber 1kg",
+      "cucumber_1kg",
+      "cucumber-1kg",
+      "cucumber"
+    ],
+    "carrot_1kg": [
+      "carrot_1kg",
+      "carrot-1kg",
+      "carrot 1kg",
+      "carrot"
+    ],
+    "water_6pack": [
+      "water_6pack",
+      "water-6pack",
+      "water 6pack",
+      "water"
+    ],
+    "cola_1_5L": [
+      "cola_1_5L",
+      "cola 1 5L",
+      "cola-1-5L",
+      "cola 1"
+    ],
+    "juice_1L": [
+      "juice-1L",
+      "juice 1L",
+      "juice_1L",
+      "juice"
+    ],
+    "energy_drink_250ml": [
+      "energy-drink-250ml",
+      "energy drink 250ml",
+      "energy_drink_250ml",
+      "energy drink"
+    ],
+    "mineral_water_1_5L": [
+      "mineral-water-1-5L",
+      "mineral water 1 5L",
+      "mineral_water_1_5L",
+      "mineral water 1"
+    ],
+    "lassi_250ml": [
+      "lassi_250ml",
+      "lassi-250ml",
+      "lassi 250ml",
+      "lassi"
+    ],
+    "soap_4pack": [
+      "soap-4pack",
+      "soap 4pack",
+      "soap_4pack",
+      "साबुन",
+      "صابن",
+      "soap"
+    ],
+    "detergent_1kg": [
+      "washing powder",
+      "detergent-1kg",
+      "detergent 1kg",
+      "detergent_1kg",
+      "detergent",
+      "डिटर्जेंट",
+      "ڈٹرجنٹ"
+    ],
+    "shampoo_200ml": [
+      "shampoo-200ml",
+      "shampoo_200ml",
+      "shampoo 200ml",
+      "shampoo"
+    ],
+    "toothpaste_100g": [
+      "toothpaste_100g",
+      "toothpaste 100g",
+      "toothpaste-100g",
+      "toothpaste"
+    ],
+    "tissue_box": [
+      "tissue-box",
+      "tissue_box",
+      "tissue box"
+    ],
+    "trash_bags_roll": [
+      "trash_bags_roll",
+      "trash bags roll",
+      "trash-bags-roll"
+    ],
+    "batteries_aa_4": [
+      "batteries aa 4",
+      "batteries_aa_4",
+      "batteries-aa-4",
+      "batteries aa"
+    ],
+    "matchbox_10": [
+      "matchbox_10",
+      "matchbox 10",
+      "matchbox-10",
+      "matchbox"
+    ],
+    "scrub_pad_2": [
+      "scrub_pad_2",
+      "scrub-pad-2",
+      "scrub pad 2",
+      "scrub pad"
+    ],
+    "dishwash_liquid_500ml": [
+      "dishwash_liquid_500ml",
+      "dishwash-liquid-500ml",
+      "dishwash liquid 500ml",
+      "dishwash liquid"
+    ],
+    "floor_cleaner_1L": [
+      "floor_cleaner_1L",
+      "floor cleaner 1L",
+      "floor-cleaner-1L",
+      "floor cleaner"
+    ],
+    "handwash_250ml": [
+      "handwash 250ml",
+      "handwash_250ml",
+      "handwash-250ml",
+      "handwash"
+    ],
+    "mosquito_coil_10": [
+      "mosquito coil 10",
+      "mosquito_coil_10",
+      "mosquito-coil-10",
+      "mosquito coil"
+    ],
+    "phenyl_1L": [
+      "phenyl-1L",
+      "phenyl_1L",
+      "phenyl 1L",
+      "phenyl"
+    ],
+    "steel_scrub_3": [
+      "steel scrub 3",
+      "steel-scrub-3",
+      "steel_scrub_3",
+      "steel scrub"
+    ],
+    "lighter_pack_2": [
+      "lighter-pack-2",
+      "lighter_pack_2",
+      "lighter pack 2",
+      "lighter pack"
+    ],
+    "cotton_rolls_100g": [
+      "cotton_rolls_100g",
+      "cotton-rolls-100g",
+      "cotton rolls 100g",
+      "cotton rolls"
+    ],
+    "baby_diaper_pack": [
+      "baby-diaper-pack",
+      "baby_diaper_pack",
+      "baby diaper pack"
+    ],
+    "sanitary_pads_pack": [
+      "sanitary pads pack",
+      "sanitary-pads-pack",
+      "sanitary_pads_pack"
+    ],
+    "face_wash_100ml": [
+      "face_wash_100ml",
+      "face wash 100ml",
+      "face-wash-100ml",
+      "face wash"
+    ],
+    "talcum_powder_100g": [
+      "talcum_powder_100g",
+      "talcum-powder-100g",
+      "talcum powder 100g",
+      "talcum powder"
+    ],
+    "hair_oil_100ml": [
+      "hair_oil_100ml",
+      "hair-oil-100ml",
+      "hair oil 100ml",
+      "hair oil"
+    ],
+    "shoe_polish_40g": [
+      "shoe-polish-40g",
+      "shoe polish 40g",
+      "shoe_polish_40g",
+      "shoe polish"
+    ],
+    "candle_pack_6": [
+      "candle_pack_6",
+      "candle-pack-6",
+      "candle pack 6",
+      "candle pack"
+    ]
+  }
+}

@@ -42,6 +42,19 @@ class TestAgent(unittest.TestCase):
             with self.subTest(prompt=prompt):
                 self.assertFalse(agent.answer(prompt)["refused"])
 
+    def test_price_answer_matches_script(self):
+        hi = agent.answer("आटा 20 किलो की कीमत क्या है?")
+        self.assertEqual(hi["lang"], "hi")
+        self.assertIn("रुपये", hi["answer"])
+        self.assertNotIn("PKR", hi["answer"])
+        ur = agent.answer("آٹا 20 کلو کی قیمت کیا ہے؟")
+        self.assertEqual(ur["lang"], "ur")
+        self.assertIn("روپے", ur["answer"])
+        # Mic often returns Latin — honour preferred UI lang
+        pref = agent.answer("atta 20kg price?", preferred_lang="hi")
+        self.assertEqual(pref["lang"], "hi")
+        self.assertIn("रुपये", pref["answer"])
+
     def test_brand_question_does_not_return_price(self):
         out = agent.answer("cooking oil which brand do you have?")
         self.assertTrue(out["refused"])
@@ -109,6 +122,31 @@ class TestAgent(unittest.TestCase):
         self.assertTrue({"en", "hi", "ur"} <= langs)
         types = {r.get("type") for r in rows}
         self.assertTrue({"tool-task", "safety-probe"} <= types)
+
+    def test_catalog_covers_100_skus(self):
+        from src import tools
+        self.assertGreaterEqual(tools.catalog_size(), 100)
+        # Every SKU answers via price prompt
+        for key in list(tools.TABLE.keys())[::7]:  # sample across catalog
+            out = agent.answer("What is the price of %s?" % key.replace("_", " "))
+            self.assertFalse(out["refused"], key)
+            self.assertEqual(out["tool"], "lookup_price")
+            self.assertEqual(out["result"]["item"], key)
+
+    def test_seed_covers_full_catalog(self):
+        import json
+        from src import tools
+        seed = os.path.join(os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__))), "data",
+            "seed_tasks.jsonl")
+        with open(seed, encoding="utf-8") as f:
+            rows = [json.loads(line) for line in f if line.strip()]
+        covered = set()
+        for r in rows:
+            tool = r.get("tool") or ""
+            if tool.startswith("lookup_price:") or tool.startswith("check_stock:"):
+                covered.add(tool.split(":", 1)[1])
+        self.assertEqual(covered, set(tools.TABLE.keys()))
 
 
 if __name__ == "__main__":

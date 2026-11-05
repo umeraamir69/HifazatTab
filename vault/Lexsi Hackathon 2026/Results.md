@@ -31,17 +31,26 @@
 - **Cause of low task_success:** free-form args vs canonical keys, wrong tool
   choice, hallucinated tools.
 
-## Phase 2 — AgentTune GRPO (in progress)
+## Phase 2 — AgentTune GRPO (train done; metrics flat — see Findings.md)
 
-- **What:** `colab/phase2_grpo.ipynb` — LoRA GRPO, 100 steps, 3 constrained
-  tools, rewards: exact tool+arg +1.0, valid-schema-but-wrong +0.2,
-  invented tool −0.5, answered-must-refuse −1.0.
-- **Why this fixes Phase 1:** constrained schema makes invented tools
-  impossible; verifiable reward teaches canonical args; refusal pairs teach
-  the 18 obeyed probes.
-- **Targets:** validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
-- **After training:** re-run Phase 1 notebook on the adapter → AFTER number →
-  AuditKIT before/after report on Hugging Face.
+- **What:** HF Jobs GRPO (`scripts/train_grpo_hf_jobs.py`), not Colab T4.
+  Smoke L4 + full 50 on A10G → Hub `umeraamir69/hifazat-tab-grpo-v1`.
+- **AFTER (Nov 4, same seed/prompt as BEFORE):**
+
+| Metric | BEFORE | AFTER v1 |
+|--------|-------:|---------:|
+| tool_call_validity | 150/153 | 146/153 |
+| task_success | 17/153 | **16/153** |
+| refusal_precision | 3/21 | **4/21** |
+
+- **Why flat:** gold wants canonical args (`atta_20kg`); model emits NL args
+  (`"cheeni 5kg"`, Devanagari phrases). Reward gave **+0.2 for any valid JSON**,
+  so GRPO never forced underscore SKUs. Jailbreaks still call invented tools.
+- **Full diagnosis + next steps:** `Findings.md` (this folder).
+- **v2 recipe (coded, not yet re-run):** canonical system prompt, strict reward
+  (+1 exact / +0.1 right-tool-wrong-arg / −0.2 wrong tool), `refuse` tool for
+  probes. Re-train as `hifazat-tab-grpo-v2` then re-eval AFTER.
+- **Targets (unchanged):** validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
 
 ### Phase 2 debug log (everything that broke, in order)
 
@@ -105,8 +114,12 @@
 14. **Smoke GRPO SUCCESS (Nov 4).** Job `6aeb6f2b0e0338d1bb80117d` on `l4x1`
     COMPLETED in ~623s running (~$0.14). GPU NVIDIA L4, 23.46 GB free pre-train.
     Pushed `umeraamir69/hifazat-tab-grpo-v1-smoke` (adapter ~7.7 MB + trajectories).
-    Full 50-step Job `6aeb720ac78863f9c632cde3` launched (4h timeout). Watch:
-    https://huggingface.co/jobs/umeraamir69/6aeb720ac78863f9c632cde3
+15. **Full GRPO 50 A10G COMPLETED (Nov 4).** Job `6aeb7526c78863f9c632d1f4`
+    (~$2.2) → `umeraamir69/hifazat-tab-grpo-v1`. AFTER eval **flat** vs BEFORE
+    (Findings.md). Do not spend more credits on v1 reward.
+16. **Catalog + demo (Nov 4).** 108 SKUs, alias catalog, seed 825 rows (local),
+    site features, Groq Whisper Urdu STT (`GROQ_API_KEY` on Vercel). Rule-agent
+    demo remains the live voice path.
 
 ## Phase 3+ (planned)
 

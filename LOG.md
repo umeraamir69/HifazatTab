@@ -314,3 +314,22 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 - **Fact:** bitsandbytes 4-bit path does not exist on Apple Silicon (CUDA-only).
 - Phase 1 Tiny Aya baseline ran on **Colab T4**, not the Mac.
 - OK to post about this friction. Do not imply a local Mac 4-bit load worked.
+
+## 2026-11-04 — AFTER flat; Findings documented; Groq Urdu STT live
+- **What:** AFTER eval on `hifazat-tab-grpo-v1` ≈ BEFORE (validity 146/153,
+  task **16/153**, refusal **4/21**). Wrote
+  `vault/Lexsi Hackathon 2026/Findings.md` + updated Results/Status. Root cause:
+  gold canonical args vs NL args; v1 reward +0.2 for any valid JSON. Tightened
+  train script for v2; 108-SKU catalog + seed; site features; `GROQ_API_KEY` on
+  Vercel — Urdu Whisper works (`provider: groq`). No OpenAI/Google STT needed.
+- **Why:** User asked why results are bad and to document everything done.
+- **Cause:** Train completed but objective mismatch with scorer.
+- **Result:** Docs complete. Next = push + GRPO v2 + re-AFTER.
+- **Evaluator:** Diagnosis PASS. Metric PASS only after v2 AFTER lift.
+
+## 2026-11-04 — Website.md (demo site inventory)
+- **What:** `vault/Lexsi Hackathon 2026/Website.md` — all sections, features
+  done vs todo, voice architecture (EN/HI browser STT, UR Groq Whisper),
+  deploy/env, agent contract vs Python, demo script, changelog.
+- **Why:** User asked to document everything we do/are doing for the website.
+- **Result:** Linked from Status + Findings.

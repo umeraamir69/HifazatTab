@@ -1,69 +1,54 @@
 # Status — HifazatTab
 
-**Where we are:** Phase 1 Tiny Aya baseline **DONE** (2026-10-31). Phase 0 still green.
+**Where we are (2026-11-04):** Phase 0 demo green · Phase 1 BEFORE done ·  
+Phase 2 GRPO **trained** but AFTER **flat** · demo site + Groq Urdu STT live.  
+**Read:** `Findings.md` for why metrics failed and what to do next.
+
+## Metrics snapshot
+
+| | BEFORE (zero-shot) | AFTER v1 GRPO |
+|--|-------------------:|--------------:|
+| tool_call_validity | 150/153 | 146/153 |
+| task_success | 17/153 | **16/153** |
+| refusal_precision | 3/21 | **4/21** |
+
+Targets: validity ≥ 0.85 · task ≥ 75% · refusal ≥ 0.80 — **not met on v1**.
 
 ## Done
 
-- Plan + Research + vault docs. Step-by-step guide in repo.
-- Phase 0 stdlib: tools/agent/eval/redteam/demo/tests.
-  Laptop rule-agent: task 13/13 · refusal 5/5 · redteam 9/9.
-- Phase 1 Colab on T4 with `CohereLabs/tiny-aya-fire` (BitsAndBytesConfig 4-bit).
-- Results saved under `Documents/Lexsi/colab result/`.
+- Plan + Research + vault docs; Phase 0 stdlib agent/tools/eval/redteam/tests.
+- Phase 1 Colab BEFORE on Tiny Aya fire (4-bit).
+- HF Jobs: smoke L4 + full 50 A10G → `hifazat-tab-grpo-v1`.
+- AFTER notebook run → flat scores diagnosed (canonical arg / weak reward).
+- Shop expanded to **108 SKUs**; seed builder covers all; web catalog + filters.
+- Live demo https://hifazattab.vercel.app (SSO off); Hindi/Urdu spoken answers.
+- Urdu mic via **Groq Whisper** (`/api/stt`) — no OpenAI/Google needed.
+- v2 train recipe coded (strict reward + canonical prompt) — **not launched yet**.
 
-### Phase 1 BEFORE metrics
+## Still open
 
-| Metric | Score |
-|--------|------:|
-| tool_call_validity | 150/153 (98%) |
-| task_success | 17/153 (11%) |
-| refusal_precision | 3/21 (14%) |
+- [ ] Push local catalog/seed/train/AFTER patches to GitHub `main`
+- [ ] Launch GRPO **v2** (`hifazat-tab-grpo-v2`, prefer 100 steps) on remaining credits
+- [ ] Re-run AFTER; paste new scores into Results + Findings
+- [ ] Optional SFT warm-start if v2 still weak on exact args
+- [ ] AuditKIT on trajectories; Discord `#report-issues` ticket
+- [ ] Voice E2E human walk (`phone/VOICE_E2E.md`) before Demo Day
 
-## Real baseline — Tiny Aya zero-shot (Colab, Oct 31)
+## Live artifacts
 
-Model: `CohereLabs/tiny-aya-fire`, 4-bit, greedy, fallback tool prompt.
+| What | Link |
+|------|------|
+| Demo | https://hifazattab.vercel.app |
+| Repo | https://github.com/umeraamir69/HifazatTab |
+| Adapter v1 | https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1 |
+| Smoke | https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1-smoke |
+| Findings | `Findings.md` (this folder) |
+| Website docs | `Website.md` (features done + todo) |
 
-| Metric | Score |
-|--------|-------|
-| tool_call_validity | 150/153 |
-| task_success | 17/153 |
-| refusal_precision | 3/21 |
+## Credits
 
-Reading: format learned, content wrong, safety open. This is the gap Phase 2
-must close. Targets: validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
+~$2.3 spent on GRPO so far of $20. Reserve rest for **v2**, not another v1.
 
-## Still manual (you)
+## Key dates
 
-- [x] Hackathon registration + Discord ($20 HF credits) — done Oct 31
-- [x] **$20 HF credits claimed** (Nov 3) — spend on HF Jobs GPU (not Colab T4)
-- [ ] Oct 31 kickoff notes → update Plan if IDs/APIs shifted
-- [x] Repo live as umeraamir69 (Phase 0, Phase 1 pack, site, phone, docs all pushed)
-- [ ] Validate idea via Discord `#report-issues` — paste from `Discord_ticket_report_issues.md`
-- [ ] Registration closes Nov 5 (registered ✓) — submit by Nov 14, ONE submission only (last counts)
-
-## Key dates (from tracks page)
-
-- Nov 1–21 hackathon window · Nov 5 registration closes · Nov 14 submit
-- Nov 16 shortlist (20 teams) · Nov 22 Demo Day
-
-## Live Jobs (2026-11-04)
-
-| Job | ID | Status | Hub |
-|-----|----|--------|-----|
-| smoke 3-step | [6aeb6f2b…](https://huggingface.co/jobs/umeraamir69/6aeb6f2b0e0338d1bb80117d) | **COMPLETED** (~$0.14) | [hifazat-tab-grpo-v1-smoke](https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1-smoke) |
-| full 50 (L4, canceled queue) | [6aeb720a…](https://huggingface.co/jobs/umeraamir69/6aeb720ac78863f9c632cde3) | canceled (no L4) | — |
-| full 50 **A10G** | [6aeb7526…](https://huggingface.co/jobs/umeraamir69/6aeb7526c78863f9c632d1f4) | **COMPLETED** (~2.2h, ~$2.2) | [hifazat-tab-grpo-v1](https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1) |
-
-Billing: **$20** credits. Tiny Aya access granted.
-
-## Voice bot (must be flawless)
-
-Primary demo: https://hifazattab.vercel.app (mic + spoken replies).  
-Checklist: `phone/VOICE_E2E.md` · Phone recipe: `phone/TRIAL_CALL.md` · WhatsApp backup: `phone/README.md`.  
-SSO protection **disabled** so the public URL stays 200.
-
-## Next
-
-1. **AFTER eval** — Colab `colab/phase1_after.ipynb` (loads `umeraamir69/hifazat-tab-grpo-v1`)
-2. Phase 3 AuditKIT on `trajectories.jsonl`
-3. Walk `phone/VOICE_E2E.md` gates before Demo Day
-4. Phase 4 red-team / quant · Discord ticket if not posted
+- Nov 5 registration closes · Nov 14 submit · Nov 16 shortlist · Nov 22 Demo Day
