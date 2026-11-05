@@ -262,6 +262,23 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 - **Better:** Watch completion lengths (smoke mean ~288 tokens, clipped_ratio up to
   0.375) — tighten generation caps if full run wastes steps on long waffle.
 
+## 2026-11-04 — phase1_after.ipynb (PEFT AFTER eval)
+- **What:** New Colab notebook loads base Tiny Aya 4-bit + Hub LoRA
+  `umeraamir69/hifazat-tab-grpo-v1`, same seed/scoring as Phase 1 BEFORE.
+- **Why:** Baseline notebook is zero-shot only; AFTER needs PeftModel.
+- **Cause:** Fair before/after requires identical prompts + metrics.
+- **Result:** File `colab/phase1_after.ipynb`. User runs on free T4, pastes scores.
+- **Evaluator:** PASS when AFTER block printed; compare to 150/153 · 17/153 · 3/21.
+
+## 2026-11-04 — Full GRPO 50 COMPLETED on A10G
+- **What:** Job `6aeb7526c78863f9c632d1f4` finished 50/50 steps; pushed
+  https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1 (adapter + trajectories).
+- **Why:** Phase 2 AFTER artifact for Track C metrics.
+- **Cause:** Smoke proved fit; A10G avoided L4 queue stall.
+- **Result:** running ~8028s (~2.2h), est. ~$2.23. train_loss ≈ -0.004.
+  Last-step reward ~0.04–0.20 (noisy; need AFTER eval). Site 200.
+- **Evaluator:** Train path PASS. Score PASS only after Phase 1 AFTER + AuditKIT.
+
 ## 2026-11-04 — Voice bot E2E locked (public site was 404)
 - **What:** Confirmed `hifazattab.vercel.app` returned 404 under Vercel SSO
   (`ssoProtection: all_except_custom_domains`). Disabled SSO, redeployed `web/`,

@@ -37,7 +37,7 @@ must close. Targets: validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
 - [x] **$20 HF credits claimed** (Nov 3) — spend on HF Jobs GPU (not Colab T4)
 - [ ] Oct 31 kickoff notes → update Plan if IDs/APIs shifted
 - [x] Repo live as umeraamir69 (Phase 0, Phase 1 pack, site, phone, docs all pushed)
-- [ ] Validate idea with team via Discord ticket (#report-issues) — site recommends it
+- [ ] Validate idea via Discord `#report-issues` — paste from `Discord_ticket_report_issues.md`
 - [ ] Registration closes Nov 5 (registered ✓) — submit by Nov 14, ONE submission only (last counts)
 
 ## Key dates (from tracks page)
@@ -51,7 +51,7 @@ must close. Targets: validity ≥ 0.85, task ≥ 75%, refusal ≥ 0.80.
 |-----|----|--------|-----|
 | smoke 3-step | [6aeb6f2b…](https://huggingface.co/jobs/umeraamir69/6aeb6f2b0e0338d1bb80117d) | **COMPLETED** (~$0.14) | [hifazat-tab-grpo-v1-smoke](https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1-smoke) |
 | full 50 (L4, canceled queue) | [6aeb720a…](https://huggingface.co/jobs/umeraamir69/6aeb720ac78863f9c632cde3) | canceled (no L4) | — |
-| full 50 **A10G** | [6aeb7526…](https://huggingface.co/jobs/umeraamir69/6aeb7526c78863f9c632d1f4) | **RUNNING** | → `hifazat-tab-grpo-v1` |
+| full 50 **A10G** | [6aeb7526…](https://huggingface.co/jobs/umeraamir69/6aeb7526c78863f9c632d1f4) | **COMPLETED** (~2.2h, ~$2.2) | [hifazat-tab-grpo-v1](https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1) |
 
 Billing: **$20** credits. Tiny Aya access granted.
 
@@ -63,7 +63,7 @@ SSO protection **disabled** so the public URL stays 200.
 
 ## Next
 
-1. Finish A10G full Job → confirm `umeraamir69/hifazat-tab-grpo-v1`
-2. **AFTER eval** — `colab/phase1_baseline.ipynb` vs adapter
-3. Walk `phone/VOICE_E2E.md` gates A–D before Demo Day
-4. Phase 3 AuditKIT · Phase 4 red-team / quant
+1. **AFTER eval** — Colab `colab/phase1_after.ipynb` (loads `umeraamir69/hifazat-tab-grpo-v1`)
+2. Phase 3 AuditKIT on `trajectories.jsonl`
+3. Walk `phone/VOICE_E2E.md` gates before Demo Day
+4. Phase 4 red-team / quant · Discord ticket if not posted

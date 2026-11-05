@@ -1,4 +1,15 @@
-# Phase 1 Notebook — What Each Cell Does (plain words)
+# Phase 1 notebooks
+
+| File | Purpose |
+|------|---------|
+| `phase1_baseline.ipynb` | BEFORE — zero-shot Tiny Aya |
+| `phase1_after.ipynb` | AFTER — Tiny Aya + `umeraamir69/hifazat-tab-grpo-v1` LoRA |
+
+Same seed + scoring. Paste both score blocks into Results.md.
+
+---
+
+# Phase 1 Baseline — What Each Cell Does (plain words)
 
 File: `phase1_baseline.ipynb`. Goal: get the real "before" number from Tiny Aya.
 
