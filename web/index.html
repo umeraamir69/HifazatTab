@@ -678,6 +678,12 @@ function micListen(){
   var st = el("vstatus");
   var SR = (typeof window!=="undefined") && (window.SpeechRecognition||window.webkitSpeechRecognition);
   if(!SR){ st.textContent = "Voice input needs Chrome or Edge."; return; }
+  // Chrome Web Speech often has no Urdu STT cloud service → service-not-allowed.
+  // Hindi/English usually work. TTS (Speak answers) can still read typed Urdu.
+  if(curLang === "ur"){
+    st.textContent = "Urdu mic isn’t supported by Chrome’s speech service. Click an اردو sample or type — Speak answers still works.";
+    return;
+  }
   try{
     var v = el("voice"); if(v) v.checked = true;
     if(typeof speechSynthesis !== "undefined") speechSynthesis.getVoices();
@@ -694,10 +700,14 @@ function micListen(){
       st.textContent = "Heard: " + t;
     };
     r.onerror = function(e){
-      var tip = { "not-allowed":"Allow microphone in the address bar.",
+      var tip = {
+        "not-allowed":"Allow microphone in the address bar.",
+        "service-not-allowed":"This language isn’t available for browser speech-to-text here. Use English/Hindi mic, or type / click a sample.",
+        "language-not-supported":"Browser has no STT for this language. Type or use a sample.",
         "no-speech":"No speech — speak closer, then pause.",
         "network":"Network STT failed — retry or type.",
-        "aborted":"Mic stopped. Try again." }[e.error];
+        "aborted":"Mic stopped. Try again."
+      }[e.error];
       st.textContent = "Mic: " + e.error + (tip ? " — "+tip : "");
     };
     r.onend = function(){ if(st.textContent.indexOf("Listening")===0) st.textContent = "Stopped."; };
