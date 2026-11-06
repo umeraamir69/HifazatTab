@@ -1,7 +1,7 @@
 # Status — HifazatTab
 
 **Where we are (2026-11-05):** Phase 0 demo green · BEFORE done ·  
-**AFTER SFT WINS** — targets met · GRPO v2 canceled (stalled) · site updated.
+**AFTER SFT WINS** — targets met · catalog **219 SKUs** · research draft in `papers/`.
 
 ## Metrics snapshot
 

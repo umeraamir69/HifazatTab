@@ -113,7 +113,8 @@ Hardening that made train possible: `beta=0`, LoRA `q_proj`+`v_proj` r=8, batch1
 
 ### Catalog expansion ✅
 
-- `data/shop.csv` → **108 SKUs** (staples, pulses, oils, dairy, produce, spices, drinks, household, bakery, snacks).
+- `data/shop.csv` → **219 SKUs** (staples, pulses, oils, dairy, produce, spices, drinks, household, bakery, snacks, …).
+- Research paper draft: `papers/hifazattab_lexsi_2026.md`.
 - `scripts/gen_shop_aliases.py` → `src/shop_catalog.py` + `web/shop_catalog.json`.
 - `scripts/build_seed.py` → seed covers **all 108** SKUs (825 rows locally; **push to GitHub required** before Colab/Jobs see it).
 - Longest-alias resolve; brand ≠ price.
@@ -186,7 +187,7 @@ In `scripts/train_grpo_hf_jobs.py`:
 
 ## 5. Honest narrative for submission / Discord
 
-> Tiny Aya zero-shot already formats tool calls (98% validity) but fails content (11% task) and safety (14% refusal). First AgentTune GRPO on A10G (50 steps, beta=0 for 256k-vocab fit) **completed and pushed**, but AFTER stayed flat because rewards over-credited any valid JSON and never forced canonical SKU args. We diagnosed from the AFTER dump, tightened reward+prompt, expanded the shop to 108 SKUs with full seed coverage, and ship a live trilingual demo (rule-oracle + Groq Whisper Urdu) while v2 GRPO runs for the metric lift.
+> Tiny Aya zero-shot already formats tool calls (98% validity) but fails content (11% task) and safety (14% refusal). First AgentTune GRPO on A10G (50 steps, beta=0 for 256k-vocab fit) **completed and pushed**, but AFTER stayed flat because rewards over-credited any valid JSON and never forced canonical SKU args. We diagnosed from the AFTER dump, tightened reward+prompt, expanded the shop to 219 SKUs with full seed coverage, shipped SFT AFTER (100%/98%/88%), and a live trilingual demo (rule-oracle + Groq Whisper Urdu). Paper draft: `papers/hifazattab_lexsi_2026.md`.
 
 ---
 
