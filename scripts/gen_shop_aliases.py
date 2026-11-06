@@ -17,7 +17,17 @@ OUT_PY = os.path.join(ROOT, "src", "shop_catalog.py")
 
 # Extra human names (en / roman / ur / hi) layered on top of auto SKU aliases.
 EXTRA = {
-    "atta_20kg": ["atta", "atta 20kg", "flour", "آٹا", "आटा"],
+    "atta_20kg": [
+        "atta 20kg", "atta 20 kg", "atta", "flour",
+        "آٹا 20", "आटा 20", "آٹا", "आटा",
+    ],
+    "atta_10kg": [
+        "atta 10kg", "atta 10 kg", "آٹا 10", "आटा 10",
+        "آٹا 10 کلو", "आटा 10 किलो",
+    ],
+    "atta_5kg": [
+        "atta 5kg", "atta 5 kg", "آٹا 5", "आटा 5",
+    ],
     "maida_5kg": ["maida", "میدہ", "मैदा"],
     "suji_1kg": ["suji", "semolina", "سوجی", "सूजी"],
     "besan_1kg": ["besan", "gram flour", "بیسن", "बेसन"],
@@ -51,7 +61,18 @@ EXTRA = {
 def auto_names(key: str) -> list[str]:
     spaced = key.replace("_", " ")
     names = {key, spaced, spaced.replace(" 5l", " 5L"), key.replace("_", "-")}
-    # drop unit-less short stems carefully later via word-boundary match
+    # "atta 10kg" and "atta 10 kg" both match after normalize_query
+    m = re.search(r"(\d+)(kg|g|L|ml|pack)$", key, flags=re.I)
+    if m:
+        n, unit = m.group(1), m.group(2)
+        stem = key[: m.start()].rstrip("_").replace("_", " ")
+        if stem:
+            names.add(f"{stem} {n}{unit}")
+            names.add(f"{stem} {n} {unit}")
+            if unit.lower() == "kg":
+                names.add(f"{stem} {n} kilo")
+                names.add(f"{stem} {n}kg")
+    # unit-less short stems — resolve_item size-filters when user says 10kg
     stem = re.sub(r"_\d+(kg|g|L|ml|pack|dozen)?$", "", key, flags=re.I)
     stem = stem.replace("_", " ").strip()
     if stem and len(stem) >= 4:

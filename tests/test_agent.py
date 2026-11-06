@@ -170,6 +170,15 @@ class TestAgent(unittest.TestCase):
             self.assertEqual(out["tool"], "lookup_price")
             self.assertEqual(out["result"]["item"], key)
 
+    def test_atta_10kg_not_20kg(self):
+        from src import tools
+        for q in ("atta 10 kg", "atta 10kg", "atta 10 kilo", "آٹا 10", "आटा 10 किलो"):
+            with self.subTest(q=q):
+                self.assertEqual(tools.resolve_item(q), "atta_10kg")
+                out = agent.answer(q + " details" if "detail" not in q else q)
+                self.assertIn("atta_10kg", out["answer"])
+                self.assertNotIn("atta_20kg", out["answer"])
+
     def test_stock_qty_details_and_new_tools(self):
         out = agent.answer("stock 1 details")
         self.assertFalse(out["refused"])

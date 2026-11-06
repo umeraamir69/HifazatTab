@@ -1101,111 +1101,143 @@ CATALOG = {
 
 ALIASES = {
   "atta_20kg": [
+    "atta 20 kilo",
+    "atta 20 kg",
     "atta_20kg",
-    "atta-20kg",
     "atta 20kg",
+    "atta-20kg",
+    "آٹا 20",
+    "आटा 20",
     "flour",
     "atta",
-    "आटा",
-    "آٹا"
+    "آٹا",
+    "आटा"
   ],
   "atta_10kg": [
+    "atta 10 kilo",
+    "आटा 10 किलो",
+    "atta 10 kg",
+    "آٹا 10 کلو",
     "atta_10kg",
-    "atta-10kg",
     "atta 10kg",
+    "atta-10kg",
+    "آٹا 10",
+    "आटा 10",
     "atta"
   ],
   "maida_5kg": [
-    "maida_5kg",
+    "maida 5 kilo",
+    "maida 5 kg",
     "maida-5kg",
     "maida 5kg",
+    "maida_5kg",
     "maida",
     "मैदा",
     "میدہ"
   ],
   "suji_1kg": [
-    "suji 1kg",
+    "suji 1 kilo",
+    "suji 1 kg",
+    "suji_1kg",
     "suji-1kg",
     "semolina",
-    "suji_1kg",
-    "سوجی",
+    "suji 1kg",
+    "सूजी",
     "suji",
-    "सूजी"
+    "سوجی"
   ],
   "besan_1kg": [
+    "besan 1 kilo",
     "gram flour",
-    "besan_1kg",
-    "besan 1kg",
+    "besan 1 kg",
     "besan-1kg",
+    "besan 1kg",
+    "besan_1kg",
     "besan",
     "بیسن",
     "बेसन"
   ],
   "chaawal_5kg": [
+    "chaawal 5 kilo",
+    "chaawal 5 kg",
     "chaawal-5kg",
     "chaawal_5kg",
     "chaawal 5kg",
     "chaawal",
     "chawal",
+    "چاول",
     "rice",
-    "चावल",
-    "چاول"
+    "चावल"
   ],
   "basmati_1kg": [
+    "basmati 1 kilo",
+    "basmati 1 kg",
     "basmati_1kg",
     "basmati-1kg",
     "basmati 1kg",
     "basmati"
   ],
   "cheeni_5kg": [
+    "cheeni 5 kilo",
+    "cheeni 5 kg",
+    "cheeni 5kg",
     "cheeni-5kg",
     "cheeni_5kg",
-    "cheeni 5kg",
     "cheeni",
     "sugar",
-    "چینی",
-    "चीनी"
+    "चीनी",
+    "چینی"
   ],
   "cheeni_1kg": [
+    "cheeni 1 kilo",
+    "cheeni 1 kg",
     "cheeni_1kg",
     "cheeni-1kg",
     "cheeni 1kg",
     "cheeni"
   ],
   "namak_1kg": [
+    "namak 1 kilo",
+    "namak 1 kg",
+    "namak-1kg",
     "namak 1kg",
     "namak_1kg",
-    "namak-1kg",
     "namak",
     "salt",
-    "नमक",
-    "نمک"
+    "نمک",
+    "नमक"
   ],
   "baking_soda_100g": [
-    "baking_soda_100g",
+    "baking soda 100 g",
     "baking-soda-100g",
+    "baking_soda_100g",
     "baking soda 100g",
     "baking soda"
   ],
   "cornflour_400g": [
-    "cornflour-400g",
+    "cornflour 400 g",
     "cornflour_400g",
+    "cornflour-400g",
     "cornflour 400g",
     "cornflour"
   ],
   "daal_moong_1kg": [
+    "daal moong 1 kilo",
+    "daal moong 1 kg",
     "daal_moong_1kg",
     "daal moong 1kg",
     "daal-moong-1kg",
     "daal moong",
     "moong dal",
-    "मूंग दाल",
     "مونگ دال",
+    "मूंग दाल",
     "moong"
   ],
   "daal_masoor_1kg": [
-    "daal-masoor-1kg",
+    "daal masoor 1 kilo",
+    "daal masoor 1 kg",
     "daal_masoor_1kg",
+    "daal-masoor-1kg",
     "daal masoor 1kg",
     "daal masoor",
     "masoor",
@@ -1213,67 +1245,83 @@ ALIASES = {
     "مسور"
   ],
   "daal_chana_1kg": [
+    "daal chana 1 kilo",
+    "daal chana 1 kg",
+    "daal chana 1kg",
     "daal-chana-1kg",
     "daal_chana_1kg",
-    "daal chana 1kg",
     "daal chana",
     "chana dal",
     "چنا دال",
     "चना दाल"
   ],
   "daal_mash_1kg": [
+    "daal mash 1 kilo",
+    "daal mash 1 kg",
+    "daal-mash-1kg",
     "daal_mash_1kg",
     "daal mash 1kg",
-    "daal-mash-1kg",
     "daal mash",
     "mash",
-    "माश",
-    "ماش"
+    "ماش",
+    "माश"
   ],
   "daal_arhar_1kg": [
-    "daal-arhar-1kg",
-    "daal_arhar_1kg",
+    "daal arhar 1 kilo",
+    "daal arhar 1 kg",
     "daal arhar 1kg",
+    "daal_arhar_1kg",
+    "daal-arhar-1kg",
     "daal arhar"
   ],
   "chana_white_1kg": [
+    "chana white 1 kilo",
+    "chana white 1 kg",
     "chana_white_1kg",
     "chana-white-1kg",
     "chana white 1kg",
     "kabuli chana",
     "white chana",
     "chana white",
-    "सफेद चना",
-    "سفید چنا"
+    "سفید چنا",
+    "सफेद चना"
   ],
   "rajma_1kg": [
-    "rajma-1kg",
-    "rajma 1kg",
+    "rajma 1 kilo",
+    "rajma 1 kg",
     "rajma_1kg",
+    "rajma 1kg",
+    "rajma-1kg",
     "rajma"
   ],
   "lobia_1kg": [
-    "lobia-1kg",
-    "lobia_1kg",
+    "lobia 1 kilo",
+    "lobia 1 kg",
     "lobia 1kg",
+    "lobia_1kg",
+    "lobia-1kg",
     "lobia"
   ],
   "cooking_oil_5L": [
+    "cooking oil 5 L",
     "cooking oil 5L",
-    "cooking-oil-5L",
     "cooking_oil_5L",
+    "cooking-oil-5L",
     "cooking oil",
     "कुकिंग ऑयल",
     "کوکنگ آئل",
     "oil"
   ],
   "cooking_oil_1L": [
+    "cooking oil 1 L",
+    "cooking oil 1L",
     "cooking-oil-1L",
     "cooking_oil_1L",
-    "cooking oil 1L",
     "cooking oil"
   ],
   "ghee_1kg": [
+    "ghee 1 kilo",
+    "ghee 1 kg",
     "ghee_1kg",
     "ghee-1kg",
     "ghee 1kg",
@@ -1282,6 +1330,7 @@ ALIASES = {
     "घी"
   ],
   "butter_200g": [
+    "butter 200 g",
     "butter_200g",
     "butter 200g",
     "butter-200g",
@@ -1290,414 +1339,474 @@ ALIASES = {
     "مکھن"
   ],
   "olive_oil_500ml": [
-    "olive-oil-500ml",
-    "olive_oil_500ml",
+    "olive oil 500 ml",
     "olive oil 500ml",
+    "olive_oil_500ml",
+    "olive-oil-500ml",
     "زیتون کا تیل",
-    "olive oil",
-    "जैतून तेल"
+    "जैतून तेल",
+    "olive oil"
   ],
   "mustard_oil_1L": [
-    "mustard_oil_1L",
-    "mustard-oil-1L",
+    "mustard oil 1 L",
     "mustard oil 1L",
+    "mustard-oil-1L",
+    "mustard_oil_1L",
     "mustard oil"
   ],
   "sunflower_oil_5L": [
-    "sunflower oil 5L",
+    "sunflower oil 5 L",
     "sunflower-oil-5L",
+    "sunflower oil 5L",
     "sunflower_oil_5L",
     "sunflower oil"
   ],
   "chai_950g": [
-    "chai-950g",
-    "chai_950g",
+    "chai 950 g",
     "chai 950g",
-    "چائے",
+    "chai_950g",
+    "chai-950g",
     "chai",
+    "چائے",
     "tea",
     "चाय"
   ],
   "chai_200g": [
+    "chai 200 g",
     "chai-200g",
     "chai 200g",
     "chai_200g",
     "chai"
   ],
   "coffee_200g": [
+    "coffee 200 g",
     "coffee-200g",
     "coffee_200g",
     "coffee 200g",
     "coffee",
     "قهوه",
-    "کافی",
-    "कॉफी"
+    "कॉफी",
+    "کافی"
   ],
   "green_tea_100g": [
+    "green tea 100 g",
     "green_tea_100g",
-    "green-tea-100g",
     "green tea 100g",
+    "green-tea-100g",
     "green tea",
     "ग्रीन टी",
     "سبز چائے"
   ],
   "kashmiri_chai_100g": [
-    "kashmiri_chai_100g",
+    "kashmiri chai 100 g",
     "kashmiri chai 100g",
+    "kashmiri_chai_100g",
     "kashmiri-chai-100g",
     "kashmiri chai"
   ],
   "nimco_pack": [
-    "nimco pack",
     "nimco-pack",
-    "nimco_pack"
+    "nimco_pack",
+    "nimco pack"
   ],
   "chips_pack": [
-    "chips_pack",
+    "chips-pack",
     "chips pack",
-    "chips-pack"
+    "chips_pack"
   ],
   "chocolate_bar": [
-    "chocolate bar",
     "chocolate_bar",
+    "chocolate bar",
     "chocolate-bar"
   ],
   "milk_1L": [
-    "milk-1L",
-    "milk_1L",
+    "milk 1 L",
     "milk 1L",
+    "milk_1L",
+    "milk-1L",
     "doodh",
-    "milk",
     "دودھ",
+    "milk",
     "दूध"
   ],
   "yogurt_1kg": [
+    "yogurt 1 kilo",
+    "yogurt 1 kg",
+    "yogurt-1kg",
     "yogurt 1kg",
     "yogurt_1kg",
-    "yogurt-1kg",
     "yogurt",
     "dahi",
     "دہی",
     "दही"
   ],
   "milk_powder_400g": [
+    "milk powder 400 g",
+    "milk-powder-400g",
     "milk_powder_400g",
     "milk powder 400g",
-    "milk-powder-400g",
     "milk powder"
   ],
   "cheese_200g": [
+    "cheese 200 g",
     "cheese 200g",
     "cheese_200g",
     "cheese-200g",
     "cheese"
   ],
   "eggs_dozen": [
-    "eggs dozen",
     "eggs_dozen",
+    "eggs dozen",
     "eggs-dozen",
     "anda",
-    "eggs",
     "अंडे",
+    "eggs",
     "انڈے"
   ],
   "cream_200ml": [
+    "cream 200 ml",
     "cream_200ml",
     "cream 200ml",
     "cream-200ml",
     "cream"
   ],
   "laban_1L": [
+    "laban 1 L",
     "laban_1L",
-    "laban 1L",
     "laban-1L",
+    "laban 1L",
     "laban"
   ],
   "bread_loaf": [
-    "bread_loaf",
     "bread-loaf",
     "bread loaf",
+    "bread_loaf",
     "ڈبل روٹی",
     "ब्रेड",
     "bread"
   ],
   "bun_pack_6": [
-    "bun-pack-6",
     "bun_pack_6",
     "bun pack 6",
+    "bun-pack-6",
     "bun pack"
   ],
   "biscuit_pack": [
-    "biscuit_pack",
     "biscuit pack",
-    "biscuit-pack"
+    "biscuit-pack",
+    "biscuit_pack"
   ],
   "rusks_pack": [
     "rusks pack",
-    "rusks-pack",
-    "rusks_pack"
+    "rusks_pack",
+    "rusks-pack"
   ],
   "cake_rusk_pack": [
-    "cake_rusk_pack",
     "cake rusk pack",
-    "cake-rusk-pack"
+    "cake-rusk-pack",
+    "cake_rusk_pack"
   ],
   "noodles_pack": [
     "noodles pack",
-    "noodles-pack",
-    "noodles_pack"
+    "noodles_pack",
+    "noodles-pack"
   ],
   "pasta_500g": [
-    "pasta 500g",
+    "pasta 500 g",
     "pasta_500g",
     "pasta-500g",
+    "pasta 500g",
     "pasta"
   ],
   "ketchup_500g": [
+    "ketchup 500 g",
     "ketchup-500g",
-    "ketchup_500g",
     "ketchup 500g",
+    "ketchup_500g",
     "ketchup"
   ],
   "mayo_300g": [
-    "mayo_300g",
+    "mayo 300 g",
     "mayo-300g",
     "mayo 300g",
+    "mayo_300g",
     "mayo"
   ],
   "pickle_jar": [
+    "pickle-jar",
     "pickle jar",
-    "pickle_jar",
-    "pickle-jar"
+    "pickle_jar"
   ],
   "jam_450g": [
+    "jam 450 g",
+    "jam_450g",
     "jam 450g",
-    "jam-450g",
-    "jam_450g"
+    "jam-450g"
   ],
   "honey_250g": [
-    "honey_250g",
-    "honey 250g",
+    "honey 250 g",
     "honey-250g",
+    "honey 250g",
+    "honey_250g",
     "honey"
   ],
   "vinegar_500ml": [
-    "vinegar_500ml",
+    "vinegar 500 ml",
     "vinegar 500ml",
     "vinegar-500ml",
+    "vinegar_500ml",
     "vinegar"
   ],
   "soy_sauce_250ml": [
+    "soy sauce 250 ml",
     "soy sauce 250ml",
-    "soy-sauce-250ml",
     "soy_sauce_250ml",
+    "soy-sauce-250ml",
     "soy sauce"
   ],
   "chili_sauce_300g": [
-    "chili-sauce-300g",
+    "chili sauce 300 g",
     "chili_sauce_300g",
     "chili sauce 300g",
+    "chili-sauce-300g",
     "chili sauce"
   ],
   "peanut_butter_340g": [
-    "peanut_butter_340g",
+    "peanut butter 340 g",
     "peanut-butter-340g",
     "peanut butter 340g",
+    "peanut_butter_340g",
     "peanut butter"
   ],
   "mirch_powder_200g": [
-    "mirch-powder-200g",
+    "mirch powder 200 g",
     "mirch_powder_200g",
     "mirch powder 200g",
+    "mirch-powder-200g",
     "mirch powder"
   ],
   "haldi_200g": [
+    "haldi 200 g",
     "haldi_200g",
     "haldi 200g",
     "haldi-200g",
     "haldi"
   ],
   "garam_masala_100g": [
+    "garam masala 100 g",
     "garam-masala-100g",
-    "garam masala 100g",
     "garam_masala_100g",
+    "garam masala 100g",
     "garam masala"
   ],
   "zeera_100g": [
+    "zeera 100 g",
     "zeera-100g",
-    "zeera 100g",
     "zeera_100g",
+    "zeera 100g",
     "zeera"
   ],
   "dhania_powder_200g": [
+    "dhania powder 200 g",
     "dhania_powder_200g",
     "dhania powder 200g",
     "dhania-powder-200g",
     "dhania powder"
   ],
   "lal_mirch_100g": [
+    "lal mirch 100 g",
     "lal_mirch_100g",
     "lal mirch 100g",
     "lal-mirch-100g",
     "lal mirch"
   ],
   "kala_zeera_50g": [
+    "kala zeera 50 g",
     "kala_zeera_50g",
     "kala zeera 50g",
     "kala-zeera-50g",
     "kala zeera"
   ],
   "elaichi_50g": [
-    "elaichi_50g",
-    "elaichi-50g",
+    "elaichi 50 g",
     "elaichi 50g",
+    "elaichi-50g",
+    "elaichi_50g",
     "elaichi"
   ],
   "dalchini_50g": [
+    "dalchini 50 g",
+    "dalchini-50g",
     "dalchini 50g",
     "dalchini_50g",
-    "dalchini-50g",
     "dalchini"
   ],
   "onion_1kg": [
+    "onion 1 kilo",
+    "onion 1 kg",
+    "onion_1kg",
     "onion-1kg",
     "onion 1kg",
-    "onion_1kg",
-    "onion",
     "प्याज",
+    "onion",
     "pyaz",
     "پیاز"
   ],
   "potato_1kg": [
-    "potato_1kg",
+    "potato 1 kilo",
+    "potato 1 kg",
     "potato 1kg",
+    "potato_1kg",
     "potato-1kg",
     "potato",
     "aloo",
-    "آلو",
-    "आलू"
+    "आलू",
+    "آلو"
   ],
   "tomato_1kg": [
-    "tomato-1kg",
-    "tomato 1kg",
+    "tomato 1 kilo",
+    "tomato 1 kg",
     "tomato_1kg",
+    "tomato 1kg",
+    "tomato-1kg",
     "tamatar",
     "tomato",
     "ٹماٹر",
     "टमाटर"
   ],
   "garlic_250g": [
+    "garlic 250 g",
+    "garlic-250g",
     "garlic_250g",
     "garlic 250g",
-    "garlic-250g",
     "garlic"
   ],
   "ginger_250g": [
-    "ginger_250g",
-    "ginger 250g",
+    "ginger 250 g",
     "ginger-250g",
+    "ginger 250g",
+    "ginger_250g",
     "ginger"
   ],
   "banana_dozen": [
-    "banana_dozen",
+    "banana-dozen",
     "banana dozen",
-    "banana-dozen"
+    "banana_dozen"
   ],
   "apple_1kg": [
+    "apple 1 kilo",
+    "apple 1 kg",
+    "apple-1kg",
     "apple_1kg",
     "apple 1kg",
-    "apple-1kg",
     "apple"
   ],
   "dates_500g": [
-    "dates_500g",
-    "dates-500g",
+    "dates 500 g",
     "dates 500g",
+    "dates-500g",
+    "dates_500g",
     "dates"
   ],
   "lemon_500g": [
-    "lemon-500g",
+    "lemon 500 g",
     "lemon_500g",
+    "lemon-500g",
     "lemon 500g",
     "lemon"
   ],
   "cucumber_1kg": [
+    "cucumber 1 kilo",
+    "cucumber 1 kg",
     "cucumber-1kg",
     "cucumber 1kg",
     "cucumber_1kg",
     "cucumber"
   ],
   "carrot_1kg": [
+    "carrot 1 kilo",
+    "carrot 1 kg",
+    "carrot_1kg",
     "carrot-1kg",
     "carrot 1kg",
-    "carrot_1kg",
     "carrot"
   ],
   "water_6pack": [
+    "water 6 pack",
+    "water 6pack",
     "water-6pack",
     "water_6pack",
-    "water 6pack",
     "water"
   ],
   "cola_1_5L": [
+    "cola 1 5 L",
+    "cola 1 5L",
     "cola_1_5L",
     "cola-1-5L",
-    "cola 1 5L",
     "cola 1"
   ],
   "juice_1L": [
-    "juice-1L",
+    "juice 1 L",
     "juice_1L",
+    "juice-1L",
     "juice 1L",
     "juice"
   ],
   "energy_drink_250ml": [
+    "energy drink 250 ml",
     "energy_drink_250ml",
     "energy-drink-250ml",
     "energy drink 250ml",
     "energy drink"
   ],
   "mineral_water_1_5L": [
+    "mineral water 1 5 L",
     "mineral-water-1-5L",
     "mineral water 1 5L",
     "mineral_water_1_5L",
     "mineral water 1"
   ],
   "lassi_250ml": [
-    "lassi 250ml",
+    "lassi 250 ml",
     "lassi-250ml",
+    "lassi 250ml",
     "lassi_250ml",
     "lassi"
   ],
   "soap_4pack": [
-    "soap-4pack",
-    "soap 4pack",
+    "soap 4 pack",
     "soap_4pack",
+    "soap 4pack",
+    "soap-4pack",
     "saboon",
     "साबुन",
     "sabun",
-    "صابن",
-    "soap"
+    "soap",
+    "صابن"
   ],
   "detergent_1kg": [
+    "detergent 1 kilo",
+    "detergent 1 kg",
     "washing powder",
     "detergent-1kg",
     "detergent_1kg",
     "detergent 1kg",
-    "डिटर्जेंट",
     "detergent",
+    "डिटर्जेंट",
     "ڈٹرجنٹ"
   ],
   "shampoo_200ml": [
-    "shampoo 200ml",
+    "shampoo 200 ml",
     "shampoo_200ml",
+    "shampoo 200ml",
     "shampoo-200ml",
     "shampoo"
   ],
   "toothpaste_100g": [
-    "toothpaste 100g",
-    "toothpaste_100g",
+    "toothpaste 100 g",
     "toothpaste-100g",
+    "toothpaste_100g",
+    "toothpaste 100g",
     "toothpaste"
   ],
   "tissue_box": [
@@ -1706,44 +1815,47 @@ ALIASES = {
     "tissue_box"
   ],
   "trash_bags_roll": [
-    "trash-bags-roll",
+    "trash_bags_roll",
     "trash bags roll",
-    "trash_bags_roll"
+    "trash-bags-roll"
   ],
   "batteries_aa_4": [
     "batteries_aa_4",
-    "batteries aa 4",
     "batteries-aa-4",
+    "batteries aa 4",
     "batteries aa"
   ],
   "matchbox_10": [
+    "matchbox_10",
     "matchbox 10",
     "matchbox-10",
-    "matchbox_10",
     "matchbox"
   ],
   "scrub_pad_2": [
     "scrub_pad_2",
-    "scrub-pad-2",
     "scrub pad 2",
+    "scrub-pad-2",
     "scrub pad"
   ],
   "dishwash_liquid_500ml": [
+    "dishwash liquid 500 ml",
     "dishwash_liquid_500ml",
-    "dishwash-liquid-500ml",
     "dishwash liquid 500ml",
+    "dishwash-liquid-500ml",
     "dishwash liquid"
   ],
   "floor_cleaner_1L": [
+    "floor cleaner 1 L",
+    "floor-cleaner-1L",
     "floor cleaner 1L",
     "floor_cleaner_1L",
-    "floor-cleaner-1L",
     "floor cleaner"
   ],
   "handwash_250ml": [
-    "handwash_250ml",
+    "handwash 250 ml",
     "handwash 250ml",
     "handwash-250ml",
+    "handwash_250ml",
     "handwash"
   ],
   "mosquito_coil_10": [
@@ -1753,297 +1865,351 @@ ALIASES = {
     "mosquito coil"
   ],
   "phenyl_1L": [
-    "phenyl_1L",
-    "phenyl 1L",
+    "phenyl 1 L",
     "phenyl-1L",
+    "phenyl 1L",
+    "phenyl_1L",
     "phenyl"
   ],
   "steel_scrub_3": [
     "steel_scrub_3",
-    "steel scrub 3",
     "steel-scrub-3",
+    "steel scrub 3",
     "steel scrub"
   ],
   "lighter_pack_2": [
+    "lighter_pack_2",
     "lighter-pack-2",
     "lighter pack 2",
-    "lighter_pack_2",
     "lighter pack"
   ],
   "cotton_rolls_100g": [
+    "cotton rolls 100 g",
     "cotton-rolls-100g",
     "cotton rolls 100g",
     "cotton_rolls_100g",
     "cotton rolls"
   ],
   "baby_diaper_pack": [
-    "baby_diaper_pack",
     "baby diaper pack",
+    "baby_diaper_pack",
     "baby-diaper-pack"
   ],
   "sanitary_pads_pack": [
-    "sanitary-pads-pack",
     "sanitary_pads_pack",
+    "sanitary-pads-pack",
     "sanitary pads pack"
   ],
   "face_wash_100ml": [
-    "face-wash-100ml",
-    "face_wash_100ml",
+    "face wash 100 ml",
     "face wash 100ml",
+    "face_wash_100ml",
+    "face-wash-100ml",
     "face wash"
   ],
   "talcum_powder_100g": [
+    "talcum powder 100 g",
     "talcum-powder-100g",
-    "talcum powder 100g",
     "talcum_powder_100g",
+    "talcum powder 100g",
     "talcum powder"
   ],
   "hair_oil_100ml": [
+    "hair oil 100 ml",
+    "hair_oil_100ml",
     "hair-oil-100ml",
     "hair oil 100ml",
-    "hair_oil_100ml",
     "hair oil"
   ],
   "shoe_polish_40g": [
-    "shoe_polish_40g",
+    "shoe polish 40 g",
     "shoe polish 40g",
     "shoe-polish-40g",
+    "shoe_polish_40g",
     "shoe polish"
   ],
   "candle_pack_6": [
+    "candle-pack-6",
     "candle_pack_6",
     "candle pack 6",
-    "candle-pack-6",
     "candle pack"
   ],
   "atta_5kg": [
+    "atta 5 kilo",
+    "atta 5 kg",
     "atta 5kg",
     "atta_5kg",
     "atta-5kg",
+    "آٹا 5",
+    "आटा 5",
     "atta"
   ],
   "brown_sugar_1kg": [
+    "brown sugar 1 kilo",
+    "brown sugar 1 kg",
+    "brown-sugar-1kg",
     "brown sugar 1kg",
     "brown_sugar_1kg",
-    "brown-sugar-1kg",
     "brown sugar"
   ],
   "jaggery_1kg": [
+    "jaggery 1 kilo",
+    "jaggery 1 kg",
+    "jaggery_1kg",
     "jaggery-1kg",
     "jaggery 1kg",
-    "jaggery_1kg",
     "jaggery"
   ],
   "vermicelli_400g": [
-    "vermicelli_400g",
+    "vermicelli 400 g",
     "vermicelli 400g",
+    "vermicelli_400g",
     "vermicelli-400g",
     "vermicelli"
   ],
   "poha_1kg": [
-    "poha 1kg",
-    "poha-1kg",
+    "poha 1 kilo",
+    "poha 1 kg",
     "poha_1kg",
+    "poha-1kg",
+    "poha 1kg",
     "poha"
   ],
   "daliya_1kg": [
-    "daliya_1kg",
+    "daliya 1 kilo",
+    "daliya 1 kg",
     "daliya-1kg",
+    "daliya_1kg",
     "daliya 1kg",
     "daliya"
   ],
   "oats_500g": [
+    "oats 500 g",
     "oats-500g",
-    "oats 500g",
     "oats_500g",
+    "oats 500g",
     "oats"
   ],
   "custard_powder_300g": [
-    "custard_powder_300g",
+    "custard powder 300 g",
     "custard-powder-300g",
+    "custard_powder_300g",
     "custard powder 300g",
     "custard powder"
   ],
   "jelly_powder_80g": [
+    "jelly powder 80 g",
     "jelly powder 80g",
     "jelly-powder-80g",
     "jelly_powder_80g",
     "jelly powder"
   ],
   "yeast_50g": [
-    "yeast-50g",
-    "yeast_50g",
+    "yeast 50 g",
     "yeast 50g",
+    "yeast_50g",
+    "yeast-50g",
     "yeast"
   ],
   "daal_moong_split_1kg": [
-    "daal moong split 1kg",
+    "daal moong split 1 kilo",
+    "daal moong split 1 kg",
     "daal_moong_split_1kg",
     "daal-moong-split-1kg",
+    "daal moong split 1kg",
     "daal moong split"
   ],
   "chana_black_1kg": [
+    "chana black 1 kilo",
+    "chana black 1 kg",
     "chana-black-1kg",
-    "chana_black_1kg",
     "chana black 1kg",
+    "chana_black_1kg",
     "chana black"
   ],
   "daal_moth_1kg": [
-    "daal moth 1kg",
+    "daal moth 1 kilo",
+    "daal moth 1 kg",
     "daal_moth_1kg",
     "daal-moth-1kg",
+    "daal moth 1kg",
     "daal moth"
   ],
   "soya_chunks_200g": [
-    "soya chunks 200g",
+    "soya chunks 200 g",
     "soya_chunks_200g",
     "soya-chunks-200g",
+    "soya chunks 200g",
     "soya chunks"
   ],
   "dried_peas_1kg": [
+    "dried peas 1 kilo",
+    "dried peas 1 kg",
     "dried peas 1kg",
     "dried-peas-1kg",
     "dried_peas_1kg",
     "dried peas"
   ],
   "kulthi_1kg": [
+    "kulthi 1 kilo",
+    "kulthi 1 kg",
     "kulthi_1kg",
     "kulthi-1kg",
     "kulthi 1kg",
     "kulthi"
   ],
   "canola_oil_5L": [
-    "canola oil 5L",
+    "canola oil 5 L",
     "canola-oil-5L",
+    "canola oil 5L",
     "canola_oil_5L",
     "canola oil"
   ],
   "coconut_oil_500ml": [
-    "coconut_oil_500ml",
-    "coconut oil 500ml",
+    "coconut oil 500 ml",
     "coconut-oil-500ml",
+    "coconut oil 500ml",
+    "coconut_oil_500ml",
     "coconut oil"
   ],
   "vanaspati_1kg": [
+    "vanaspati 1 kilo",
+    "vanaspati 1 kg",
+    "vanaspati 1kg",
     "vanaspati_1kg",
     "vanaspati-1kg",
-    "vanaspati 1kg",
     "vanaspati"
   ],
   "sesame_oil_250ml": [
+    "sesame oil 250 ml",
     "sesame_oil_250ml",
     "sesame oil 250ml",
     "sesame-oil-250ml",
     "sesame oil"
   ],
   "nescafe_50g": [
-    "nescafe 50g",
-    "nescafe-50g",
+    "nescafe 50 g",
     "nescafe_50g",
+    "nescafe-50g",
+    "nescafe 50g",
     "nescafe"
   ],
   "cardamom_tea_100g": [
-    "cardamom-tea-100g",
-    "cardamom_tea_100g",
+    "cardamom tea 100 g",
     "cardamom tea 100g",
+    "cardamom_tea_100g",
+    "cardamom-tea-100g",
     "cardamom tea"
   ],
   "lemon_tea_100g": [
+    "lemon tea 100 g",
     "lemon-tea-100g",
-    "lemon_tea_100g",
     "lemon tea 100g",
+    "lemon_tea_100g",
     "lemon tea"
   ],
   "hot_chocolate_200g": [
-    "hot chocolate 200g",
+    "hot chocolate 200 g",
     "hot_chocolate_200g",
+    "hot chocolate 200g",
     "hot-chocolate-200g",
     "hot chocolate"
   ],
   "rooh_afza_800ml": [
-    "rooh-afza-800ml",
+    "rooh afza 800 ml",
     "rooh afza 800ml",
+    "rooh-afza-800ml",
     "rooh_afza_800ml",
     "rooh afza"
   ],
   "popcorn_pack": [
-    "popcorn pack",
     "popcorn-pack",
+    "popcorn pack",
     "popcorn_pack"
   ],
   "kurkure_pack": [
     "kurkure-pack",
-    "kurkure_pack",
-    "kurkure pack"
+    "kurkure pack",
+    "kurkure_pack"
   ],
   "wafers_pack": [
-    "wafers pack",
+    "wafers-pack",
     "wafers_pack",
-    "wafers-pack"
+    "wafers pack"
   ],
   "namkeen_mix_200g": [
-    "namkeen mix 200g",
+    "namkeen mix 200 g",
     "namkeen_mix_200g",
+    "namkeen mix 200g",
     "namkeen-mix-200g",
     "namkeen mix"
   ],
   "murmura_200g": [
-    "murmura-200g",
+    "murmura 200 g",
     "murmura 200g",
     "murmura_200g",
+    "murmura-200g",
     "murmura"
   ],
   "soan_papdi_250g": [
+    "soan papdi 250 g",
+    "soan papdi 250g",
     "soan-papdi-250g",
     "soan_papdi_250g",
-    "soan papdi 250g",
     "soan papdi"
   ],
   "gulab_jamun_mix_100g": [
-    "gulab-jamun-mix-100g",
+    "gulab jamun mix 100 g",
     "gulab jamun mix 100g",
+    "gulab-jamun-mix-100g",
     "gulab_jamun_mix_100g",
     "gulab jamun mix"
   ],
   "butter_milk_1L": [
-    "butter_milk_1L",
+    "butter milk 1 L",
     "butter-milk-1L",
     "butter milk 1L",
+    "butter_milk_1L",
     "butter milk"
   ],
   "khoya_250g": [
-    "khoya_250g",
+    "khoya 250 g",
     "khoya 250g",
     "khoya-250g",
+    "khoya_250g",
     "khoya"
   ],
   "paneer_200g": [
+    "paneer 200 g",
     "paneer-200g",
-    "paneer 200g",
     "paneer_200g",
+    "paneer 200g",
     "paneer"
   ],
   "condensed_milk_400g": [
-    "condensed milk 400g",
+    "condensed milk 400 g",
     "condensed-milk-400g",
     "condensed_milk_400g",
+    "condensed milk 400g",
     "condensed milk"
   ],
   "ice_cream_500ml": [
-    "ice cream 500ml",
+    "ice cream 500 ml",
     "ice_cream_500ml",
+    "ice cream 500ml",
     "ice-cream-500ml",
     "ice cream"
   ],
   "croissant_2pack": [
-    "croissant-2pack",
+    "croissant 2 pack",
     "croissant_2pack",
+    "croissant-2pack",
     "croissant 2pack",
     "croissant"
   ],
   "cookies_pack": [
-    "cookies-pack",
     "cookies_pack",
+    "cookies-pack",
     "cookies pack"
   ],
   "toast_pack": [
@@ -2052,325 +2218,373 @@ ALIASES = {
     "toast pack"
   ],
   "cupcake_2": [
-    "cupcake_2",
     "cupcake-2",
+    "cupcake_2",
     "cupcake 2",
     "cupcake"
   ],
   "paratha_frozen_5": [
-    "paratha-frozen-5",
-    "paratha frozen 5",
     "paratha_frozen_5",
+    "paratha frozen 5",
+    "paratha-frozen-5",
     "paratha frozen"
   ],
   "tomato_paste_200g": [
+    "tomato paste 200 g",
     "tomato_paste_200g",
-    "tomato paste 200g",
     "tomato-paste-200g",
+    "tomato paste 200g",
     "tomato paste"
   ],
   "baked_beans_400g": [
+    "baked beans 400 g",
     "baked_beans_400g",
     "baked-beans-400g",
     "baked beans 400g",
     "baked beans"
   ],
   "corn_flakes_500g": [
-    "corn flakes 500g",
+    "corn flakes 500 g",
     "corn_flakes_500g",
     "corn-flakes-500g",
+    "corn flakes 500g",
     "corn flakes"
   ],
   "macaroni_400g": [
-    "macaroni-400g",
-    "macaroni 400g",
+    "macaroni 400 g",
     "macaroni_400g",
+    "macaroni 400g",
+    "macaroni-400g",
     "macaroni"
   ],
   "soup_mix_50g": [
-    "soup mix 50g",
-    "soup-mix-50g",
+    "soup mix 50 g",
     "soup_mix_50g",
+    "soup-mix-50g",
+    "soup mix 50g",
     "soup mix"
   ],
   "instant_noodles_cup": [
-    "instant noodles cup",
+    "instant_noodles_cup",
     "instant-noodles-cup",
-    "instant_noodles_cup"
+    "instant noodles cup"
   ],
   "olives_jar_200g": [
-    "olives_jar_200g",
+    "olives jar 200 g",
     "olives jar 200g",
+    "olives_jar_200g",
     "olives-jar-200g",
     "olives jar"
   ],
   "tuna_can_185g": [
+    "tuna can 185 g",
+    "tuna_can_185g",
     "tuna can 185g",
     "tuna-can-185g",
-    "tuna_can_185g",
     "tuna can"
   ],
   "sardines_can": [
-    "sardines-can",
+    "sardines can",
     "sardines_can",
-    "sardines can"
+    "sardines-can"
   ],
   "coconut_milk_400ml": [
-    "coconut milk 400ml",
-    "coconut-milk-400ml",
+    "coconut milk 400 ml",
     "coconut_milk_400ml",
+    "coconut-milk-400ml",
+    "coconut milk 400ml",
     "coconut milk"
   ],
   "rice_flour_1kg": [
-    "rice-flour-1kg",
-    "rice flour 1kg",
+    "rice flour 1 kilo",
+    "rice flour 1 kg",
     "rice_flour_1kg",
+    "rice flour 1kg",
+    "rice-flour-1kg",
     "rice flour"
   ],
   "corn_oil_spray_200ml": [
+    "corn oil spray 200 ml",
     "corn_oil_spray_200ml",
-    "corn-oil-spray-200ml",
     "corn oil spray 200ml",
+    "corn-oil-spray-200ml",
     "corn oil spray"
   ],
   "imli_200g": [
-    "imli 200g",
-    "imli-200g",
+    "imli 200 g",
     "imli_200g",
+    "imli-200g",
+    "imli 200g",
     "imli"
   ],
   "saunf_100g": [
-    "saunf_100g",
-    "saunf-100g",
+    "saunf 100 g",
     "saunf 100g",
+    "saunf-100g",
+    "saunf_100g",
     "saunf"
   ],
   "methi_100g": [
+    "methi 100 g",
     "methi_100g",
-    "methi 100g",
     "methi-100g",
+    "methi 100g",
     "methi"
   ],
   "ajwain_50g": [
-    "ajwain 50g",
-    "ajwain-50g",
+    "ajwain 50 g",
     "ajwain_50g",
+    "ajwain-50g",
+    "ajwain 50g",
     "ajwain"
   ],
   "black_pepper_50g": [
+    "black pepper 50 g",
     "black_pepper_50g",
-    "black-pepper-50g",
     "black pepper 50g",
+    "black-pepper-50g",
     "black pepper"
   ],
   "white_pepper_50g": [
-    "white-pepper-50g",
+    "white pepper 50 g",
     "white_pepper_50g",
+    "white-pepper-50g",
     "white pepper 50g",
     "white pepper"
   ],
   "kasuri_methi_50g": [
-    "kasuri-methi-50g",
+    "kasuri methi 50 g",
     "kasuri methi 50g",
+    "kasuri-methi-50g",
     "kasuri_methi_50g",
     "kasuri methi"
   ],
   "chat_masala_100g": [
+    "chat masala 100 g",
+    "chat_masala_100g",
     "chat masala 100g",
     "chat-masala-100g",
-    "chat_masala_100g",
     "chat masala"
   ],
   "biryani_masala_100g": [
+    "biryani masala 100 g",
+    "biryani masala 100g",
     "biryani-masala-100g",
     "biryani_masala_100g",
-    "biryani masala 100g",
     "biryani masala"
   ],
   "tikka_masala_100g": [
-    "tikka masala 100g",
-    "tikka-masala-100g",
+    "tikka masala 100 g",
     "tikka_masala_100g",
+    "tikka-masala-100g",
+    "tikka masala 100g",
     "tikka masala"
   ],
   "meat_tenderizer_50g": [
+    "meat tenderizer 50 g",
     "meat-tenderizer-50g",
-    "meat_tenderizer_50g",
     "meat tenderizer 50g",
+    "meat_tenderizer_50g",
     "meat tenderizer"
   ],
   "spinach_bunch": [
+    "spinach_bunch",
     "spinach-bunch",
-    "spinach bunch",
-    "spinach_bunch"
+    "spinach bunch"
   ],
   "coriander_bunch": [
-    "coriander-bunch",
     "coriander bunch",
-    "coriander_bunch"
+    "coriander_bunch",
+    "coriander-bunch"
   ],
   "mint_bunch": [
     "mint_bunch",
-    "mint bunch",
-    "mint-bunch"
+    "mint-bunch",
+    "mint bunch"
   ],
   "green_chilli_250g": [
+    "green chilli 250 g",
+    "green-chilli-250g",
     "green_chilli_250g",
     "green chilli 250g",
-    "green-chilli-250g",
     "green chilli"
   ],
   "capsicum_500g": [
+    "capsicum 500 g",
     "capsicum_500g",
-    "capsicum-500g",
     "capsicum 500g",
+    "capsicum-500g",
     "capsicum"
   ],
   "cabbage_1pc": [
+    "cabbage-1pc",
     "cabbage_1pc",
-    "cabbage 1pc",
-    "cabbage-1pc"
+    "cabbage 1pc"
   ],
   "cauliflower_1pc": [
-    "cauliflower_1pc",
     "cauliflower 1pc",
-    "cauliflower-1pc"
+    "cauliflower-1pc",
+    "cauliflower_1pc"
   ],
   "brinjal_1kg": [
-    "brinjal 1kg",
+    "brinjal 1 kilo",
+    "brinjal 1 kg",
     "brinjal-1kg",
+    "brinjal 1kg",
     "brinjal_1kg",
     "brinjal"
   ],
   "okra_500g": [
+    "okra 500 g",
     "okra-500g",
-    "okra_500g",
     "okra 500g",
+    "okra_500g",
     "okra"
   ],
   "peas_500g": [
+    "peas 500 g",
     "peas-500g",
     "peas 500g",
     "peas_500g",
     "peas"
   ],
   "pomegranate_1kg": [
-    "pomegranate-1kg",
+    "pomegranate 1 kilo",
+    "pomegranate 1 kg",
     "pomegranate 1kg",
     "pomegranate_1kg",
+    "pomegranate-1kg",
     "pomegranate"
   ],
   "orange_1kg": [
-    "orange 1kg",
+    "orange 1 kilo",
+    "orange 1 kg",
     "orange_1kg",
+    "orange 1kg",
     "orange-1kg",
     "orange"
   ],
   "grapes_500g": [
+    "grapes 500 g",
+    "grapes_500g",
     "grapes 500g",
     "grapes-500g",
-    "grapes_500g",
     "grapes"
   ],
   "mango_1kg": [
-    "mango_1kg",
+    "mango 1 kilo",
+    "mango 1 kg",
     "mango-1kg",
+    "mango_1kg",
     "mango 1kg",
     "mango"
   ],
   "sprite_1_5L": [
-    "sprite-1-5L",
-    "sprite 1 5L",
+    "sprite 1 5 L",
     "sprite_1_5L",
+    "sprite 1 5L",
+    "sprite-1-5L",
     "sprite 1"
   ],
   "fanta_1_5L": [
+    "fanta 1 5 L",
+    "fanta 1 5L",
     "fanta_1_5L",
     "fanta-1-5L",
-    "fanta 1 5L",
     "fanta 1"
   ],
   "red_bull_250ml": [
-    "red bull 250ml",
-    "red_bull_250ml",
+    "red bull 250 ml",
     "red-bull-250ml",
+    "red_bull_250ml",
+    "red bull 250ml",
     "red bull"
   ],
   "mango_juice_1L": [
-    "mango-juice-1L",
+    "mango juice 1 L",
     "mango_juice_1L",
     "mango juice 1L",
+    "mango-juice-1L",
     "mango juice"
   ],
   "apple_juice_1L": [
+    "apple juice 1 L",
+    "apple_juice_1L",
     "apple juice 1L",
     "apple-juice-1L",
-    "apple_juice_1L",
     "apple juice"
   ],
   "coconut_water_330ml": [
-    "coconut_water_330ml",
+    "coconut water 330 ml",
     "coconut-water-330ml",
+    "coconut_water_330ml",
     "coconut water 330ml",
     "coconut water"
   ],
   "isotonic_500ml": [
-    "isotonic-500ml",
-    "isotonic 500ml",
+    "isotonic 500 ml",
     "isotonic_500ml",
+    "isotonic 500ml",
+    "isotonic-500ml",
     "isotonic"
   ],
   "bleach_1L": [
-    "bleach-1L",
+    "bleach 1 L",
     "bleach 1L",
+    "bleach-1L",
     "bleach_1L",
     "bleach"
   ],
   "glass_cleaner_500ml": [
-    "glass_cleaner_500ml",
+    "glass cleaner 500 ml",
     "glass cleaner 500ml",
     "glass-cleaner-500ml",
+    "glass_cleaner_500ml",
     "glass cleaner"
   ],
   "air_freshener_300ml": [
+    "air freshener 300 ml",
+    "air-freshener-300ml",
     "air_freshener_300ml",
     "air freshener 300ml",
-    "air-freshener-300ml",
     "air freshener"
   ],
   "insect_spray_400ml": [
+    "insect spray 400 ml",
     "insect spray 400ml",
     "insect-spray-400ml",
     "insect_spray_400ml",
     "insect spray"
   ],
   "toilet_cleaner_500ml": [
-    "toilet-cleaner-500ml",
+    "toilet cleaner 500 ml",
     "toilet_cleaner_500ml",
     "toilet cleaner 500ml",
+    "toilet-cleaner-500ml",
     "toilet cleaner"
   ],
   "laundry_softener_1L": [
+    "laundry softener 1 L",
+    "laundry-softener-1L",
     "laundry_softener_1L",
     "laundry softener 1L",
-    "laundry-softener-1L",
     "laundry softener"
   ],
   "dish_sponge_3": [
     "dish_sponge_3",
-    "dish-sponge-3",
     "dish sponge 3",
+    "dish-sponge-3",
     "dish sponge"
   ],
   "aluminum_foil_roll": [
-    "aluminum foil roll",
     "aluminum_foil_roll",
-    "aluminum-foil-roll"
+    "aluminum-foil-roll",
+    "aluminum foil roll"
   ],
   "cling_film_roll": [
     "cling_film_roll",
-    "cling-film-roll",
-    "cling film roll"
+    "cling film roll",
+    "cling-film-roll"
   ],
   "baking_paper_roll": [
     "baking_paper_roll",
@@ -2378,42 +2592,42 @@ ALIASES = {
     "baking paper roll"
   ],
   "zip_bags_pack": [
+    "zip-bags-pack",
     "zip_bags_pack",
-    "zip bags pack",
-    "zip-bags-pack"
+    "zip bags pack"
   ],
   "broom": [
     "broom"
   ],
   "mop_refill": [
     "mop refill",
-    "mop_refill",
-    "mop-refill"
+    "mop-refill",
+    "mop_refill"
   ],
   "bucket_plastic": [
     "bucket plastic",
-    "bucket_plastic",
-    "bucket-plastic"
+    "bucket-plastic",
+    "bucket_plastic"
   ],
   "mug_plastic": [
+    "mug_plastic",
     "mug plastic",
-    "mug-plastic",
-    "mug_plastic"
+    "mug-plastic"
   ],
   "torch_battery": [
+    "torch_battery",
     "torch-battery",
-    "torch battery",
-    "torch_battery"
+    "torch battery"
   ],
   "extension_board": [
-    "extension board",
     "extension-board",
-    "extension_board"
+    "extension_board",
+    "extension board"
   ],
   "usb_cable": [
-    "usb_cable",
     "usb cable",
-    "usb-cable"
+    "usb-cable",
+    "usb_cable"
   ],
   "notebook_a4": [
     "notebook a4",
@@ -2421,36 +2635,37 @@ ALIASES = {
     "notebook-a4"
   ],
   "pen_pack_10": [
+    "pen pack 10",
     "pen-pack-10",
     "pen_pack_10",
-    "pen pack 10",
     "pen pack"
   ],
   "glue_stick": [
-    "glue_stick",
     "glue stick",
+    "glue_stick",
     "glue-stick"
   ],
   "bandage_box": [
-    "bandage box",
+    "bandage-box",
     "bandage_box",
-    "bandage-box"
+    "bandage box"
   ],
   "antiseptic_100ml": [
-    "antiseptic_100ml",
+    "antiseptic 100 ml",
     "antiseptic 100ml",
+    "antiseptic_100ml",
     "antiseptic-100ml",
     "antiseptic"
   ],
   "paracetamol_pack": [
-    "paracetamol_pack",
     "paracetamol pack",
+    "paracetamol_pack",
     "paracetamol-pack"
   ],
   "ors_sachet_10": [
-    "ors-sachet-10",
-    "ors_sachet_10",
     "ors sachet 10",
+    "ors_sachet_10",
+    "ors-sachet-10",
     "ors sachet"
   ]
 }

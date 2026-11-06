@@ -39,24 +39,81 @@ CATEGORY_ALIASES = {
 }
 
 
+def normalize_query(text):
+    """Collapse '10 kg' / '10 kilo' → '10kg' so size aliases match."""
+    t = text.lower()
+    t = re.sub(
+        r"(\d+)\s*(kilo(?:gram)?s?|کلو|किलो|kg)\b",
+        r"\1kg", t, flags=re.UNICODE | re.IGNORECASE)
+    t = re.sub(
+        r"(\d+)\s*(litres?|liters?|لیٹر|लीटर|ltr)\b",
+        r"\1l", t, flags=re.UNICODE | re.IGNORECASE)
+    t = re.sub(
+        r"(\d+)\s*(millilitres?|milliliters?|ml)\b",
+        r"\1ml", t, flags=re.UNICODE | re.IGNORECASE)
+    t = re.sub(
+        r"(\d+)\s*(grams?|گرام|ग्राम|g)\b",
+        r"\1g", t, flags=re.UNICODE | re.IGNORECASE)
+    t = re.sub(r"\s+", " ", t).strip()
+    return t
+
+
+def _size_tokens(t):
+    """Size hints from the query: {'10kg', '5l', ...} and bare nums {'10'}."""
+    sizes = set()
+    for m in re.finditer(r"(\d+)\s*(kg|g|ml|l)\b", t, flags=re.IGNORECASE):
+        sizes.add(m.group(1) + m.group(2).lower())
+    nums = set(re.findall(r"(?<![.\d])(\d+)(?![.\d])", t))
+    # Drop huge numbers (loan incomes) — sizes in this shop are < 10000
+    nums = {n for n in nums if len(n) <= 4}
+    return sizes, nums
+
+
+def _key_fits_size(key, sizes, nums):
+    """When the user named a size, don't fall through to another pack size."""
+    k = key.lower()
+    if sizes:
+        return any(s in k for s in sizes)
+    if nums:
+        return any(
+            re.search(r"(?:^|_)" + re.escape(n) + r"(?:kg|g|ml|l|pack)?(?:_|$)", k)
+            for n in nums
+        )
+    return True
+
+
 def resolve_item(text):
     """Map free text (any language) to a canonical item key. Returns None.
 
     Short aliases (rice, oil, tea...) match on word boundaries only,
-    so "price" never resolves to rice.
+    so "price" never resolves to rice. Size in the query (e.g. 10 kg)
+    must match the SKU — 'atta 10 kg' never returns atta_20kg.
     """
-    t = text.lower()
+    t = normalize_query(text)
+    sizes, nums = _size_tokens(t)
     pairs = []
     for key, names in ALIASES.items():
         for name in names:
             pairs.append((name.lower(), key))
     pairs.sort(key=lambda x: len(x[0]), reverse=True)
     for name, key in pairs:
+        if not _key_fits_size(key, sizes, nums):
+            continue
         if len(name) <= 4:
-            if re.search(r"(?<!\w)" + re.escape(name) + r"(?!\w)", t, flags=re.UNICODE):
+            if re.search(r"(?<!\w)" + re.escape(name) + r"(?!\w)", t,
+                         flags=re.UNICODE):
                 return key
         elif name in t:
             return key
+    # If size filter blocked every hit, retry without filter (last resort)
+    if sizes or nums:
+        for name, key in pairs:
+            if len(name) <= 4:
+                if re.search(r"(?<!\w)" + re.escape(name) + r"(?!\w)", t,
+                             flags=re.UNICODE):
+                    return key
+            elif name in t:
+                return key
     return None
 
 
