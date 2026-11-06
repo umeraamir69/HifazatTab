@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="HifazatTab owner dashboard — stock, prices, and BYO merchant API.">
+<title>HifazatTab · Shop dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #14201c;
+  --muted: #4a5c55;
+  --paper: #eef3ef;
+  --paper-2: #dde8e1;
+  --line: rgba(20, 32, 28, 0.12);
+  --accent: #0f6b5c;
+  --accent-deep: #0a4a40;
+  --warn: #8b3a2a;
+  --ok: #1a6b45;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Sora", sans-serif;
+  --max: 1100px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  background:
+    radial-gradient(1000px 500px at 8% -8%, rgba(15, 107, 92, 0.12), transparent 55%),
+    linear-gradient(165deg, #f4f7f5 0%, var(--paper) 45%, var(--paper-2) 100%);
+}
+a { color: var(--accent-deep); }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 1.25rem 1.1rem 3rem; position: relative; z-index: 1; }
+.topnav {
+  display: flex; flex-wrap: wrap; gap: 0.85rem 1.1rem;
+  font-size: 0.82rem; margin-bottom: 1.5rem;
+}
+.topnav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; }
+.topnav a:hover, .topnav a.active { color: var(--accent-deep); border-bottom-color: var(--accent); }
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.02em;
+}
+.hero h1 span { display: block; font-size: 0.72rem; font-family: var(--font-body); font-weight: 500; color: var(--muted); letter-spacing: 0.04em; margin-top: 0.25rem; }
+.lede { color: var(--muted); max-width: 42rem; margin: 0 0 1.25rem; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+@media (min-width: 720px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+.stat {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.55);
+}
+.stat strong { display: block; font-family: var(--font-display); font-size: 1.45rem; font-weight: 650; }
+.stat span { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.stat.warn strong { color: var(--warn); }
+.tabs {
+  display: flex; flex-wrap: wrap; gap: 0.35rem;
+  margin-bottom: 1rem; border-bottom: 1px solid var(--line); padding-bottom: 0.5rem;
+}
+.tabs button {
+  font: inherit; font-size: 0.82rem; font-weight: 500;
+  border: 0; background: transparent; color: var(--muted);
+  padding: 0.45rem 0.75rem; cursor: pointer;
+  border-bottom: 2px solid transparent; margin-bottom: -0.5rem;
+}
+.tabs button.active { color: var(--accent-deep); border-bottom-color: var(--accent); }
+.panel {
+  display: none;
+  padding: 1rem 0 0;
+}
+.panel.active { display: block; }
+.toolbar {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  margin-bottom: 0.85rem;
+}
+input, select, textarea, button.btn {
+  font: inherit; font-size: 0.86rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  padding: 0.45rem 0.65rem;
+  border-radius: 2px;
+}
+input[type="search"] { min-width: 12rem; flex: 1; }
+button.btn {
+  cursor: pointer; background: var(--accent); color: #fff; border-color: var(--accent-deep);
+  font-weight: 500;
+}
+button.btn.ghost { background: transparent; color: var(--accent-deep); border-color: var(--line); }
+button.btn.warn { background: var(--warn); border-color: #6e2e22; }
+button.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.badge {
+  display: inline-block; font-size: 0.7rem; padding: 0.15rem 0.4rem;
+  border: 1px solid var(--line); color: var(--muted); margin-left: 0.35rem;
+}
+.badge.api { border-color: var(--accent); color: var(--accent-deep); }
+.badge.edit { border-color: var(--warn); color: var(--warn); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); background: rgba(255,255,255,0.65); }
+table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+th, td { text-align: left; padding: 0.55rem 0.65rem; border-bottom: 1px solid var(--line); }
+th { font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); background: rgba(15,107,92,0.04); }
+tr.low td { background: rgba(139, 58, 42, 0.06); }
+td input {
+  width: 5.5rem; padding: 0.25rem 0.35rem; font-size: 0.82rem;
+}
+td.sku { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; }
+.form-grid {
+  display: grid; gap: 0.75rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) { .form-grid { grid-template-columns: 1fr 1fr; } }
+.form-grid label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.78rem; color: var(--muted); }
+.form-grid label.full { grid-column: 1 / -1; }
+.form-grid input, .form-grid textarea, .form-grid select { width: 100%; }
+.hint {
+  font-size: 0.82rem; color: var(--muted);
+  padding: 0.75rem 0.85rem; border: 1px solid var(--line);
+  background: rgba(15,107,92,0.05); margin-bottom: 1rem;
+}
+.hint code { font-size: 0.78rem; background: rgba(20,32,28,0.06); padding: 0.1rem 0.3rem; }
+#status { min-height: 1.2rem; font-size: 0.82rem; color: var(--muted); margin: 0.5rem 0 0; }
+#status.ok { color: var(--ok); }
+#status.err { color: var(--warn); }
+.foot { margin-top: 2.5rem; font-size: 0.75rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <nav class="topnav" aria-label="Project links">
+    <a href="/">Live agent</a>
+    <a href="/dashboard.html" class="active">Dashboard</a>
+    <a href="/#tools">Tools</a>
+    <a href="https://github.com/umeraamir69/HifazatTab" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+
+  <header class="hero">
+    <h1>Shop dashboard<span>stock · prices · connect your API</span></h1>
+    <p class="lede">Browse and edit inventory without touching the CSV. Or plug in your shop API — the same six agent tools read whatever catalog is active.</p>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="tabs" role="tablist">
+    <button type="button" class="active" data-tab="inventory">Inventory</button>
+    <button type="button" data-tab="connect">Connect API</button>
+    <button type="button" data-tab="how">How it works</button>
+  </div>
+
+  <section class="panel active" id="panel-inventory" role="tabpanel">
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="Search SKU or category…" autocomplete="off">
+      <select id="catFilter"><option value="">All categories</option></select>
+      <label style="font-size:0.78rem;color:var(--muted);display:flex;align-items:center;gap:0.35rem">
+        <input type="checkbox" id="lowOnly"> Low stock only (≤20)
+      </label>
+      <button type="button" class="btn ghost" id="exportCsv">Export CSV</button>
+      <button type="button" class="btn ghost" id="resetEdits">Reset local edits</button>
+    </div>
+    <p id="sourceLine" class="hint" style="margin-top:0"></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>SKU</th><th>Category</th><th>Price (PKR)</th><th>Stock</th><th></th></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-connect" role="tabpanel">
+    <p class="hint">
+      Point HifazatTab at <strong>your</strong> products API. We proxy the request (avoids CORS), map fields to our catalog shape, and the live agent answers from your numbers.
+      Try the built-in mock first: base URL = this site, path = <code>/api/mock-merchant</code>.
+    </p>
+    <form class="form-grid" id="connForm">
+      <label>Shop name
+        <input name="name" placeholder="My Kiryana" value="Demo Kiryana">
+      </label>
+      <label>Base URL
+        <input name="baseUrl" id="baseUrl" placeholder="https://api.myshop.com" required>
+      </label>
+      <label>List path
+        <input name="listPath" value="/api/mock-merchant" placeholder="/v1/products">
+      </label>
+      <label>Items JSON path
+        <input name="itemsPath" value="items" placeholder="items or data.products">
+      </label>
+      <label>Auth header (optional)
+        <input name="authHeader" placeholder="Authorization or X-Api-Key">
+      </label>
+      <label>Auth value (optional — stored in this browser only)
+        <input name="authValue" type="password" placeholder="Bearer sk_… / key" autocomplete="off">
+      </label>
+      <label>Map: id field
+        <input name="mapId" value="sku">
+      </label>
+      <label>Map: price field
+        <input name="mapPrice" value="price_pkr">
+      </label>
+      <label>Map: stock field
+        <input name="mapStock" value="quantity">
+      </label>
+      <label>Map: category field
+        <input name="mapCategory" value="aisle">
+      </label>
+      <label class="full">
+        <span style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.35rem">
+          <button type="submit" class="btn" id="syncBtn">Fetch &amp; activate</button>
+          <button type="button" class="btn ghost" id="useMock">Fill mock merchant</button>
+          <button type="button" class="btn ghost" id="useDemo">Back to demo catalog (219 SKUs)</button>
+          <button type="button" class="btn warn" id="clearApi">Disconnect API</button>
+        </span>
+      </label>
+    </form>
+    <p id="status"></p>
+  </section>
+
+  <section class="panel" id="panel-how" role="tabpanel">
+    <div class="hint">
+      <strong>Architecture:</strong> the agent always calls the same tools
+      (<code>lookup_price</code>, <code>check_stock</code>, <code>item_details</code>,
+      <code>list_category</code>, <code>list_low_stock</code>, <code>loan_eligibility</code>).
+      Only the <em>catalog source</em> changes.
+    </div>
+    <ol style="color:var(--muted);padding-left:1.2rem;max-width:40rem">
+      <li style="margin-bottom:0.65rem"><strong>Demo</strong> — bundled <code>shop_catalog.json</code> (hackathon seed).</li>
+      <li style="margin-bottom:0.65rem"><strong>Local edits</strong> — change price/stock here; saved in your browser and overlaid on whatever source is active.</li>
+      <li style="margin-bottom:0.65rem"><strong>Your API</strong> — POST to <code>/api/catalog-proxy</code> with base URL + field map. We normalize to <code>{price, stock, category}</code> per SKU.</li>
+      <li style="margin-bottom:0.65rem"><strong>Production tip</strong> — put API keys in a vault / Vercel env, not localStorage. This dashboard stores secrets in-browser for the Lexsi demo only.</li>
+    </ol>
+    <p class="hint">
+      Expected merchant list payload (or remap fields above):
+      <code>{"items":[{"sku":"atta_20kg","price_pkr":2850,"quantity":40,"aisle":"staples"}]}</code>
+    </p>
+  </section>
+
+  <p class="foot">HifazatTab · owner dashboard · Lexsi Track C — tools fixed, catalog pluggable.</p>
+</main>
+
+<script src="/catalog-store.js"></script>
+<script>
+"use strict";
+var demoData = null;
+var view = { q: "", cat: "", lowOnly: false };
+
+function $(id){ return document.getElementById(id); }
+
+function setStatus(msg, kind){
+  var el = $("status");
+  el.textContent = msg || "";
+  el.className = kind || "";
+}
+
+function active(){
+  return HifazatStore.resolve(demoData);
+}
+
+function renderStats(){
+  var a = active();
+  var s = a.stats;
+  $("stats").innerHTML =
+    '<div class="stat"><strong>'+s.skus+'</strong><span>SKUs</span></div>'+
+    '<div class="stat'+(s.lowStock?' warn':'')+'"><strong>'+s.lowStock+'</strong><span>Low stock</span></div>'+
+    '<div class="stat"><strong>'+s.units.toLocaleString()+'</strong><span>Units on hand</span></div>'+
+    '<div class="stat"><strong>'+Math.round(s.inventoryValuePkr).toLocaleString()+'</strong><span>Inventory PKR</span></div>';
+
+  var src = a.source;
+  var badge = src === "api"
+    ? '<span class="badge api">API catalog</span>'
+    : '<span class="badge">Demo catalog</span>';
+  if (a.hasEdits) badge += '<span class="badge edit">local edits</span>';
+  var extra = "";
+  if (src === "api" && HifazatStore.readApi()) {
+    var api = HifazatStore.readApi();
+    extra = " Synced "+(api.syncedAt || "")+" · "+(api.count||"")+" items.";
+  }
+  $("sourceLine").innerHTML = "Active source: <strong>"+src+"</strong>"+badge+"."+extra+
+    " Open the <a href=\"/\">live agent</a> — it reads this same catalog.";
+}
+
+function fillCategories(){
+  var cats = Object.keys(active().stats.categories).sort();
+  var sel = $("catFilter");
+  var cur = sel.value;
+  sel.innerHTML = '<option value="">All categories</option>';
+  cats.forEach(function(c){
+    var o = document.createElement("option");
+    o.value = c; o.textContent = c+" ("+active().stats.categories[c]+")";
+    sel.appendChild(o);
+  });
+  sel.value = cur;
+}
+
+function renderTable(){
+  var cat = active().data.catalog || {};
+  var keys = Object.keys(cat).sort();
+  var q = view.q.toLowerCase();
+  var rows = keys.filter(function(k){
+    var r = cat[k];
+    if (view.cat && r.category !== view.cat) return false;
+    if (view.lowOnly && Number(r.stock) > 20) return false;
+    if (q && (k+" "+(r.category||"")).toLowerCase().indexOf(q) < 0) return false;
+    return true;
+  });
+  var tb = $("tbody");
+  tb.innerHTML = "";
+  rows.forEach(function(k){
+    var r = cat[k];
+    var tr = document.createElement("tr");
+    if (Number(r.stock) <= 20) tr.className = "low";
+    tr.innerHTML =
+      '<td class="sku">'+k+'</td>'+
+      '<td>'+(r.category||"—")+'</td>'+
+      '<td><input data-sku="'+k+'" data-field="price" type="number" min="0" step="1" value="'+r.price+'"></td>'+
+      '<td><input data-sku="'+k+'" data-field="stock" type="number" min="0" step="1" value="'+r.stock+'"></td>'+
+      '<td><button type="button" class="btn ghost" data-save="'+k+'">Save</button></td>';
+    tb.appendChild(tr);
+  });
+}
+
+function refresh(){
+  renderStats();
+  fillCategories();
+  renderTable();
+}
+
+document.querySelectorAll(".tabs button").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    document.querySelectorAll(".tabs button").forEach(function(b){ b.classList.remove("active"); });
+    document.querySelectorAll(".panel").forEach(function(p){ p.classList.remove("active"); });
+    btn.classList.add("active");
+    $("panel-"+btn.getAttribute("data-tab")).classList.add("active");
+  });
+});
+
+$("q").addEventListener("input", function(){ view.q = this.value; renderTable(); });
+$("catFilter").addEventListener("change", function(){ view.cat = this.value; renderTable(); });
+$("lowOnly").addEventListener("change", function(){ view.lowOnly = this.checked; renderTable(); });
+
+$("tbody").addEventListener("click", function(ev){
+  var btn = ev.target.closest("[data-save]");
+  if (!btn) return;
+  var sku = btn.getAttribute("data-save");
+  var row = btn.closest("tr");
+  var price = Number(row.querySelector('[data-field="price"]').value);
+  var stock = Number(row.querySelector('[data-field="stock"]').value);
+  HifazatStore.saveEdit(sku, { price: price, stock: stock });
+  setStatus("Saved "+sku+" → "+price+" PKR / stock "+stock, "ok");
+  refresh();
+});
+
+$("exportCsv").addEventListener("click", function(){
+  var csv = HifazatStore.exportCsv(active().data);
+  var blob = new Blob([csv], { type: "text/csv" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "hifazat-catalog.csv";
+  a.click();
+});
+
+$("resetEdits").addEventListener("click", function(){
+  if (!confirm("Clear all local price/stock edits?")) return;
+  HifazatStore.clearEdits();
+  setStatus("Local edits cleared.", "ok");
+  refresh();
+});
+
+function originBase(){
+  return location.origin;
+}
+
+$("useMock").addEventListener("click", function(){
+  $("baseUrl").value = originBase();
+  document.querySelector('[name="listPath"]').value = "/api/mock-merchant";
+  document.querySelector('[name="itemsPath"]').value = "items";
+  document.querySelector('[name="mapId"]').value = "sku";
+  document.querySelector('[name="mapPrice"]').value = "price_pkr";
+  document.querySelector('[name="mapStock"]').value = "quantity";
+  document.querySelector('[name="mapCategory"]').value = "aisle";
+  setStatus("Mock merchant fields filled — click Fetch & activate.", "ok");
+});
+
+$("useDemo").addEventListener("click", function(){
+  HifazatStore.setSource("demo");
+  setStatus("Switched to bundled demo catalog.", "ok");
+  refresh();
+});
+
+$("clearApi").addEventListener("click", function(){
+  HifazatStore.clearApi();
+  setStatus("API disconnected. Demo catalog active.", "ok");
+  refresh();
+});
+
+$("connForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var fd = new FormData(ev.target);
+  var connector = {
+    name: fd.get("name"),
+    baseUrl: String(fd.get("baseUrl")||"").trim(),
+    listPath: String(fd.get("listPath")||"/").trim(),
+    itemsPath: String(fd.get("itemsPath")||"items").trim(),
+    authHeader: String(fd.get("authHeader")||"").trim(),
+    authValue: String(fd.get("authValue")||"").trim(),
+    map: {
+      id: fd.get("mapId") || "sku",
+      price: fd.get("mapPrice") || "price_pkr",
+      stock: fd.get("mapStock") || "quantity",
+      category: fd.get("mapCategory") || "aisle",
+    },
+  };
+  var btn = $("syncBtn");
+  btn.disabled = true;
+  setStatus("Fetching merchant catalog…");
+  fetch("/api/catalog-proxy", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(connector),
+  }).then(function(r){ return r.json().then(function(j){ return { ok: r.ok, j: j }; }); })
+    .then(function(res){
+      btn.disabled = false;
+      if (!res.ok || !res.j.ok) {
+        setStatus((res.j && res.j.error) || "Sync failed", "err");
+        return;
+      }
+      HifazatStore.saveApiCatalog(res.j, {
+        name: connector.name,
+        baseUrl: connector.baseUrl,
+        listPath: connector.listPath,
+        itemsPath: connector.itemsPath,
+        authHeader: connector.authHeader,
+        // keep auth in browser for re-sync; never sent to analytics
+        authValue: connector.authValue,
+        map: connector.map,
+      });
+      setStatus("Activated "+res.j.count+" SKUs from "+res.j.source, "ok");
+      refresh();
+    })
+    .catch(function(e){
+      btn.disabled = false;
+      setStatus(String(e.message || e), "err");
+    });
+});
+
+// Prefill connector form from last save
+(function prefills(){
+  var c = HifazatStore.readConnector();
+  if (!c) return;
+  var form = $("connForm");
+  if (c.name) form.name.value = c.name;
+  if (c.baseUrl) form.baseUrl.value = c.baseUrl;
+  if (c.listPath) form.listPath.value = c.listPath;
+  if (c.itemsPath) form.itemsPath.value = c.itemsPath;
+  if (c.authHeader) form.authHeader.value = c.authHeader;
+  if (c.map) {
+    form.mapId.value = c.map.id || "sku";
+    form.mapPrice.value = c.map.price || "price_pkr";
+    form.mapStock.value = c.map.stock || "quantity";
+    form.mapCategory.value = c.map.category || "aisle";
+  }
+})();
+
+fetch("/shop_catalog.json")
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    demoData = data;
+    if (!$("baseUrl").value) $("baseUrl").value = originBase();
+    refresh();
+  })
+  .catch(function(e){
+    setStatus("Could not load demo catalog: "+e, "err");
+  });
+</script>
+</body>
+</html>

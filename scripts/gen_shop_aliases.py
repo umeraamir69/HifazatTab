@@ -36,14 +36,14 @@ EXTRA = {
     "chai_950g": ["chai", "tea", "چائے", "चाय"],
     "coffee_200g": ["coffee", "قهوه", "کافی", "कॉफी"],
     "green_tea_100g": ["green tea", "سبز چائے", "ग्रीन टी"],
-    "milk_1L": ["milk", "دودھ", "दूध"],
+    "milk_1L": ["milk", "doodh", "دودھ", "दूध"],
     "yogurt_1kg": ["yogurt", "dahi", "دہی", "दही"],
     "eggs_dozen": ["eggs", "anda", "انڈے", "अंडे"],
     "bread_loaf": ["bread", "ڈبل روٹی", "ब्रेड"],
     "onion_1kg": ["onion", "pyaz", "پیاز", "प्याज"],
     "potato_1kg": ["potato", "aloo", "آلو", "आलू"],
     "tomato_1kg": ["tomato", "tamatar", "ٹماٹر", "टमाटर"],
-    "soap_4pack": ["soap", "صابن", "साबुन"],
+    "soap_4pack": ["soap", "sabun", "saboon", "صابن", "साबुन"],
     "detergent_1kg": ["detergent", "washing powder", "ڈٹرجنٹ", "डिटर्जेंट"],
 }
 

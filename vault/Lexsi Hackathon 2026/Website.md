@@ -16,8 +16,8 @@ Training metrics (BEFORE/AFTER) live on Hugging Face + Colab; the site *shows* t
 | Goal | How the site helps |
 |------|--------------------|
 | 30–60s live demo | Mic / samples / spoken answers without GPU |
-| Prove tool contract | Same price/stock/loan tools as AgentTune |
-| Show safety | In-page red-team (9 script-switch attacks) |
+| Prove tool contract | Same price/stock/loan tools as AgentTune (answer chip shows `tool:item`) |
+| Show safety | In-page red-team (24 script-switch attacks incl. roman-Urdu + brand trap) |
 | Show scale | 108-SKU shop oracle, filterable |
 | Point to Track C | Story chain + HF adapter + metrics bars |
 
@@ -77,7 +77,7 @@ Optional fallback in code: `OPENAI_API_KEY` — **not required** (we use Groq on
 - [x] **Speak answers** (Web Speech TTS); prefers `hi-IN` / `ur-PK` voices when installed
 - [x] **EN / HI mic** — browser `SpeechRecognition` (`en-US` / `hi-IN`)
 - [x] **UR mic** — MediaRecorder → POST `/api/stt` → Groq Whisper large-v3 (`lang=ur`)
-- [x] ~4.5s record window for Urdu; status line shows provider (`groq`)
+- [x] ~8s record window for Urdu with Stop button; status line shows provider (`groq`)
 - [x] Mic blocked / no-speech / service-not-allowed tips for browser STT
 
 ### UX / shop
@@ -109,15 +109,15 @@ Optional fallback in code: `OPENAI_API_KEY` — **not required** (we use Groq on
 
 | Item | Status | Notes |
 |------|--------|--------|
-| Fill AFTER metric bars with real v1 numbers | **Todo** | v1 is flat (146/153 · 16/153 · 4/21) — update UI honestly or wait for v2 |
+| Fill AFTER metric bars with real numbers | **Done** | SFT AFTER live: 100 / 98 / 88, now wired from `web/metrics.json` (`loadMetrics`, hardcoded fallback) |
 | Push `web/` + catalog to GitHub `main` | **Todo** | Local deploy works; repo may lag |
 | Hindi TTS voice quality | Depends on OS | Prompt if no `hi` voice installed |
 | Urdu TTS | Depends on OS | Whisper STT works; speak-back needs system Urdu voice |
-| Hold-to-talk / stop button for Urdu | Nice-to-have | Fixed 4.5s today |
-| Wire AFTER from JSON/config | Nice-to-have | Avoid hardcoding bars after each Colab |
-| Show “live = rule agent; HF = metrics” callout | Recommended | Judges confuse demo with Tiny Aya |
-| AuditKIT embed / screenshots | Later | Phase 3 |
-| WhatsApp deep-link on site | Optional | Docs in `phone/` |
+| Hold-to-talk / stop button for Urdu | **Done** | Stop button + 8 s auto-stop note under ask row |
+| Wire AFTER from JSON/config | **Done** | `web/metrics.json` — update file, no HTML edit |
+| Show “live = rule agent; HF = metrics” callout | **Done** | Present in `#try` panel |
+| AuditKIT embed / screenshots | **Part-done** | GRPO report in `reports/auditkit_hifazat-tab-grpo-v1.md`; site embed + SFT side later |
+| WhatsApp deep-link on site | **Done** | Artifacts link to SFT adapter + WhatsApp $0 guide |
 
 ---
 
@@ -193,7 +193,8 @@ Local: static `index.html` works for agent/UI; Urdu STT needs deployed `/api/stt
 | Nov 4 | 108 SKUs via `shop_catalog.json`; filter, categories, random ask |
 | Nov 4 | Localized hi/ur price/stock; preferred lang for mic |
 | Nov 4 | `/api/stt` + Groq Whisper for real Urdu STT |
-| Next | AFTER bars truth; GitHub sync; optional hold-to-talk |
+| Nov 6 | 219 SKUs; 24-attack red-team (roman+brand); `tool:item` chip; `metrics.json` wiring; SFT/WhatsApp artifact links; Stop-button Urdu mic |
+| Next | GitHub sync; AuditKIT embed |
 
 ---
 

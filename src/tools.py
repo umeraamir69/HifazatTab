@@ -1,9 +1,9 @@
-"""HifazatTab tools — the 3 calculator buttons.
+"""HifazatTab tools — calculator buttons for the shop agent.
 
 The agent may ONLY answer using one of these. Facts come from shop.csv,
 never from model memory. Language-agnostic: same call works for en/hi/ur.
 
-Catalog: ~100 SKUs. Aliases auto-generated — regenerate with
+Catalog: ~200 SKUs. Aliases auto-generated — regenerate with
 `python3 scripts/gen_shop_aliases.py` after editing data/shop.csv.
 """
 import re
@@ -20,6 +20,24 @@ TABLE = {
     for key, meta in CATALOG.items()
 }
 
+CATEGORIES = sorted({meta["category"] for meta in CATALOG.values()})
+
+# Human labels → canonical category key
+CATEGORY_ALIASES = {
+    "staples": ["staples", "staple", "flour", "آٹا", "आटा", "rasad", "راشن", "राशन"],
+    "pulses": ["pulses", "pulse", "daal", "dal", "دال", "दाल"],
+    "oils": ["oils", "oil", "cooking oil", "تیل", "तेल"],
+    "dairy": ["dairy", "milk", "دودھ", "दूध", "ڈیری", "डेयरी"],
+    "spices": ["spices", "spice", "masala", "مصالحہ", "मसाला"],
+    "snacks": ["snacks", "snack", "nimco", "نشتہ", "नाश्ता"],
+    "beverages": ["beverages", "beverage", "tea", "coffee", "مشروب", "पेय"],
+    "drinks": ["drinks", "drink", "juice", "جوس", "जूस"],
+    "produce": ["produce", "vegetables", "fruit", "سبزی", "सब्जी", "پھل", "फल"],
+    "bakery": ["bakery", "bread", "روٹی", "रोटी", "نان", "बेकरी"],
+    "household": ["household", "cleaning", "گھر", "घर", "صفائی"],
+    "packaged": ["packaged", "packet", "پیکٹ", "पैकेट"],
+}
+
 
 def resolve_item(text):
     """Map free text (any language) to a canonical item key. Returns None.
@@ -28,7 +46,6 @@ def resolve_item(text):
     so "price" never resolves to rice.
     """
     t = text.lower()
-    # Collect all (alias, key) and try longest alias first across the catalog
     pairs = []
     for key, names in ALIASES.items():
         for name in names:
@@ -40,6 +57,28 @@ def resolve_item(text):
                 return key
         elif name in t:
             return key
+    return None
+
+
+def resolve_category(text):
+    """Map free text to a catalog category, or None."""
+    t = text.lower()
+    # Prefer longest alias across categories
+    pairs = []
+    for cat, names in CATEGORY_ALIASES.items():
+        if cat not in CATEGORIES:
+            continue
+        for name in names:
+            pairs.append((name.lower(), cat))
+    for cat in CATEGORIES:
+        pairs.append((cat.lower(), cat))
+    pairs.sort(key=lambda x: len(x[0]), reverse=True)
+    for name, cat in pairs:
+        if len(name) <= 4:
+            if re.search(r"(?<!\w)" + re.escape(name) + r"(?!\w)", t, flags=re.UNICODE):
+                return cat
+        elif name in t:
+            return cat
     return None
 
 
@@ -58,6 +97,71 @@ def check_stock(item_key):
     stock = int(row["stock"])
     return {"ok": True, "item": item_key, "stock": stock,
             "low": stock < 20}
+
+
+def item_details(item_key):
+    """Full SKU card: price, stock, category."""
+    row = TABLE.get(item_key)
+    if row is None:
+        return {"ok": False, "error": "item_not_found"}
+    return {
+        "ok": True,
+        "item": item_key,
+        "price_pkr": int(row["price_pkr"]),
+        "stock": int(row["stock"]),
+        "category": row["category"],
+        "low": int(row["stock"]) < 20,
+    }
+
+
+def list_category(category):
+    """All SKUs in a category with price + stock."""
+    cat = (category or "").strip().lower()
+    if cat not in CATEGORIES:
+        # try alias resolution
+        cat = resolve_category(cat) or cat
+    if cat not in CATEGORIES:
+        return {"ok": False, "error": "category_not_found",
+                "categories": CATEGORIES}
+    items = []
+    for key, row in sorted(TABLE.items()):
+        if row["category"] == cat:
+            items.append({
+                "item": key,
+                "price_pkr": int(row["price_pkr"]),
+                "stock": int(row["stock"]),
+            })
+    return {"ok": True, "category": cat, "count": len(items), "items": items}
+
+
+def list_low_stock(threshold=20):
+    """SKUs at or below threshold (default 20 = shop low-stock bar)."""
+    try:
+        thr = int(threshold)
+    except (TypeError, ValueError):
+        thr = 20
+    items = []
+    for key, row in sorted(TABLE.items(), key=lambda kv: int(kv[1]["stock"])):
+        stock = int(row["stock"])
+        if stock <= thr:
+            items.append({
+                "item": key,
+                "price_pkr": int(row["price_pkr"]),
+                "stock": stock,
+                "category": row["category"],
+            })
+    return {"ok": True, "threshold": thr, "count": len(items), "items": items}
+
+
+def find_by_stock(qty):
+    """SKUs whose on-hand stock equals qty (inventory filter, not a product name)."""
+    try:
+        n = int(qty)
+    except (TypeError, ValueError):
+        return []
+    return sorted(
+        k for k, row in TABLE.items() if int(row["stock"]) == n
+    )
 
 
 def loan_eligibility(monthly_income_pkr):

@@ -1,0 +1,30 @@
+{
+  "source": "umeraamir69/hifazat-tab-grpo-v1",
+  "trajectories_copy": "reports/trajectories_hifazat-tab-grpo-v1.jsonl",
+  "n_episodes": 400,
+  "seed_match_rate": "180/400",
+  "tool_call_validity": {
+    "num": 394,
+    "den": 400,
+    "pct": 98.5
+  },
+  "task_success_exact": {
+    "num": 38,
+    "den": 180,
+    "pct": 21.11
+  },
+  "tool_name_accuracy": {
+    "num": 132,
+    "den": 180,
+    "pct": 73.33
+  },
+  "tool_call_f1_macro": 0.2176,
+  "refusal_precision": {
+    "num": 2,
+    "den": 46,
+    "pct": 4.35
+  },
+  "unmatched_no_gold": 220,
+  "method": "AuditKIT episodes_from_agenttune over AgentTune trajectories.jsonl; gold joined from data/seed_tasks.jsonl by exact prompt; F1 is macro-averaged set-F1 over (tool, arg) pairs per episode.",
+  "limits": "Single gold call per episode; multi-turn credit only via set overlap; unmatched prompts excluded from task/F1."
+}

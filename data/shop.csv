@@ -23,7 +23,7 @@ cooking_oil_5L,7200,15,oils
 cooking_oil_1L,1650,40,oils
 ghee_1kg,1850,22,oils
 butter_200g,380,35,oils
-olive_oil_500ml,1650,12,oils
+olive_oil_500ml,1650,1,oils
 mustard_oil_1L,980,20,oils
 sunflower_oil_5L,6900,18,oils
 chai_950g,2100,30,beverages
@@ -100,7 +100,7 @@ phenyl_1L,240,30,household
 steel_scrub_3,120,55,household
 lighter_pack_2,100,60,household
 cotton_rolls_100g,180,40,household
-baby_diaper_pack,1650,15,household
+baby_diaper_pack,1650,2,household
 sanitary_pads_pack,320,40,household
 face_wash_100ml,450,25,household
 talcum_powder_100g,210,35,household
@@ -123,7 +123,7 @@ daal_moth_1kg,460,30,pulses
 soya_chunks_200g,280,40,pulses
 dried_peas_1kg,390,34,pulses
 kulthi_1kg,410,22,pulses
-canola_oil_5L,7100,14,oils
+canola_oil_5L,7100,3,oils
 coconut_oil_500ml,980,20,oils
 vanaspati_1kg,620,30,oils
 sesame_oil_250ml,540,18,oils
@@ -160,7 +160,7 @@ tuna_can_185g,480,22,packaged
 sardines_can,320,26,packaged
 coconut_milk_400ml,410,20,packaged
 rice_flour_1kg,280,35,packaged
-corn_oil_spray_200ml,650,15,packaged
+corn_oil_spray_200ml,650,1,packaged
 imli_200g,160,45,spices
 saunf_100g,140,48,spices
 methi_100g,120,50,spices
@@ -209,7 +209,7 @@ mop_refill,320,25,household
 bucket_plastic,680,15,household
 mug_plastic,120,40,household
 torch_battery,380,28,household
-extension_board,890,12,household
+extension_board,890,1,household
 usb_cable,350,35,household
 notebook_a4,180,50,household
 pen_pack_10,220,45,household

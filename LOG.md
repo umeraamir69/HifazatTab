@@ -334,6 +334,75 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 - **Why:** User asked to document everything we do/are doing for the website.
 - **Result:** Linked from Status + Findings.
 
+## 2026-11-06 — F1 AuditKIT run + docs sweep
+
+- **What:** Built `scripts/eval_auditkit.py` (AuditKIT `episodes_from_agenttune`
+  → validity / exact task / tool-name / macro-F1 / refusal, gold joined from
+  seed by exact prompt). Ran on Hub `hifazat-tab-grpo-v1` (400 episodes, seed
+  match 180/400): validity **394/400 (98.50%)** · task **38/180 (21.11%)** ·
+  tool-name **132/180 (73.33%)** · macro-F1 **0.2176** · refusal **2/46
+  (4.35%)**. Reports: `reports/auditkit_hifazat-tab-grpo-v1.json/.md`;
+  trajectories copy gitignored (~4 MB). Project `.venv` now holds auditkit +
+  huggingface_hub (`.gitignore` updated for `.venv/` + trajectories copies).
+  Docs swept: Features F1 done, Results (new AuditKIT section), Status,
+  Website (part-done), ARCHITECTURE (report flow + in-flight note).
+- **Why:** User: finish the still-open items where possible (F1), document
+  all things.
+- **Cause:** F1 needed no GPU — only the Hub artifact + pip. F2/F3 need GPU;
+  F4 needs a push decision; F6 needs a human (see Features).
+- **Important (not my work):** mid-session the tree gained uncommitted
+  edits from another hand — `src/tools.py` (+`list_category`,
+  `list_low_stock`, `find_by_stock`, `CATEGORY_ALIASES`) and `data/shop.csv`
+  stock lowers (cooking_oil_5L 15→1, olive/canola/baby-diaper/extension-board
+  similar). Now `test_mixed_case_key_resolves` fails (1 ≠ 15) and generated
+  catalogs carry stock 1. I touched neither file nor the failing assertion;
+  eval/redteam stay green (shared TABLE). Owner of those edits: update the
+  test expectation or the data, then re-run.
+- **Evaluator:** F1 numbers corroborate two other harnesses (validity≈98%,
+  task≈11–21%, refusal≈open) — meaningful third route. Docs complete and
+  honest about ownership of the red test.
+
+## 2026-11-06 — Built backlog items F7–F16 (rule agent, site, phone)
+
+- **What:** Implemented 10 backlog features, all verified in-session.
+  Seed: `ok_N` → `spot_*` ids + `lang` (F14); loan incomes 5 → 8 incl. tier
+  edges, rows 15 → 24 (F13); regen → 1500 rows, 219/219 coverage.
+  Agent: roman refusal/intent words + `doodh`/`sabun` aliases, mirrored in
+  page JS; new `has_word` boundary matching fixed a real `dam`-in-`cardamom`
+  bug the bigger seed exposed (3 stock misses → 0) (F12).
+  Red-team 3 → 8 families, 9 → 24 attacks, mirrored on the page (F16).
+  Site: `web/metrics.json` + `loadMetrics()` (F8), `tool:item` answer chip
+  (F9), SFT-adapter + WhatsApp artifact links (F10); callout + Stop-button
+  mic already present (F7/F11 confirmed). Phone: `TWILIO_AUTH_TOKEN`
+  signature gate, 403 on bad/missing (F15).
+- **Scores (all observed):** 16/16 unit tests · eval 1476/1476 task, 24/24
+  refusal, 0 over-refusal, 8/8 consistency · redteam 24/24 (Python) and 24/24
+  (page JS via node harness) · webhook gate probed 403/403/200/200, open
+  without token.
+- **Why:** User asked to build what we can from the backlog (no-GPU items).
+- **Cause:** Bigger seed + roman mic traffic exposed real matching gaps;
+  Demo Day needs the site/phone story closed.
+- **Better:** Next: AuditKIT (F1), SFT quant re-eval (F2), SFT brand-trap
+  re-train (F3), HF dataset + card (F4) — all need GPU/human/credits.
+- **Evaluator:** Meaningful. Docs synced: Features checkboxes, Status,
+  Results (new hardening section), Website, Submission links unchanged.
+
+## 2026-11-06 — Code docs + feature backlog; numbers verified
+
+- **What:** New `ARCHITECTURE.md` (stack, flows, deploy) + `API_ENDPOINTS.md`
+  (phone webhooks, `/api/stt`) at repo root, generated from actual code.
+  New `vault/Lexsi Hackathon 2026/Features.md`: where-we-stand + 19
+  prioritized features (F1–F19) + not-doing list. Filled `Submission.md`
+  metrics/links (was TBD), marked Website AFTER-bars done, linked backlog
+  from `Status.md`.
+- **Verified this session:** 12/12 unit tests OK; 219 SKUs (+2 loan-config
+  rows) in `shop.csv`; seed 1491 rows, langs 495/495/495, tools
+  760 price / 691 stock / **16 loan**; 6 legacy `ok_N` rows lack `lang`.
+- **Why:** User asked where we stand, more features, document everything.
+- **Evaluator:** Meaningful. Gaps found while documenting: loan seed thin
+  (F13), `ok_N` hygiene (F14), no Twilio signature check / STT rate limit
+  (F15), SFT quant re-eval still open (F2), AuditKIT still open (F1).
+
 ## 2026-11-05 — AFTER SFT wins Track C metrics
 - **What:** Canceled stalled GRPO v2-350. AFTER eval on `hifazat-tab-sft-v1`:
   validity 801/801 · task 784/801 (97.9%) · refusal 21/24 (87.5%).

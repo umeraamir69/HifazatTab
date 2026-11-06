@@ -12,6 +12,9 @@ helps callers, web users, and the demo alike.
 
 Run locally:  python3 phone/server.py  (then expose with ngrok for Twilio)
 """
+import base64
+import hashlib
+import hmac
 import os
 import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -32,6 +35,29 @@ SAY_VOICE = os.environ.get("HIFAZAT_SAY_VOICE", "alice")
 
 GREETING = ("Welcome to Hifazat shop. Ask about a price, stock, or a loan. "
             "Say goodbye to hang up.")
+
+
+def twilio_signature(url, form):
+    """Expected X-Twilio-Signature for a callback URL + form fields.
+
+    Same algorithm Twilio uses: HMAC-SHA1 over url + sorted key/value
+    pairs, base64-encoded. `form` is parse_qs output (values are lists).
+    """
+    token = os.environ.get("TWILIO_AUTH_TOKEN", "")
+    data = url + "".join(
+        k + (v[0] if isinstance(v, list) else v)
+        for k, v in sorted(form.items()))
+    return base64.b64encode(
+        hmac.new(token.encode(), data.encode(), hashlib.sha1).digest()
+    ).decode()
+
+
+def valid_twilio_signature(url, form, signature):
+    if not os.environ.get("TWILIO_AUTH_TOKEN"):
+        return True  # local dev without a token: skip validation
+    if not signature:
+        return False
+    return hmac.compare_digest(twilio_signature(url, form), signature)
 
 
 def twiml(body):
@@ -134,6 +160,14 @@ class Handler(BaseHTTPRequestHandler):
         length = int(self.headers.get("Content-Length", 0))
         form = parse_qs(self.rfile.read(length).decode("utf-8", "replace"))
         path = urlparse(self.path).path
+        if path in ("/voice", "/gather", "/whatsapp"):
+            scheme = self.headers.get("X-Forwarded-Proto", "http")
+            host = self.headers.get("Host", "localhost:8080")
+            url = scheme + "://" + host + path
+            sig = self.headers.get("X-Twilio-Signature", "")
+            if not valid_twilio_signature(url, form, sig):
+                self._send(twiml("<Say>Forbidden.</Say>"), 403)
+                return
         if path == "/voice":
             self._send(handle_voice())
         elif path == "/gather":

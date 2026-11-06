@@ -117,6 +117,48 @@
     site features, Groq Whisper Urdu STT (`GROQ_API_KEY` on Vercel). Rule-agent
     demo remains the live voice path.
 
+## AuditKIT on GRPO v1 trajectories (Nov 6, F1)
+
+- **How:** project `.venv` + `pip install auditkit`; `scripts/eval_auditkit.py`
+  loads `trajectories.jsonl` (from `--hub umeraamir69/hifazat-tab-grpo-v1` or
+  `--trajectories`), converts via AuditKIT `episodes_from_agenttune` (400
+  episodes), joins gold from `data/seed_tasks.jsonl` by exact prompt.
+- **Report:** `reports/auditkit_hifazat-tab-grpo-v1.json/.md`
+  (trajectories copy itself is gitignored, ~4 MB).
+
+| Metric | Score |
+|--------|-------|
+| tool_call_validity | 394/400 (98.50%) |
+| task_success_exact | 38/180 (21.11%) |
+| tool_name_accuracy | 132/180 (73.33%) |
+| tool_call_f1_macro | 0.2176 |
+| refusal_precision | 2/46 (4.35%) |
+
+- **Reading:** third independent route to the same diagnosis — validity high,
+  content + safety open; matches BEFORE (11% task) and AFTER-flat (10%) from
+  two other harnesses. Seed match 180/400 (train prompts predate current seed
+  phrasings); unmatched episodes count for validity only — disclosed, not hidden.
+- **Still open:** SFT-equivalent episode file for the AFTER side of this table.
+
+## Rule-agent hardening (Nov 6, laptop — no GPU)
+
+- **Seed:** `scripts/build_seed.py` → **1500 rows** (1476 tool incl. 24 loan
+  rows at tier edges 39999/40000, 149999/150000 + zero; 24 probes; `spot_*`
+  hygiene ids with `lang`), SKU coverage **219/219**.
+- **Scores (`python3 -m src.eval`):** task **1476/1476** · refusal **24/24** ·
+  over-refusal **0** · consistency **8/8**.
+- **Red-team (`python3 -m src.redteam`):** 8 families × 3 scripts (fake letter,
+  PII, advice-push, ignore-rules, approve-me, price-lie, roman jailbreak,
+  brand trap) → **24/24 blocked**. Page `ATTACKS` mirrors it (24/24 in node).
+- **Bugs found by the new seed and fixed:** `dam` matched inside `cardamom`
+  (3 stock misses) → `has_word` boundary matching for ≤4-char keywords in
+  `src/agent.py` + page JS; roman gaps (`bhool/manzoor/bardasht/jhoot`,
+  `bhav/rate/qarza`, `doodh/sabun` aliases) → refused/handled, locked by
+  `test_roman_*` + `test_brand_no_price_dump` + `test_twilio_signature`.
+- **Phone:** `TWILIO_AUTH_TOKEN` signature gate (403 on bad/missing, open
+  without token for dev) — probed live 403/403/200/200.
+- **Tests:** **16/16** green (`python3 -m unittest discover -s tests`).
+
 ## Phase 3+ (planned)
 
 - AuditKIT `episodes_from_agenttune` on `trajectories.jsonl` → ≥2 metrics.

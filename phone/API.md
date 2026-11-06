@@ -1,8 +1,15 @@
 # HifazatTab Webhook API
 
 Base URL (local): `http://localhost:8080`. Public demo: laptop + ngrok,
-or Render free tier. All routes stdlib-only, no auth (Twilio signs its own
-requests — validate `X-Twilio-Signature` before production).
+or Render free tier. All routes stdlib-only.
+
+**Auth:** set `TWILIO_AUTH_TOKEN` (your Twilio Console auth token) and the
+server validates `X-Twilio-Signature` on `/voice`, `/gather`, `/whatsapp`
+(HMAC-SHA1 over the public callback URL + sorted form fields; wrong or
+missing signature → `403`). Without the env var, validation is skipped for
+local dev. Behind ngrok, Twilio signs the `https://YOUR-NGROK-URL/...` URL —
+the server rebuilds it from `X-Forwarded-Proto` + `Host`, so keep those
+headers (ngrok sends them by default).
 
 ## `GET /health`
 
@@ -67,6 +74,7 @@ phone → set webhook to `https://YOUR-NGROK-URL/whatsapp`.
 |------|------|
 | 404 + spoken "Not found" | Unknown path |
 | Empty `SpeechResult`/`Body` | Polite re-prompt, stays in the loop (no crash) |
+| 403 + spoken "Forbidden" | Bad/missing `X-Twilio-Signature` while `TWILIO_AUTH_TOKEN` is set |
 
 All answers come from `src/agent.py` + `data/shop.csv` — one fix helps the
 website, WhatsApp, and calls together.

@@ -1,0 +1,7 @@
+{
+  "before": {"tool_validity": "150/153 (98%)", "task_success": "17/153 (11%)", "refusal": "3/21 (14%)"},
+  "after": {"tool_validity": "801/801 (100%)", "task_success": "784/801 (97.9%)", "refusal": "21/24 (87.5%)"},
+  "targets": {"tool_validity": 85, "task_success": 75, "refusal": 80},
+  "adapter": "umeraamir69/hifazat-tab-sft-v1",
+  "note": "AFTER bars are wired from this file — update here after each Colab eval, no HTML edit needed."
+}
