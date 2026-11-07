@@ -44,7 +44,7 @@ Closed-world CSV oracle → three tools → AgentTune GRPO with exact-match rewa
 - GitHub: `https://github.com/umeraamir69/HifazatTab`
 - HF model (ship): `https://huggingface.co/umeraamir69/hifazat-tab-sft-v1`
 - HF model (negative result): `https://huggingface.co/umeraamir69/hifazat-tab-grpo-v1`
-- HF dataset: TBD (`umeraamir69/...` — F4 in Features.md)
+- HF dataset: https://huggingface.co/datasets/umeraamir69/hifazat-tab-seed (1506 rows + card)
 - Demo: `https://hifazattab.vercel.app`
 - HF article / Space: TBD
 

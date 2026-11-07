@@ -334,6 +334,30 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 - **Why:** User asked to document everything we do/are doing for the website.
 - **Result:** Linked from Status + Findings.
 
+## 2026-11-06 — Backlog done: F2/F4/GPU-prep, brand probes, dataset + card live
+
+- **What:** (1) Seed: added brand_price_combo + brand_stock_combo probes × 3
+  langs → 1506 rows; eval **1476/1476 task, 30/30 refusal**, combo probes
+  refuse with no price digits. (2) `eval_after_hf_jobs.py` now saves full
+  per-prompt `records`; `eval_auditkit.py` gained `--seed` + `--after-eval`
+  (synthetic-tested) — SFT-side episode report needs only one GPU AFTER
+  re-run. (3) F2 closed by evidence: Hub `after_eval.json` came from the 4-bit
+  nf4 pipeline → absolute quant numbers meet targets (Δ vs full precision
+  unmeasured); re-run recipe documented. (4) F4 pushed:
+  https://huggingface.co/datasets/umeraamir69/hifazat-tab-seed (seed + oracle
+  + provenance card) and real model card on `hifazat-tab-sft-v1` (recipe,
+  metrics, limits, links). `languages`→`language` YAML fix needed for Hub
+  validation. (5) F6: progress-update ticket drafted in
+  `Discord_ticket_report_issues.md` (NOT YET POSTED — human pastes).
+- **Correction:** validity definition tightened to tool-task episodes with
+  gold (Phase-1 convention): GRPO report is 131/134 (97.8%), not 394/400.
+  Re-ran to confirm. Also found: committed (compact-unit) seed matches train
+  phrasings at 180/400; working regen (spaced `300 ml` from new alias
+  pipeline) matches 96/400 — pinned compact seed for AuditKIT; alias/seed
+  unification is the peer's area.
+- **Evaluator:** all five backlog items closed to the extent possible without
+  GPU/human. 23/23 tests green (peer's atta-disambiguation work included).
+
 ## 2026-11-06 — F1 AuditKIT run + docs sweep
 
 - **What:** Built `scripts/eval_auditkit.py` (AuditKIT `episodes_from_agenttune`

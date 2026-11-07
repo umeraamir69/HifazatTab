@@ -25,9 +25,9 @@ sys.path.insert(0, ROOT)
 SHOP_TOOLS = ("lookup_price", "check_stock", "loan_eligibility")
 
 
-def load_seed():
+def load_seed(path):
     gold = {}
-    with open(os.path.join(ROOT, "data", "seed_tasks.jsonl"), encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if not line:
@@ -82,9 +82,53 @@ def main():
                     help="local trajectories.jsonl (else --hub is used)")
     ap.add_argument("--name", default="",
                     help="report name (default: repo tail or file stem)")
+    ap.add_argument("--seed", default="",
+                    help="seed_tasks.jsonl path (default: repo data/)")
+    ap.add_argument("--after-eval", default="",
+                    help="after_summary.json with full 'records' (as saved by "
+                    "eval_after_hf_jobs.py) -> converted to trajectories "
+                    "first; the SFT-side episode path, no GPU needed here")
     args = ap.parse_args()
 
     from auditkit import episodes_from_agenttune
+
+    if args.after_eval:
+        with open(args.after_eval, encoding="utf-8") as f:
+            full = json.load(f)
+        conv = []
+        for i, r in enumerate(full.get("records", [])):
+            calls = []
+            got = (r.get("got") or "")
+            if ":" in got:
+                tname, _, targ = got.partition(":")
+                if tname in SHOP_TOOLS:
+                    calls.append({"id": "after%d" % i, "name": tname,
+                                  "arguments": {"arg": targ}})
+            conv.append({
+                "task": [{"role": "user", "content": r.get("prompt", "")}],
+                "steps": [{"step_number": 0, "state": "",
+                           "action": {"tool_calls": calls},
+                           "observation": "",
+                           "thought": r.get("reply", "")}],
+                "reward": 1.0 if r.get("ok") in ("exact", "refused") else 0.0,
+                "trajectory_id": r.get("id", "after%d" % i),
+                "final_response": r.get("reply", ""),
+                "metadata": {"ok": r.get("ok", "")},
+            })
+        aname = args.name or os.path.splitext(
+            os.path.basename(args.after_eval))[0]
+        aname = "".join(c if c.isalnum() or c in "-_" else "-"
+                        for c in aname)
+        rep_dir = os.path.join(ROOT, "reports")
+        os.makedirs(rep_dir, exist_ok=True)
+        conv_path = os.path.join(rep_dir, "trajectories_%s.jsonl" % aname)
+        with open(conv_path, "w", encoding="utf-8") as f:
+            for line in conv:
+                f.write(json.dumps(line, ensure_ascii=False) + "\n")
+        print("converted %d records -> %s" % (len(conv), conv_path))
+        args.trajectories = conv_path
+        if not args.name:
+            args.name = aname
 
     local = args.trajectories
     if not local:
@@ -103,9 +147,10 @@ def main():
         shutil.copyfile(local, traj_copy)
 
     episodes = episodes_from_agenttune(traj_copy)
-    gold = load_seed()
+    gold = load_seed(args.seed or os.path.join(ROOT, "data", "seed_tasks.jsonl"))
 
     validity_ok = 0
+    validity_den = 0
     matched = 0
     task_ok = 0
     tool_ok = 0
@@ -117,13 +162,15 @@ def main():
     for ep in episodes:
         task = (ep.metadata or {}).get("task", "")
         pairs = pred_calls(ep)
-        if is_valid(pairs):
-            validity_ok += 1
         g = gold.get(task)
         if g is None:
             unmatched += 1
             continue
         matched += 1
+        if g[0] != "refuse":
+            validity_den += 1
+            if is_valid(pairs):
+                validity_ok += 1
         pred_set = set(pairs) if pairs else {("refuse", "-")}
         gold_set = {g}
         f1_sum += f1(pred_set, gold_set)
@@ -143,8 +190,8 @@ def main():
         "trajectories_copy": os.path.relpath(traj_copy, ROOT),
         "n_episodes": n,
         "seed_match_rate": "%d/%d" % (matched, n),
-        "tool_call_validity": {"num": validity_ok, "den": n,
-                                "pct": round(100 * validity_ok / n, 2) if n else 0},
+        "tool_call_validity": {"num": validity_ok, "den": validity_den,
+                                "pct": round(100 * validity_ok / validity_den, 2) if validity_den else 0},
         "task_success_exact": {"num": task_ok, "den": matched,
                                "pct": round(100 * task_ok / matched, 2) if matched else 0},
         "tool_name_accuracy": {"num": tool_ok, "den": matched,

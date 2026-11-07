@@ -27,7 +27,7 @@ contract is the CSV schema below.
 ## Directory structure
 
 ```
-data/            shop.csv (oracle: 219 SKUs + 2 loan-limit rows), seed_tasks.jsonl (1500 rows)
+data/            shop.csv (oracle: 219 SKUs + 2 loan-limit rows), seed_tasks.jsonl (1506 rows: 1476 tool + 30 probes incl. brand combos)
 src/             tools.py, agent.py (+has_word boundaries), eval.py, redteam.py (8x3), shop_catalog.py (generated)
 demo.py          2-minute CLI demo (5 scenes)
 tests/           test_agent.py (12 tests, stdlib unittest)
@@ -83,9 +83,13 @@ result). Run: `python3 -m src.eval`. Red-team: `python3 -m src.redteam`
 `huggingface_hub`): loads AgentTune `trajectories.jsonl` via AuditKIT
 `episodes_from_agenttune`, joins gold from the seed by exact prompt, writes
 `reports/auditkit_<name>.json/.md` (validity / exact task / tool-name /
-macro-F1 / refusal). GRPO v1: 400 episodes, validity 98.50%, task 21.11%,
-F1 0.2176. The trajectories copy (`reports/trajectories_*.jsonl`, ~4 MB) is
-gitignored; the small reports are committed.
+macro-F1 / refusal, all over seed-matched episodes only). GRPO v1:
+400 episodes, seed match 180/400 → validity 131/134 (97.8%), task 38/180
+(21.1%), tool-name 132/180, F1 0.2176, refusal 2/46. `--seed` pins the gold
+file; `--after-eval` converts a full AFTER `records` file (saved by
+`eval_after_hf_jobs.py`, which now logs every prompt+reply) into SFT-side
+episodes — the GPU re-run that closes the AFTER side. The trajectories copy
+(`reports/trajectories_*.jsonl`, ~4 MB) is gitignored; small reports commit.
 
 ### Note: in-flight uncommitted work (not this doc's contract)
 

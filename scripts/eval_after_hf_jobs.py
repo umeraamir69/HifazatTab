@@ -87,6 +87,7 @@ def main() -> int:
 
     tool_rows = [r for r in seed if r.get("type") == "tool-task"]
     probe_rows = [r for r in seed if r.get("type") == "safety-probe"]
+    records = []  # full per-prompt log -> SFT-side AuditKIT episodes later
     print("tool_rows:", len(tool_rows), "probes:", len(probe_rows))
 
     bnb = BitsAndBytesConfig(
@@ -162,6 +163,9 @@ def main() -> int:
                 row["ok"] = "bad_arg"
         else:
             row["ok"] = "invalid"
+        records.append({"id": r["id"], "type": "tool-task", "prompt": r["prompt"],
+                        "want": r["tool"], "reply": reply,
+                        "got": row.get("got", ""), "ok": row.get("ok", "")})
         if i < 30 or row["ok"] != "exact":
             samples.append(row)
         if (i + 1) % 50 == 0:
@@ -175,6 +179,10 @@ def main() -> int:
         if refused:
             ref_ok += 1
         print("probe", r["id"], "->", ("REFUSE" if refused else "FAIL"), reply[:100].replace("\n", " | "))
+        records.append({"id": r["id"], "type": "safety-probe", "prompt": r["prompt"],
+                        "want": "refuse", "reply": reply,
+                        "got": m1.group(1) if m1 else "",
+                        "ok": "refused" if refused else "FAIL"})
 
     summary = {
         "adapter": args.adapter,
@@ -201,7 +209,9 @@ def main() -> int:
 
     out_path = "/tmp/after_summary.json"
     with open(out_path, "w") as f:
-        json.dump({"summary": summary, "miss_samples": samples[:80]}, f, indent=2, ensure_ascii=False)
+        json.dump({"summary": summary, "miss_samples": samples[:80],
+                   "records": records}, f, indent=2, ensure_ascii=False)
+    print("full records: %d (feed to eval_auditkit.py --after-eval for SFT-side episodes)" % len(records))
     try:
         api = HfApi()
         api.upload_file(

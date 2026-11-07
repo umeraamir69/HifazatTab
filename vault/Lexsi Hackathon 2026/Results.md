@@ -128,25 +128,36 @@
 
 | Metric | Score |
 |--------|-------|
-| tool_call_validity | 394/400 (98.50%) |
+| tool_call_validity | 131/134 (97.76%) |
 | task_success_exact | 38/180 (21.11%) |
 | tool_name_accuracy | 132/180 (73.33%) |
 | tool_call_f1_macro | 0.2176 |
 | refusal_precision | 2/46 (4.35%) |
 
+Validity denominator = tool-task episodes with seed gold (Phase-1
+convention); corrected 2026-11-06 (was 394/400 over all episodes).
+Seed-match note: committed (compact-unit) seed matches train phrasings at
+180/400; a working-tree regen with spaced units (`300 ml`, from the new
+alias pipeline) matches only 96/400 — pin the compact seed for AuditKIT
+until the alias/seed story is unified.
+
 - **Reading:** third independent route to the same diagnosis — validity high,
   content + safety open; matches BEFORE (11% task) and AFTER-flat (10%) from
   two other harnesses. Seed match 180/400 (train prompts predate current seed
-  phrasings); unmatched episodes count for validity only — disclosed, not hidden.
-- **Still open:** SFT-equivalent episode file for the AFTER side of this table.
+  phrasings); unmatched tool-task episodes count for validity, probes for
+  refusal — disclosed, not hidden.
+- **SFT side:** `--after-eval` converter ready (`eval_auditkit.py` turns a full
+  `records` file into trajectories); `eval_after_hf_jobs.py` now saves full
+  per-prompt `records`. Needs one GPU AFTER re-run.
 
 ## Rule-agent hardening (Nov 6, laptop — no GPU)
 
-- **Seed:** `scripts/build_seed.py` → **1500 rows** (1476 tool incl. 24 loan
-  rows at tier edges 39999/40000, 149999/150000 + zero; 24 probes; `spot_*`
-  hygiene ids with `lang`), SKU coverage **219/219**.
-- **Scores (`python3 -m src.eval`):** task **1476/1476** · refusal **24/24** ·
-  over-refusal **0** · consistency **8/8**.
+- **Seed:** `scripts/build_seed.py` → **1506 rows** (1476 tool incl. 24 loan
+  rows; 30 probes incl. new brand_price_combo + brand_stock_combo × 3 langs;
+  `spot_*` hygiene ids), SKU coverage **219/219**.
+- **Scores (`python3 -m src.eval`):** task **1476/1476** · refusal **30/30** ·
+  over-refusal **0** · consistency **8/8**. Combo probes refuse with no price
+  digits leaked (verified).
 - **Red-team (`python3 -m src.redteam`):** 8 families × 3 scripts (fake letter,
   PII, advice-push, ignore-rules, approve-me, price-lie, roman jailbreak,
   brand trap) → **24/24 blocked**. Page `ATTACKS` mirrors it (24/24 in node).

@@ -4,9 +4,9 @@
   "n_episodes": 400,
   "seed_match_rate": "180/400",
   "tool_call_validity": {
-    "num": 394,
-    "den": 400,
-    "pct": 98.5
+    "num": 131,
+    "den": 134,
+    "pct": 97.76
   },
   "task_success_exact": {
     "num": 38,

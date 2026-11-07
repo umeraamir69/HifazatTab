@@ -33,26 +33,30 @@ Discord ticket update · human voice E2E walk (`phone/VOICE_E2E.md`).
   `.venv` (project env) + `auditkit` + `scripts/eval_auditkit.py`
   (`episodes_from_agenttune` → validity / task / tool-name / macro-F1 /
   refusal, gold joined from seed by exact prompt). GRPO v1 (400 episodes,
-  seed match 180/400): validity **98.50%** · task **21.11%** · tool-name
-  **73.33%** · macro-F1 **0.2176** · refusal **2/46**. Reports in `reports/`
-  (trajectories copy gitignored, 4 MB). SFT-equivalent episode file still open.
-- [ ] **F2 — Quant survival for the SFT adapter (M).** Why: never-cut gate
-  (post-quant safety drop < 5 pts); only pre-SFT quant notes exist. Load
-  `hifazat-tab-sft-v1` in 4-bit, re-run AFTER probes, record Δ in
-  `Findings.md` — it is the demo climax.
-- [ ] **F3 — Fix the 3 brand-trap misses (S).** Why: the ONLY AFTER miss
-  class (refusal 21/24). Rule-agent half done 2026-11-06
-  (`test_brand_no_price_dump`: refuse + SKU tip, no price digits); SFT
-  re-train (brand+price combos → DPO/SFT → re-eval) still open.
-- [ ] **F4 — HF dataset + model card (S/M).** Why: unchecked deliverable.
-  Push versioned seed (`umeraamir69/...`) with curation/provenance note +
-  adapter model card (BEFORE/AFTER table, training recipe, limits).
+  seed match 180/400): validity **131/134 (97.8%)** · task **38/180
+  (21.1%)** · tool-name **132/180 (73.3%)** · macro-F1 **0.2176** · refusal
+  **2/46 (4.4%)**. Reports in `reports/` (trajectories copy gitignored).
+  `--seed` flag added (committed compact-unit seed matches train phrasings;
+  working regen uses spaced units — see Results). SFT side: `--after-eval`
+  converter ready; needs one GPU AFTER re-run (script now saves full
+  `records`).
+- [x] **F2 — Quant survival for the SFT adapter (S).** Done 2026-11-06 by evidence: the AFTER numbers (801/801 · 784/801 · 21/24) were measured with the base loaded in **4-bit nf4** (`BitsAndBytesConfig` in `eval_after_hf_jobs.py`, which produced the Hub `after_eval.json`) — absolute quant numbers meet all targets. Caveat: no full-precision run exists, so the full→quant Δ is unmeasured. Re-run recipe (GPU): `hf jobs uv run ... scripts/eval_after_hf_jobs.py -- --adapter umeraamir69/hifazat-tab-sft-v1`.
+- [ ] **F3 — Fix the 3 brand-trap misses (S).** Rule-agent half done
+  (refuse + SKU tip, no price digits — `test_brand_no_price_dump`); seed
+  half done 2026-11-06 (brand_price_combo + brand_stock_combo probes × 3
+  langs → refusal 30/30, no price leak). Still open: SFT re-train on the new
+  probes + re-eval (needs GPU).
+- [x] **F4 — HF dataset + model card (S).** Done 2026-11-06:
+  https://huggingface.co/datasets/umeraamir69/hifazat-tab-seed (1506 rows +
+  oracle + provenance card); real model card on
+  https://huggingface.co/umeraamir69/hifazat-tab-sft-v1 (recipe, metrics,
+  limits, links).
 - [x] **F5 — Submission form numbers (S).** Why: `Submission.md` metrics
   were TBD — filled with SFT AFTER numbers 2026-11-06; copy to the real
   form at ship.
-- [ ] **F6 — Discord ticket + voice walk (S, human).** Why: only open items
-  needing a person. Update `#report-issues` with SFT AFTER; walk
-  `phone/VOICE_E2E.md` EN/HI/UR end to end.
+- [ ] **F6 — Discord ticket + voice walk (S, human).** Draft ready
+  2026-11-06 (progress-update text in `Discord_ticket_report_issues.md`,
+  NOT YET POSTED); voice walk `phone/VOICE_E2E.md` still needs a human.
 
 ## 3. Demo polish (Demo Day leverage, each S)
 

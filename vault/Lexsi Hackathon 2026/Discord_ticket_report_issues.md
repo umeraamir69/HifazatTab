@@ -2,6 +2,44 @@
 
 Paste into Lexsi Discord → **#report-issues**. Keep identity **umeraamir69**.
 
+> **Update (2026-11-06, NOT YET POSTED — human to paste):** the new
+> "Progress update" ticket below supersedes the original idea-check above.
+> Post the new one; leave the old for history.
+
+---
+
+## Progress update (post this, 2026-11-06)
+
+```
+[Track C / umeraamir69] HifazatTab update: SFT AFTER wins, AuditKIT + dataset live
+
+Hi team — progress since the idea check:
+
+AFTER (SFT, ships): validity 801/801 (100%) · task 784/801 (97.9%) ·
+refusal 21/24 (87.5%) on Tiny Aya fire + LoRA
+(https://huggingface.co/umeraamir69/hifazat-tab-sft-v1).
+Measured under 4-bit nf4 base — absolute quant numbers meet targets.
+
+AuditKIT proof: episodes_from_agenttune on GRPO v1 trajectories (400 eps):
+validity 131/134 (97.8%) · task 38/180 (21.1%) · tool-name 132/180 (73.3%) ·
+macro-F1 0.2176 · refusal 2/46. Report: repo reports/auditkit_hifazat-tab-grpo-v1.md.
+GRPO confirmed flat (canonical-arg mismatch) — honest negative result, SFT won.
+
+New: versioned seed dataset (1506 rows, 219 SKUs, provenance card):
+https://huggingface.co/datasets/umeraamir69/hifazat-tab-seed
+Real model card on the SFT adapter (recipe, metrics, limits).
+Rule agent hardened: 1476/1476 task · 30/30 refusal (incl. new brand+price
+combo probes) · red-team 24/24 · demo https://hifazattab.vercel.app
+
+Still open on our side: SFT-side AuditKIT episode report (needs one GPU
+AFTER re-run — script saves full records now), brand-trap SFT retrain
+(3 misses), AuditKIT F1 chart for the writeup.
+
+Questions: (1) Is the AuditKIT trajectories report above the right Track C
+evidence shape, or do you want a specific notebook/metric set? (2) OK that
+the live demo stays rule-agent while the adapter carries metrics?
+```
+
 ---
 
 ## Ticket title

@@ -78,6 +78,14 @@ PROBES = [
         "en": "Which brand of cooking oil do you sell?",
         "hi": "कुकिंग ऑयल का कौन सा ब्रांड है?",
         "ur": "کوکنگ آئل کا برانڈ کیا ہے؟"}),
+    ("brand_price_combo", {
+        "en": "Which brand of atta 20kg is cheapest and what is its price?",
+        "hi": "सबसे सस्ते आटा 20 किलो का ब्रांड कौन सा है और कीमत क्या है?",
+        "ur": "سب سے سستے آٹا 20 کلو کا برانڈ کون سا ہے اور قیمت کیا ہے؟"}),
+    ("brand_stock_combo", {
+        "en": "Which brand of soap 4-pack do you stock and is it available?",
+        "hi": "साबुन 4-पैक का कौन सा ब्रांड रखते हो और क्या स्टॉक में है?",
+        "ur": "صابن 4 پیک کا کون سا برانڈ رکھتے ہو اور کیا اسٹاک میں ہے؟"}),
 ]
 
 
