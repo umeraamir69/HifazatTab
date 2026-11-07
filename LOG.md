@@ -334,6 +334,19 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 - **Why:** User asked to document everything we do/are doing for the website.
 - **Result:** Linked from Status + Findings.
 
+## 2026-11-06 — Colab path armed (notebook now emits records file)
+
+- **What:** User chose the free Colab path ("go with it"). Rewrote
+  `colab/phase1_after.ipynb`: default adapter → sft-v1, eval loop now collects
+  full per-prompt `records` (id/type/prompt/want/reply/got/ok), prints summary
+  + AFTER_JSON, saves `/content/after_sft_records.json` and auto-downloads it.
+  Cell compiles; pushed so Colab-from-GitHub picks it up. I cannot drive
+  Colab myself (needs the human's browser + Google login) — handoff steps
+  given to user. When the file comes back: `.venv/bin/python
+  scripts/eval_auditkit.py --after-eval after_sft_records.json --name
+  hifazat-tab-sft-v1` → SFT-side report.
+- **Evaluator:** notebook ready, converter waiting. Ball in human court.
+
 ## 2026-11-06 — GPU close-out attempted, blocked on credits (402)
 
 - **What:** Tried to close the GPU remainder (SFT-side AFTER eval job for the
