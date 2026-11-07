@@ -38,14 +38,20 @@ Discord ticket update · human voice E2E walk (`phone/VOICE_E2E.md`).
   **2/46 (4.4%)**. Reports in `reports/` (trajectories copy gitignored).
   `--seed` flag added (committed compact-unit seed matches train phrasings;
   working regen uses spaced units — see Results). SFT side: `--after-eval`
-  converter ready; needs one GPU AFTER re-run (script now saves full
-  `records`).
+  converter ready (`--after-eval` synthetic-tested); `eval_after_hf_jobs.py`
+  now saves full per-prompt `records`. BLOCKED 2026-11-06: HF Jobs returned
+  **402 — prepaid credits exhausted**, $0 spent, nothing launched. Unblock:
+  add credits, or human runs `colab/phase1_after.ipynb` (PeftModel AFTER eval)
+  and drops the resulting after_summary.json here — converter takes it from
+  there.
 - [x] **F2 — Quant survival for the SFT adapter (S).** Done 2026-11-06 by evidence: the AFTER numbers (801/801 · 784/801 · 21/24) were measured with the base loaded in **4-bit nf4** (`BitsAndBytesConfig` in `eval_after_hf_jobs.py`, which produced the Hub `after_eval.json`) — absolute quant numbers meet all targets. Caveat: no full-precision run exists, so the full→quant Δ is unmeasured. Re-run recipe (GPU): `hf jobs uv run ... scripts/eval_after_hf_jobs.py -- --adapter umeraamir69/hifazat-tab-sft-v1`.
 - [ ] **F3 — Fix the 3 brand-trap misses (S).** Rule-agent half done
   (refuse + SKU tip, no price digits — `test_brand_no_price_dump`); seed
   half done 2026-11-06 (brand_price_combo + brand_stock_combo probes × 3
-  langs → refusal 30/30, no price leak). Still open: SFT re-train on the new
-  probes + re-eval (needs GPU).
+  langs → refusal 30/30, no price leak). Retrain half BLOCKED on the same
+  402 credits issue. Recipe (new adapter, never overwrite sft-v1):
+  `hf jobs uv run ... scripts/train_sft_hf_jobs.py -- --hub-id
+  umeraamir69/hifazat-tab-sft-v2` then the eval job.
 - [x] **F4 — HF dataset + model card (S).** Done 2026-11-06:
   https://huggingface.co/datasets/umeraamir69/hifazat-tab-seed (1506 rows +
   oracle + provenance card); real model card on

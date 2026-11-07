@@ -334,6 +334,25 @@ Running record of **what** we do, **why**, **cause**, **result**, **how to do be
 - **Why:** User asked to document everything we do/are doing for the website.
 - **Result:** Linked from Status + Findings.
 
+## 2026-11-06 — GPU close-out attempted, blocked on credits (402)
+
+- **What:** Tried to close the GPU remainder (SFT-side AFTER eval job for the
+  episode report; SFT-v2 brand-trap retrain next). `hf jobs uv run` for
+  `eval_after_hf_jobs.py` on a10g-small returned **402 Payment Required —
+  prepaid credits exhausted**. Verified: `hf jobs list` shows nothing running
+  ($0 spent, nothing launched). Auth as umeraamir69 works; `hf` CLI fine.
+- **Why:** User said do the still-open backlog; GPU items were the only path.
+- **Cause:** $20 Hackathon credits fully consumed by earlier smoke/full/SFT
+  Job runs (see Findings spend notes).
+- **Unblock paths (human):** (a) add HF credits → re-run the exact launched
+  command (eval ~$0.30 on a10g-small; SFT-v2 retrain ~$1–1.5 + eval ~$0.30);
+  (b) free path: run `colab/phase1_after.ipynb` (PeftModel AFTER eval, T4
+  inference fits) and save after_summary.json — the `--after-eval` converter
+  is synthetic-tested and waiting. Brand-trap retrain recipe pinned in
+  Features F3 (new `sft-v2` id, never overwrite sft-v1).
+- **Still human-only:** Discord post (draft ready, not posted), voice E2E walk.
+- **Evaluator:** blocked with $0 damage and recipes ready — honest stop.
+
 ## 2026-11-06 — Backlog done: F2/F4/GPU-prep, brand probes, dataset + card live
 
 - **What:** (1) Seed: added brand_price_combo + brand_stock_combo probes × 3

@@ -33,7 +33,7 @@ Targets ≥85% / ≥75% / ≥80% — **met on SFT**.
 - [ ] Voice E2E human walk (`phone/VOICE_E2E.md`)
 - [x] AuditKIT on GRPO trajectories (report in `reports/`; SFT-episode AFTER side + writeup still open)
 - [ ] SFT re-train for brand-trap refusals (3/24 misses; seed probes added → refusal 30/30 rule-side; needs GPU)
-- [ ] SFT-side AuditKIT episode report (converter + records ready; needs one GPU AFTER re-run)
+- [ ] SFT-side AuditKIT episode report + brand-trap retrain (BLOCKED: HF Jobs 402, credits exhausted — recipes ready, $0 spent)
 - [ ] Discord `#report-issues` post + voice E2E human walk (draft ready)
 - [ ] `/api/stt` rate limit · 30–50 red-team corpus
 
